@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Cerial — Fuel Smarter. Train Harder.</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #ffffff;
+    --card: #f2f2f7;
+    --card-hover: #e8e8ed;
+    --text: #000000;
+    --text-mid: #6b6b6b;
+    --text-dim: #8e8e93;
+    --border: #e5e5ea;
+    --accent: #000000;
+    --radius: 14px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    padding: 18px 32px;
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-weight: 700; font-size: 1.25rem;
+    color: var(--text);
+    letter-spacing: -0.02em;
+  }
+  .nav-cta {
+    background: var(--accent);
+    color: #fff;
+    font-family: inherit;
+    font-weight: 600; font-size: 0.82rem;
+    padding: 9px 22px;
+    border-radius: 50px;
+    border: none; cursor: pointer;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .nav-cta:hover { opacity: 0.8; }
+
+  /* ─── HERO ─── */
+  .hero {
+    text-align: center;
+    padding: 100px 24px 80px;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: var(--card);
+    color: var(--text-mid);
+    font-size: 0.75rem; font-weight: 500;
+    padding: 6px 16px; border-radius: 50px;
+    margin-bottom: 28px;
+  }
+  .hero h1 {
+    font-weight: 800;
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+    color: var(--text);
+  }
+  .hero p {
+    max-width: 480px;
+    margin: 22px auto 0;
+    color: var(--text-dim);
+    font-size: 1.05rem; font-weight: 400;
+    line-height: 1.6;
+  }
+  .hero-actions {
+    margin-top: 36px;
+    display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+    font-family: inherit;
+    font-weight: 600; font-size: 0.9rem;
+    padding: 14px 32px; border-radius: 50px;
+    border: none; cursor: pointer; text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .btn-primary:hover { opacity: 0.8; }
+  .btn-ghost {
+    color: var(--text);
+    font-family: inherit;
+    font-weight: 500; font-size: 0.9rem;
+    padding: 14px 28px; border-radius: 50px;
+    border: 1.5px solid var(--border);
+    background: transparent; cursor: pointer; text-decoration: none;
+    transition: background 0.2s;
+  }
+  .btn-ghost:hover { background: var(--card); }
+
+  /* ─── STATS ─── */
+  .stats-bar {
+    display: flex; justify-content: center; gap: 0;
+    max-width: 700px; margin: 0 auto;
+    padding: 0 24px;
+  }
+  .stat {
+    flex: 1; min-width: 120px;
+    text-align: center;
+    padding: 30px 12px;
+    background: var(--card);
+    border-right: 1px solid var(--border);
+  }
+  .stat:first-child { border-radius: var(--radius) 0 0 var(--radius); }
+  .stat:last-child { border-radius: 0 var(--radius) var(--radius) 0; border-right: none; }
+  .stat-num {
+    font-weight: 700; font-size: 1.5rem;
+    color: var(--text);
+    letter-spacing: -0.02em;
+  }
+  .stat-label {
+    color: var(--text-dim); font-size: 0.68rem;
+    font-weight: 500; margin-top: 4px;
+    text-transform: uppercase; letter-spacing: 0.06em;
+  }
+
+  /* ─── SECTION ─── */
+  .section { padding: 90px 24px; max-width: 960px; margin: 0 auto; }
+  .section-label {
+    font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--text-dim); font-weight: 600; margin-bottom: 10px;
+  }
+  .section-title {
+    font-weight: 700; font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+    letter-spacing: -0.025em; line-height: 1.2;
+    color: var(--text);
+    max-width: 460px;
+  }
+
+  /* ─── HOW IT WORKS ─── */
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 12px; margin-top: 48px;
+  }
+  .step-card {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 32px 26px;
+    transition: background 0.2s;
+  }
+  .step-card:hover { background: var(--card-hover); }
+  .step-num {
+    font-weight: 700; font-size: 0.78rem;
+    color: var(--text-dim);
+    background: rgba(0,0,0,0.06);
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 30px; height: 30px; border-radius: 50%;
+  }
+  .step-card h3 {
+    font-weight: 600; font-size: 1rem;
+    margin-top: 18px; margin-bottom: 8px;
+    color: var(--text);
+  }
+  .step-card p { color: var(--text-dim); font-size: 0.85rem; line-height: 1.6; }
+
+  /* ─── PREVIEW CARDS ─── */
+  .preview-section {
+    padding: 0 24px 90px;
+    max-width: 960px; margin: 0 auto;
+  }
+  .preview-header { margin-bottom: 40px; }
+  .preview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 12px;
+  }
+  .preview-card {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 28px 22px;
+  }
+  .preview-card-title {
+    font-weight: 600; font-size: 0.7rem;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--text-dim); margin-bottom: 18px;
+  }
+  /* Ring */
+  .ring-wrap { display: flex; justify-content: center; gap: 20px; }
+  .ring { width: 96px; height: 96px; position: relative; }
+  .ring svg { transform: rotate(-90deg); }
+  .ring-label {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+  }
+  .ring-val { font-weight: 700; font-size: 1.2rem; color: var(--text); letter-spacing: -0.02em; }
+  .ring-sub { font-size: 0.64rem; color: var(--text-dim); margin-top: 1px; }
+  /* Meal rows */
+  .meal-row {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 9px 0;
+    border-top: 1px solid var(--border);
+  }
+  .meal-name { font-weight: 500; font-size: 0.84rem; color: var(--text); }
+  .meal-meta { font-size: 0.73rem; color: var(--text-dim); }
+  /* Chat bubble */
+  .bubble {
+    background: #fff;
+    border-radius: 18px 18px 18px 4px;
+    padding: 11px 15px;
+    font-size: 0.84rem; color: var(--text);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    display: inline-block;
+    margin-top: 8px;
+  }
+  .bubble-context {
+    font-size: 0.73rem; color: var(--text-dim);
+    background: var(--card-hover);
+    border-radius: 10px;
+    padding: 8px 12px;
+    margin-bottom: 10px;
+  }
+  /* Streak dots */
+  .streak-row { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 4px; }
+  .dot { width: 26px; height: 26px; border-radius: 50%; }
+  .dot-empty { background: var(--card-hover); }
+  .dot-hit { background: #34c759; }
+  .dot-miss { background: #ff3b30; }
+  .dot-today { background: transparent; border: 2.5px solid #ff3b30; }
+  .streak-legend { display: flex; gap: 14px; margin-top: 14px; flex-wrap: wrap; }
+  .legend-item { display: flex; align-items: center; gap: 6px; font-size: 0.7rem; color: var(--text-dim); }
+  .legend-dot { width: 10px; height: 10px; border-radius: 50%; }
+
+  /* ─── FEATURES ─── */
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 12px; margin-top: 48px;
+  }
+  .feature-card {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 28px 24px;
+    transition: background 0.2s;
+  }
+  .feature-card:hover { background: var(--card-hover); }
+  .feature-icon {
+    font-size: 1.4rem;
+    width: 42px; height: 42px;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(0,0,0,0.06);
+    border-radius: 12px;
+  }
+  .feature-card h3 {
+    font-weight: 600; font-size: 0.92rem;
+    margin-top: 16px; margin-bottom: 6px;
+    color: var(--text);
+  }
+  .feature-card p { color: var(--text-dim); font-size: 0.82rem; line-height: 1.6; }
+
+  /* ─── CTA ─── */
+  .cta-section {
+    max-width: 640px; margin: 0 auto 100px;
+    padding: 0 24px;
+  }
+  .cta-card {
+    background: var(--card);
+    border-radius: 24px;
+    padding: 56px 40px;
+    text-align: center;
+  }
+  .cta-card h2 {
+    font-weight: 700; font-size: clamp(1.6rem, 3.5vw, 2.1rem);
+    letter-spacing: -0.02em; line-height: 1.2;
+  }
+  .cta-card p {
+    color: var(--text-dim); font-size: 0.9rem;
+    max-width: 380px; margin: 14px auto 0; line-height: 1.6;
+  }
+  .cta-card .btn-primary { margin-top: 28px; display: inline-block; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 36px 24px;
+    text-align: center;
+    color: var(--text-dim); font-size: 0.78rem;
+  }
+  footer a { color: var(--text-dim); text-decoration: none; margin: 0 10px; transition: color 0.2s; }
+  footer a:hover { color: var(--text); }
+
+  @media (max-width: 580px) {
+    nav { padding: 14px 20px; }
+    .hero { padding: 70px 24px 60px; }
+    .cta-card { padding: 44px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Cerial</div>
+  <a href="#" class="nav-cta">Get Early Access</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-badge">Now on TestFlight</div>
+  <h1>Fuel Smarter.<br>Train Harder.</h1>
+  <p>The AI-powered nutrition tracker built for athletes. Log what you eat in seconds, hit your macros, and level up with your team.</p>
+  <div class="hero-actions">
+    <a href="#" class="btn-primary">Get Early Access</a>
+    <a href="#how" class="btn-ghost">See How It Works</a>
+  </div>
+</section>
+
+<div class="stats-bar">
+  <div class="stat"><div class="stat-num">&lt; 10s</div><div class="stat-label">To Log a Meal</div></div>
+  <div class="stat"><div class="stat-num">AI</div><div class="stat-label">Macro Est.</div></div>
+  <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Free</div></div>
+  <div class="stat"><div class="stat-num">Teams</div><div class="stat-label">Built In</div></div>
+</div>
+
+<section class="section" id="how">
+  <div class="section-label">How It Works</div>
+  <h2 class="section-title">From meal to macro in seconds.</h2>
+  <div class="steps">
+    <div class="step-card">
+      <div class="step-num">1</div>
+      <h3>Tell Cerial What You Ate</h3>
+      <p>Just type or describe your meal naturally. No barcode scanning, no searching through menus. Cerial's AI handles the rest.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">2</div>
+      <h3>AI Estimates Your Macros</h3>
+      <p>Cerial instantly calculates calories, protein, carbs, and fat — fast and surprisingly accurate.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">3</div>
+      <h3>Get Coached Toward Your Goals</h3>
+      <p>Cerial learns your patterns and nudges you in real time — like having a nutrition coach in your pocket.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PREVIEW -->
+<section class="preview-section">
+  <div class="preview-header">
+    <div class="section-label">Inside the App</div>
+    <h2 class="section-title">Everything you need, nothing you don't.</h2>
+  </div>
+  <div class="preview-grid">
+
+    <!-- Today -->
+    <div class="preview-card">
+      <div class="preview-card-title">Today</div>
+      <div class="ring-wrap">
+        <div class="ring">
+          <svg width="96" height="96" viewBox="0 0 96 96">
+            <circle cx="48" cy="48" r="38" fill="none" stroke="var(--card-hover)" stroke-width="7"/>
+            <circle cx="48" cy="48" r="38" fill="none" stroke="#000" stroke-width="7" stroke-linecap="round"
+              stroke-dasharray="238.76" stroke-dashoffset="215" />
+          </svg>
+          <div class="ring-label"><div class="ring-val">401</div><div class="ring-sub">/ 2200 kcal</div></div>
+        </div>
+        <div class="ring">
+          <svg width="96" height="96" viewBox="0 0 96 96">
+            <circle cx="48" cy="48" r="38" fill="none" stroke="var(--card-hover)" stroke-width="7"/>
+            <circle cx="48" cy="48" r="38" fill="none" stroke="#000" stroke-width="7" stroke-linecap="round"
+              stroke-dasharray="238.76" stroke-dashoffset="194" />
+          </svg>
+          <div class="ring-label"><div class="ring-val">36</div><div class="ring-sub">/ 160 g</div></div>
+        </div>
+      </div>
+      <div class="meal-row"><span class="meal-name">Breakfast</span><span class="meal-meta">161 kcal · 20g</span></div>
+      <div class="meal-row"><span class="meal-name">Lunch</span><span class="meal-meta">0 kcal · 0g</span></div>
+      <div class="meal-row"><span class="meal-name">Dinner</span><span class="meal-meta">240 kcal · 16g</span></div>
+      <div class="meal-row"><span class="meal-name">Snacks</span><span class="meal-meta">0 kcal · 0g</span></div>
+    </div>
+
+    <!-- Coach -->
+    <div class="preview-card">
+      <div class="preview-card-title">Coach</div>
+      <p style="font-size:0.78rem; color:var(--text-dim); margin-bottom:14px;">Small choices, done consistently.</p>
+      <div class="bubble-context">Today so far: 401 kcal · 36g protein</div>
+      <div class="bubble">What do you want help with today?</div>
+      <div style="margin-top:20px; padding-top:16px; border-top:1px solid var(--border);">
+        <p style="font-size:0.78rem; color:var(--text-dim); line-height:1.55;">
+          Your AI coach recognizes eating patterns and nudges you toward better habits — no lectures, just real guidance tailored to your day.
+        </p>
+      </div>
+    </div>
+
+    <!-- Streak -->
+    <div class="preview-card">
+      <div class="preview-card-title">Your Streak</div>
+      <div style="display:flex; gap:10px; margin-bottom:18px;">
+        <div style="flex:1; background:#fff; border-radius:12px; padding:14px; text-align:center;">
+          <div style="font-size:1.3rem;">🔥</div>
+          <div style="font-weight:700; font-size:1.3rem; margin-top:4px; letter-spacing:-0.02em;">0</div>
+          <div style="font-size:0.66rem; color:var(--text-dim); margin-top:2px;">Current Streak</div>
+        </div>
+        <div style="flex:1; background:#fff; border-radius:12px; padding:14px; text-align:center;">
+          <div style="font-size:1.3rem;">👑</div>
+          <div style="font-weight:700; font-size:1.3rem; margin-top:4px; letter-spacing:-0.02em;">1</div>
+          <div style="font-size:0.66rem; color:var(--text-dim); margin-top:2px;">Longest Streak</div>
+        </div>
+      </div>
+      <div style="font-weight:600; font-size:0.8rem; color:var(--text); margin-bottom:10px;">Last 30 Days</div>
+      <div class="streak-row">
+        <div class="dot dot-empty"></div><div class="dot dot-empty"></div><div class="dot dot-empty"></div>
+        <div class="dot dot-empty"></div><div class="dot dot-empty"></div><div class="dot dot-empty"></div>
+        <div class="dot dot-empty"></div><div class="dot dot-empty"></div><div class="dot dot-empty"></div>
+        <div class="dot dot-empty"></div><div class="dot dot-empty"></div><div class="dot dot-empty"></div>
+        <div class="dot dot-empty"></div><div class="dot dot-empty"></div><div class="dot dot-empty"></div>
+        <div class="dot dot-empty"></div><div class="dot dot-empty"></div><div class="dot dot-empty"></div>
+        <div class="dot dot-empty"></div><div class="dot dot-empty"></div><div class="dot dot-empty"></div>
+        <div class="dot dot-empty"></div><div class="dot dot-empty"></div><div class="dot dot-hit"></div>
+        <div class="dot dot-miss"></div><div class="dot dot-empty"></div><div class="dot dot-hit"></div>
+        <div class="dot dot-miss"></div><div class="dot dot-miss"></div><div class="dot dot-today"></div>
+      </div>
+      <div class="streak-legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#34c759;"></div>Goals Hit</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#ff3b30;"></div>Goals Missed</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#e5e5ea;"></div>No Data</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section" style="padding-top:0;">
+  <div class="section-label">Built for Athletes</div>
+  <h2 class="section-title">Everything your team needs to stay locked in.</h2>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">💬</div>
+      <h3>Chat-First Logging</h3>
+      <p>Just tell Cerial what you ate like you'd tell a friend. It does the math.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📊</div>
+      <h3>Daily Dashboard</h3>
+      <p>See your calories, protein, and progress at a glance — clean and real-time.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🏆</div>
+      <h3>Team Leaderboards</h3>
+      <p>Compete with teammates on streaks and consistency. Motivation built in.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🔗</div>
+      <h3>Group Accountability</h3>
+      <p>Join groups, invite teammates, and stay accountable together as a team.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🤖</div>
+      <h3>AI Coaching Nudges</h3>
+      <p>Cerial learns your patterns and gives you smart, personalized nudges.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📈</div>
+      <h3>History & Trends</h3>
+      <p>Look back at your nutrition over time. Progress isn't linear — patterns matter.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="cta-card">
+    <h2>Ready to fuel like a champion?</h2>
+    <p>Cerial is free and in early access right now. Grab a spot on TestFlight and start tracking today.</p>
+    <a href="#" class="btn-primary">Get Early Access</a>
+  </div>
+</div>
+
+<footer>
+  <p style="margin-bottom:10px;">© 2026 Cerial. All rights reserved.</p>
+  <a href="privacy.html">Privacy Policy</a>
+</footer>
+
+</body>
+</html>
