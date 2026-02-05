@@ -3,32 +3,89 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Cerial — Fuel Smarter. Train Harder.</title>
+<title>Cerial. — Your AI Performance Coach</title>
+<meta name="description" content="Your AI performance coach. Just tell the AI what you ate—it logs, coaches, and tracks your progress. No databases, no weighing, no friction." />
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://cerial.app/" />
+<meta property="og:title" content="Cerial. — Your AI Performance Coach" />
+<meta property="og:description" content="Your AI performance coach. Just tell the AI what you ate—it logs, coaches, and tracks your progress. No databases, no weighing, no friction." />
+<!-- TODO: Add og:image when you have a social sharing image (1200x630px recommended) -->
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content="https://cerial.app/" />
+<meta property="twitter:title" content="Cerial. — Your AI Performance Coach" />
+<meta property="twitter:description" content="Your AI performance coach. Just tell the AI what you ate—it logs, coaches, and tracks your progress. No databases, no weighing, no friction." />
+<!-- TODO: Add twitter:image when you have a social sharing image (1200x630px recommended) -->
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --bg: #ffffff;
-    --card: #f2f2f7;
-    --card-hover: #e8e8ed;
-    --text: #000000;
-    --text-mid: #6b6b6b;
-    --text-dim: #8e8e93;
-    --border: #e5e5ea;
-    --accent: #000000;
+    /* Colors - Primary */
+    --color-primary: #000000;
+    --color-background: #ffffff;
+    --color-accent: #0a7ea4;
+
+    /* Colors - Grayscale */
+    --color-gray-50: #f7f7f7;
+    --color-gray-100: #f3f4f6;
+    --color-gray-200: #e5e7eb;
+    --color-gray-400: #999999;
+    --color-gray-500: #6b7280;
+    --color-gray-600: #555555;
+    --color-gray-700: #333333;
+    --color-gray-900: #111827;
+
+    /* Legacy aliases for backward compatibility */
+    --bg: var(--color-background);
+    --card: var(--color-gray-50);
+    --card-hover: var(--color-gray-200);
+    --text: var(--color-primary);
+    --text-mid: var(--color-gray-500);
+    --text-dim: var(--color-gray-500);
+    --border: var(--color-gray-200);
+    --accent: var(--color-primary);
     --radius: 14px;
+
+    /* Typography */
+    --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-brand: Georgia, "Times New Roman", serif;
+    --font-signature: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+    /* Spacing */
+    --spacing-sm: 8px;
+    --spacing-md: 12px;
+    --spacing-lg: 16px;
+    --spacing-xl: 24px;
+    --spacing-2xl: 32px;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 1px 3px rgba(0, 0, 0, 0.15);
+
+    /* Transitions */
+    --transition-fast: 150ms ease;
   }
 
   html { scroll-behavior: smooth; }
 
   body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: var(--font-brand);
     background: var(--bg);
     color: var(--text);
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Use Georgia for everything - signature font */
+  * {
+    font-family: var(--font-brand) !important;
   }
 
   /* ─── NAV ─── */
@@ -52,12 +109,16 @@
     font-family: inherit;
     font-weight: 600; font-size: 0.82rem;
     padding: 9px 22px;
-    border-radius: 50px;
+    border-radius: var(--radius);
     border: none; cursor: pointer;
     text-decoration: none;
-    transition: opacity 0.2s;
+    transition: all var(--transition-fast);
+    box-shadow: var(--shadow-md);
   }
-  .nav-cta:hover { opacity: 0.8; }
+  .nav-cta:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+  }
 
   /* ─── HERO ─── */
   .hero {
@@ -95,21 +156,36 @@
     color: #fff;
     font-family: inherit;
     font-weight: 600; font-size: 0.9rem;
-    padding: 14px 32px; border-radius: 50px;
+    padding: 14px 32px; border-radius: var(--radius);
     border: none; cursor: pointer; text-decoration: none;
-    transition: opacity 0.2s;
+    transition: all var(--transition-fast);
+    box-shadow: var(--shadow-md);
   }
-  .btn-primary:hover { opacity: 0.8; }
+  .btn-primary:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  .btn-primary:active {
+    transform: translateY(0);
+  }
   .btn-ghost {
     color: var(--text);
     font-family: inherit;
     font-weight: 500; font-size: 0.9rem;
-    padding: 14px 28px; border-radius: 50px;
+    padding: 14px 28px; border-radius: var(--radius);
     border: 1.5px solid var(--border);
     background: transparent; cursor: pointer; text-decoration: none;
-    transition: background 0.2s;
+    transition: all var(--transition-fast);
+    box-shadow: var(--shadow-sm);
   }
-  .btn-ghost:hover { background: var(--card); }
+  .btn-ghost:hover {
+    background: var(--card);
+    transform: translateY(-1px);
+  }
+  .btn-ghost:active {
+    transform: translateY(0);
+  }
 
   /* ─── STATS ─── */
   .stats-bar {
@@ -127,6 +203,7 @@
   .stat:first-child { border-radius: var(--radius) 0 0 var(--radius); }
   .stat:last-child { border-radius: 0 var(--radius) var(--radius) 0; border-right: none; }
   .stat-num {
+    font-family: var(--font-brand);
     font-weight: 700; font-size: 1.5rem;
     color: var(--text);
     letter-spacing: -0.02em;
@@ -160,10 +237,16 @@
     background: var(--card);
     border-radius: var(--radius);
     padding: 32px 26px;
-    transition: background 0.2s;
+    transition: all var(--transition-fast);
+    box-shadow: var(--shadow-sm);
   }
-  .step-card:hover { background: var(--card-hover); }
+  .step-card:hover {
+    background: var(--card-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
+  }
   .step-num {
+    font-family: var(--font-brand);
     font-weight: 700; font-size: 0.78rem;
     color: var(--text-dim);
     background: rgba(0,0,0,0.06);
@@ -207,7 +290,7 @@
     display: flex; flex-direction: column;
     align-items: center; justify-content: center;
   }
-  .ring-val { font-weight: 700; font-size: 1.2rem; color: var(--text); letter-spacing: -0.02em; }
+  .ring-val { font-family: var(--font-brand); font-weight: 700; font-size: 1.2rem; color: var(--text); letter-spacing: -0.02em; }
   .ring-sub { font-size: 0.64rem; color: var(--text-dim); margin-top: 1px; }
   /* Meal rows */
   .meal-row {
@@ -223,7 +306,7 @@
     border-radius: 18px 18px 18px 4px;
     padding: 11px 15px;
     font-size: 0.84rem; color: var(--text);
-    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    box-shadow: var(--shadow-sm);
     display: inline-block;
     margin-top: 8px;
   }
@@ -234,16 +317,83 @@
     padding: 8px 12px;
     margin-bottom: 10px;
   }
-  /* Streak dots */
-  .streak-row { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 4px; }
-  .dot { width: 26px; height: 26px; border-radius: 50%; }
-  .dot-empty { background: var(--card-hover); }
-  .dot-hit { background: #34c759; }
-  .dot-miss { background: #ff3b30; }
-  .dot-today { background: transparent; border: 2.5px solid #ff3b30; }
-  .streak-legend { display: flex; gap: 14px; margin-top: 14px; flex-wrap: wrap; }
-  .legend-item { display: flex; align-items: center; gap: 6px; font-size: 0.7rem; color: var(--text-dim); }
-  .legend-dot { width: 10px; height: 10px; border-radius: 50%; }
+  /* Streak Calendar - New Design */
+  .streak-calendar__title {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+
+  .streak-calendar__grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .streak-circle {
+    width: 32px;
+    height: 32px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+
+  .streak-circle--hit {
+    background: #000;
+  }
+
+  .streak-circle--missed,
+  .streak-circle--none {
+    background: #e5e7eb;
+  }
+
+  .streak-circle--today {
+    border: 2px solid #000;
+  }
+
+  .streak-circle__check {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1;
+  }
+
+  .streak-calendar__legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 16px;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .legend-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 6px;
+  }
+
+  .legend-dot--hit {
+    background: #000;
+  }
+
+  .legend-dot--missed,
+  .legend-dot--none {
+    background: #e5e7eb;
+  }
+
+  .legend-label {
+    font-size: 12px;
+    color: #666;
+  }
 
   /* ─── FEATURES ─── */
   .features-grid {
@@ -255,15 +405,46 @@
     background: var(--card);
     border-radius: var(--radius);
     padding: 28px 24px;
-    transition: background 0.2s;
+    transition: all var(--transition-fast);
+    box-shadow: var(--shadow-sm);
+    text-align: center;
   }
-  .feature-card:hover { background: var(--card-hover); }
-  .feature-icon {
-    font-size: 1.4rem;
-    width: 42px; height: 42px;
-    display: flex; align-items: center; justify-content: center;
-    background: rgba(0,0,0,0.06);
-    border-radius: 12px;
+  .feature-card:hover {
+    background: var(--card-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
+  }
+
+  /* Intro Badge Circles (replacing emoji icons) */
+  .intro-badge {
+    width: 120px;
+    height: 120px;
+    border-radius: 60px;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 24px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  .intro-badge__text {
+    font-family: Georgia, serif;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+  }
+
+  .intro-badge__icon {
+    color: #fff;
+  }
+
+  @media (max-width: 480px) {
+    .intro-badge {
+      width: 100px;
+      height: 100px;
+      border-radius: 50px;
+    }
   }
   .feature-card h3 {
     font-weight: 600; font-size: 0.92rem;
@@ -271,6 +452,30 @@
     color: var(--text);
   }
   .feature-card p { color: var(--text-dim); font-size: 0.82rem; line-height: 1.6; }
+
+  /* ─── PHILOSOPHY ─── */
+  .philosophy-section {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 90px 24px;
+    text-align: center;
+  }
+  .philosophy-section h2 {
+    font-weight: 700;
+    font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+    margin-bottom: 24px;
+  }
+  .philosophy-section p {
+    color: var(--text-mid);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+  .philosophy-section p:last-child {
+    margin-bottom: 0;
+  }
 
   /* ─── CTA ─── */
   .cta-section {
@@ -308,21 +513,206 @@
     .hero { padding: 70px 24px 60px; }
     .cta-card { padding: 44px 24px; }
   }
+
+  /* ─── WAITLIST MODAL ─── */
+  .modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+    animation: fadeIn 0.3s ease;
+  }
+
+  .modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+  }
+
+  .modal-content {
+    position: relative;
+    background: #fff;
+    border-radius: 24px;
+    padding: 48px 40px;
+    max-width: 480px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.3s ease;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 32px;
+    color: #999;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    transition: color 0.2s;
+  }
+
+  .modal-close:hover {
+    color: #000;
+  }
+
+  .modal-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0 0 12px 0;
+    letter-spacing: -0.02em;
+  }
+
+  .modal-subtitle {
+    font-size: 1.05rem;
+    color: var(--text-mid);
+    margin: 0 0 32px 0;
+  }
+
+  .waitlist-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .modal-input {
+    padding: 16px 20px;
+    font-size: 1rem;
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    transition: border-color 0.2s;
+    background: #fff;
+  }
+
+  .modal-input:focus {
+    outline: none;
+    border-color: #000;
+  }
+
+  .modal-button {
+    background: #000;
+    color: #fff;
+    padding: 16px 32px;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    box-shadow: var(--shadow-md);
+  }
+
+  .modal-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  .modal-button:active {
+    transform: translateY(0);
+  }
+
+  .modal-note {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    margin: 20px 0 0 0;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 580px) {
+    .modal-content {
+      padding: 40px 28px;
+      width: 95%;
+    }
+    .modal-title {
+      font-size: 1.6rem;
+    }
+  }
 </style>
 </head>
 <body>
 
+<!-- WAITLIST MODAL -->
+<div id="waitlistModal" class="modal">
+  <div class="modal-overlay"></div>
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeWaitlistModal()">&times;</button>
+    <h2 class="modal-title">Join the Waitlist</h2>
+    <p class="modal-subtitle">Be the first to experience Cerial.</p>
+    <form id="waitlistForm" class="waitlist-form">
+      <input
+        type="text"
+        id="nameInput"
+        name="name"
+        placeholder="Full name"
+        required
+        class="modal-input"
+      />
+      <input
+        type="email"
+        id="emailInput"
+        name="email"
+        placeholder="Email address"
+        required
+        class="modal-input"
+      />
+      <input
+        type="tel"
+        id="phoneInput"
+        name="phone"
+        placeholder="Phone number"
+        required
+        class="modal-input"
+      />
+      <button type="submit" class="modal-button">Join the Waitlist</button>
+    </form>
+    <p class="modal-note">We'll notify you when Cerial is ready.</p>
+  </div>
+</div>
+
 <nav>
-  <div class="nav-logo">Cerial</div>
-  <a href="#" class="nav-cta">Get Early Access</a>
+  <div class="nav-logo">Cerial.</div>
+  <a href="#" onclick="openWaitlistModal(); return false;" class="nav-cta">Join the Waitlist</a>
 </nav>
 
 <section class="hero">
   <div class="hero-badge">Now on TestFlight</div>
-  <h1>Fuel Smarter.<br>Train Harder.</h1>
-  <p>The AI-powered nutrition tracker built for athletes. Log what you eat in seconds, hit your macros, and level up with your team.</p>
+  <h1>Cerial.<br>A Coach In Your Pocket.</h1>
+  <p>Just tell the AI what you ate—it logs, coaches, and tracks your progress. No databases, no weighing, no friction.</p>
   <div class="hero-actions">
-    <a href="#" class="btn-primary">Get Early Access</a>
+    <a href="#" onclick="openWaitlistModal(); return false;" class="btn-primary">Join the Waitlist</a>
     <a href="#how" class="btn-ghost">See How It Works</a>
   </div>
 </section>
@@ -330,7 +720,6 @@
 <div class="stats-bar">
   <div class="stat"><div class="stat-num">&lt; 10s</div><div class="stat-label">To Log a Meal</div></div>
   <div class="stat"><div class="stat-num">AI</div><div class="stat-label">Macro Est.</div></div>
-  <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Free</div></div>
   <div class="stat"><div class="stat-num">Teams</div><div class="stat-label">Built In</div></div>
 </div>
 
@@ -340,18 +729,80 @@
   <div class="steps">
     <div class="step-card">
       <div class="step-num">1</div>
-      <h3>Tell Cerial What You Ate</h3>
-      <p>Just type or describe your meal naturally. No barcode scanning, no searching through menus. Cerial's AI handles the rest.</p>
+      <h3>Say What You Ate</h3>
+      <p>Just type naturally: "eggs and toast for breakfast." No databases. No weighing. The AI handles the rest.</p>
     </div>
     <div class="step-card">
       <div class="step-num">2</div>
-      <h3>AI Estimates Your Macros</h3>
-      <p>Cerial instantly calculates calories, protein, carbs, and fat — fast and surprisingly accurate.</p>
+      <h3>Get Daily Coaching</h3>
+      <p>Your AI coach provides context-aware feedback. Progress, not perfection. You're building a performance profile, not just a food log.</p>
     </div>
     <div class="step-card">
       <div class="step-num">3</div>
-      <h3>Get Coached Toward Your Goals</h3>
-      <p>Cerial learns your patterns and nudges you in real time — like having a nutrition coach in your pocket.</p>
+      <h3>Build Your Streak</h3>
+      <p>Track consecutive days of hitting your targets. 80% of your target counts—no all-or-nothing pressure. Small choices, done consistently.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section" style="padding-top:0;">
+  <div class="section-label">Built for Performance</div>
+  <h2 class="section-title">Everything you need. Nothing you don't.</h2>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="intro-badge">
+        <span class="intro-badge__text" style="font-size: 52px;">AI</span>
+      </div>
+      <h3>Natural Language Logging</h3>
+      <p>Type what you ate like you're texting a friend. Cerial's AI handles the parsing, calculations, and logging.</p>
+    </div>
+    <div class="feature-card">
+      <div class="intro-badge">
+        <span class="intro-badge__text" style="font-size: 32px;">USDA</span>
+      </div>
+      <h3>Transparent Data Sources</h3>
+      <p>Every food item shows its source—USDA verified, branded database, or AI estimated. Trust built on transparency.</p>
+    </div>
+    <div class="feature-card">
+      <div class="intro-badge">
+        <span class="intro-badge__text" style="font-size: 68px;">✓</span>
+      </div>
+      <h3>Personalized Goals</h3>
+      <p>Conversational goal discovery with AI-calculated targets and rationale. No one-size-fits-all formulas.</p>
+    </div>
+    <div class="feature-card">
+      <div class="intro-badge">
+        <svg class="intro-badge__icon" xmlns="http://www.w3.org/2000/svg" width="68" height="68" viewBox="0 0 512 512" fill="none" stroke="#fff" stroke-width="32" stroke-linecap="round" stroke-linejoin="round">
+          <!-- Exact Ionicons "people-outline" -->
+          <path d="M402,168c-2.93,40.67-33.1,72-66,72s-63.12-31.32-66-72c-3-42.31,26.37-72,66-72S405,126.46,402,168Z"/>
+          <path d="M336,304c-65.17,0-127.84,32.37-143.54,95.41-2.08,8.34,3.15,16.59,11.72,16.59H467.83c8.57,0,13.77-8.25,11.72-16.59C463.85,335.36,401.18,304,336,304Z"/>
+          <path d="M200,185.94C197.66,218.42,173.28,244,147,244S96.3,218.43,94,185.94C91.61,152.15,115.34,128,147,128S202.39,152.77,200,185.94Z"/>
+          <path d="M206,306c-18.05-8.27-37.93-11.45-59-11.45-52,0-102.1,25.85-114.65,76.2C30.7,377.41,34.88,384,41.72,384H154"/>
+        </svg>
+      </div>
+      <h3>Group Accountability</h3>
+      <p>Create teams with friends. See rankings, share progress, stay accountable. Stronger together.</p>
+    </div>
+    <div class="feature-card">
+      <div class="intro-badge">
+        <span class="intro-badge__text" style="font-size: 48px;">365</span>
+      </div>
+      <h3>Streak Tracking</h3>
+      <p>Build momentum with daily streaks. 80% of your target counts—no all-or-nothing pressure. Consistency beats intensity.</p>
+    </div>
+    <div class="feature-card">
+      <div class="intro-badge">
+        <svg class="intro-badge__icon" width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Centered white bar chart with ascending bars -->
+          <rect x="4" y="36" width="10" height="14" fill="white" rx="2"/>
+          <rect x="17" y="26" width="10" height="24" fill="white" rx="2"/>
+          <rect x="30" y="16" width="10" height="34" fill="white" rx="2"/>
+          <rect x="43" y="6" width="10" height="44" fill="white" rx="2"/>
+        </svg>
+      </div>
+      <h3>Weight Trends</h3>
+      <p>Track weight with weekly averaging. Focus on the trajectory, not single weigh-ins. Trends, not daily noise.</p>
     </div>
   </div>
 </section>
@@ -360,7 +811,7 @@
 <section class="preview-section">
   <div class="preview-header">
     <div class="section-label">Inside the App</div>
-    <h2 class="section-title">Everything you need, nothing you don't.</h2>
+    <h2 class="section-title">Inside the App</h2>
   </div>
   <div class="preview-grid">
 
@@ -410,82 +861,79 @@
       <div style="display:flex; gap:10px; margin-bottom:18px;">
         <div style="flex:1; background:#fff; border-radius:12px; padding:14px; text-align:center;">
           <div style="font-size:1.3rem;">🔥</div>
-          <div style="font-weight:700; font-size:1.3rem; margin-top:4px; letter-spacing:-0.02em;">0</div>
+          <div style="font-family:var(--font-brand); font-weight:700; font-size:1.3rem; margin-top:4px; letter-spacing:-0.02em;">0</div>
           <div style="font-size:0.66rem; color:var(--text-dim); margin-top:2px;">Current Streak</div>
         </div>
         <div style="flex:1; background:#fff; border-radius:12px; padding:14px; text-align:center;">
           <div style="font-size:1.3rem;">👑</div>
-          <div style="font-weight:700; font-size:1.3rem; margin-top:4px; letter-spacing:-0.02em;">1</div>
+          <div style="font-family:var(--font-brand); font-weight:700; font-size:1.3rem; margin-top:4px; letter-spacing:-0.02em;">1</div>
           <div style="font-size:0.66rem; color:var(--text-dim); margin-top:2px;">Longest Streak</div>
         </div>
       </div>
-      <div style="font-weight:600; font-size:0.8rem; color:var(--text); margin-bottom:10px;">Last 30 Days</div>
-      <div class="streak-row">
-        <div class="dot dot-empty"></div><div class="dot dot-empty"></div><div class="dot dot-empty"></div>
-        <div class="dot dot-empty"></div><div class="dot dot-empty"></div><div class="dot dot-empty"></div>
-        <div class="dot dot-empty"></div><div class="dot dot-empty"></div><div class="dot dot-empty"></div>
-        <div class="dot dot-empty"></div><div class="dot dot-empty"></div><div class="dot dot-empty"></div>
-        <div class="dot dot-empty"></div><div class="dot dot-empty"></div><div class="dot dot-empty"></div>
-        <div class="dot dot-empty"></div><div class="dot dot-empty"></div><div class="dot dot-empty"></div>
-        <div class="dot dot-empty"></div><div class="dot dot-empty"></div><div class="dot dot-empty"></div>
-        <div class="dot dot-empty"></div><div class="dot dot-empty"></div><div class="dot dot-hit"></div>
-        <div class="dot dot-miss"></div><div class="dot dot-empty"></div><div class="dot dot-hit"></div>
-        <div class="dot dot-miss"></div><div class="dot dot-miss"></div><div class="dot dot-today"></div>
+      <h3 class="streak-calendar__title">Last 30 Days</h3>
+      <div class="streak-calendar__grid">
+        <div class="streak-circle streak-circle--hit"><span class="streak-circle__check">✓</span></div>
+        <div class="streak-circle streak-circle--missed"></div>
+        <div class="streak-circle streak-circle--none"></div>
+        <div class="streak-circle streak-circle--hit"><span class="streak-circle__check">✓</span></div>
+        <div class="streak-circle streak-circle--hit"><span class="streak-circle__check">✓</span></div>
+        <div class="streak-circle streak-circle--missed"></div>
+        <div class="streak-circle streak-circle--hit"><span class="streak-circle__check">✓</span></div>
+        <div class="streak-circle streak-circle--hit"><span class="streak-circle__check">✓</span></div>
+        <div class="streak-circle streak-circle--hit"><span class="streak-circle__check">✓</span></div>
+        <div class="streak-circle streak-circle--missed"></div>
+        <div class="streak-circle streak-circle--missed"></div>
+        <div class="streak-circle streak-circle--hit"><span class="streak-circle__check">✓</span></div>
+        <div class="streak-circle streak-circle--hit"><span class="streak-circle__check">✓</span></div>
+        <div class="streak-circle streak-circle--hit"><span class="streak-circle__check">✓</span></div>
+        <div class="streak-circle streak-circle--missed"></div>
+        <div class="streak-circle streak-circle--missed"></div>
+        <div class="streak-circle streak-circle--hit"><span class="streak-circle__check">✓</span></div>
+        <div class="streak-circle streak-circle--hit"><span class="streak-circle__check">✓</span></div>
+        <div class="streak-circle streak-circle--hit"><span class="streak-circle__check">✓</span></div>
+        <div class="streak-circle streak-circle--hit"><span class="streak-circle__check">✓</span></div>
+        <div class="streak-circle streak-circle--missed"></div>
+        <div class="streak-circle streak-circle--missed"></div>
+        <div class="streak-circle streak-circle--hit"><span class="streak-circle__check">✓</span></div>
+        <div class="streak-circle streak-circle--hit"><span class="streak-circle__check">✓</span></div>
+        <div class="streak-circle streak-circle--hit"><span class="streak-circle__check">✓</span></div>
+        <div class="streak-circle streak-circle--hit"><span class="streak-circle__check">✓</span></div>
+        <div class="streak-circle streak-circle--missed"></div>
+        <div class="streak-circle streak-circle--hit"><span class="streak-circle__check">✓</span></div>
+        <div class="streak-circle streak-circle--hit"><span class="streak-circle__check">✓</span></div>
+        <div class="streak-circle streak-circle--today streak-circle--hit"><span class="streak-circle__check">✓</span></div>
       </div>
-      <div class="streak-legend">
-        <div class="legend-item"><div class="legend-dot" style="background:#34c759;"></div>Goals Hit</div>
-        <div class="legend-item"><div class="legend-dot" style="background:#ff3b30;"></div>Goals Missed</div>
-        <div class="legend-item"><div class="legend-dot" style="background:#e5e5ea;"></div>No Data</div>
+      <div class="streak-calendar__legend">
+        <div class="legend-item">
+          <div class="legend-dot legend-dot--hit"></div>
+          <span class="legend-label">Goals Hit</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot legend-dot--missed"></div>
+          <span class="legend-label">Goals Missed</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot legend-dot--none"></div>
+          <span class="legend-label">No Data</span>
+        </div>
       </div>
     </div>
 
   </div>
 </section>
 
-<!-- FEATURES -->
-<section class="section" style="padding-top:0;">
-  <div class="section-label">Built for Athletes</div>
-  <h2 class="section-title">Everything your team needs to stay locked in.</h2>
-  <div class="features-grid">
-    <div class="feature-card">
-      <div class="feature-icon">💬</div>
-      <h3>Chat-First Logging</h3>
-      <p>Just tell Cerial what you ate like you'd tell a friend. It does the math.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">📊</div>
-      <h3>Daily Dashboard</h3>
-      <p>See your calories, protein, and progress at a glance — clean and real-time.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">🏆</div>
-      <h3>Team Leaderboards</h3>
-      <p>Compete with teammates on streaks and consistency. Motivation built in.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">🔗</div>
-      <h3>Group Accountability</h3>
-      <p>Join groups, invite teammates, and stay accountable together as a team.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">🤖</div>
-      <h3>AI Coaching Nudges</h3>
-      <p>Cerial learns your patterns and gives you smart, personalized nudges.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">📈</div>
-      <h3>History & Trends</h3>
-      <p>Look back at your nutrition over time. Progress isn't linear — patterns matter.</p>
-    </div>
-  </div>
+<!-- PHILOSOPHY -->
+<section class="philosophy-section">
+  <h2>Progress over perfection</h2>
+  <p>Cerial was built through real experience. Greatness comes from consistency and commitment. Choose Cerial to be great.</p>
 </section>
 
 <!-- CTA -->
 <div class="cta-section">
   <div class="cta-card">
-    <h2>Ready to fuel like a champion?</h2>
-    <p>Cerial is free and in early access right now. Grab a spot on TestFlight and start tracking today.</p>
-    <a href="#" class="btn-primary">Get Early Access</a>
+    <h2>Ready to build better habits?</h2>
+    <p>Be the first on the bandwagon.</p>
+    <a href="#" onclick="openWaitlistModal(); return false;" class="btn-primary">Join the Waitlist</a>
   </div>
 </div>
 
@@ -493,6 +941,90 @@
   <p style="margin-bottom:10px;">© 2026 Cerial. All rights reserved.</p>
   <a href="privacy.html">Privacy Policy</a>
 </footer>
+
+<script>
+  // Open waitlist modal
+  function openWaitlistModal() {
+    document.getElementById('waitlistModal').classList.add('active');
+    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+  }
+
+  // Close waitlist modal
+  function closeWaitlistModal() {
+    document.getElementById('waitlistModal').classList.remove('active');
+    document.body.style.overflow = ''; // Restore scrolling
+  }
+
+  // Close modal when clicking overlay
+  document.querySelector('.modal-overlay')?.addEventListener('click', closeWaitlistModal);
+
+  // Close modal with Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      closeWaitlistModal();
+    }
+  });
+
+  // Handle form submission
+  document.getElementById('waitlistForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const name = document.getElementById('nameInput').value;
+    const email = document.getElementById('emailInput').value;
+    const phone = document.getElementById('phoneInput').value;
+    const button = this.querySelector('button[type="submit"]');
+    const originalText = button.textContent;
+
+    // Show loading state
+    button.textContent = 'Joining...';
+    button.disabled = true;
+
+    try {
+      // Send to Firebase Cloud Function (which calls EmailOctopus)
+      const response = await fetch('https://addtowaitlist-hvxr3deonq-uc.a.run.app', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: name,
+          email: email,
+          phone: phone
+        })
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        // Show success message
+        const modalContent = document.querySelector('.modal-content');
+        modalContent.innerHTML = `
+          <h2 class="modal-title">You're on the list!</h2>
+          <p class="modal-subtitle">We'll notify you when Cerial. is ready.</p>
+          <button onclick="closeWaitlistModal()" class="modal-button">Close</button>
+        `;
+
+        // Reset form and close after 3 seconds
+        setTimeout(() => {
+          closeWaitlistModal();
+          // Reset modal content
+          setTimeout(() => {
+            location.reload();
+          }, 300);
+        }, 3000);
+      } else {
+        // Handle error from function
+        throw new Error(data.message || data.error || 'Failed to join waitlist');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      // Show error message
+      button.textContent = 'Join the Waitlist';
+      button.disabled = false;
+      alert('Something went wrong. Please try again or contact us directly.');
+    }
+  });
+</script>
 
 </body>
 </html>
