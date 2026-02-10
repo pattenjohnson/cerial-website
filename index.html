@@ -943,6 +943,10 @@
 </footer>
 
 <script>
+  // Cloud Function endpoint (deployed from github.com/pattenjohnson/cerial)
+  // Source: https://github.com/pattenjohnson/cerial/blob/main/functions/src/waitlist.ts
+  const WAITLIST_ENDPOINT = 'https://addtowaitlist-hvxr3deonq-uc.a.run.app';
+
   // Open waitlist modal
   function openWaitlistModal() {
     document.getElementById('waitlistModal').classList.add('active');
@@ -980,8 +984,7 @@
     button.disabled = true;
 
     try {
-      // Send to Firebase Cloud Function (which calls EmailOctopus)
-      const response = await fetch('https://addtowaitlist-hvxr3deonq-uc.a.run.app', {
+      const response = await fetch(WAITLIST_ENDPOINT, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
