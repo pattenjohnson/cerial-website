@@ -117,7 +117,7 @@
   }
   .nav-cta:hover {
     opacity: 0.9;
-    transform: translateY(-1px);
+    transform: translateY(-1px) scale(1.02);
   }
 
   /* ─── HERO ─── */
@@ -163,7 +163,7 @@
   }
   .btn-primary:hover {
     opacity: 0.9;
-    transform: translateY(-1px);
+    transform: translateY(-1px) scale(1.02);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
   .btn-primary:active {
@@ -181,7 +181,7 @@
   }
   .btn-ghost:hover {
     background: var(--card);
-    transform: translateY(-1px);
+    transform: translateY(-1px) scale(1.02);
   }
   .btn-ghost:active {
     transform: translateY(0);
@@ -215,14 +215,14 @@
   }
 
   /* ─── SECTION ─── */
-  .section { padding: 90px 24px; max-width: 960px; margin: 0 auto; }
+  .section { padding: 120px 24px; max-width: 960px; margin: 0 auto; }
   .section-label {
     font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em;
     color: var(--text-dim); font-weight: 600; margin-bottom: 10px;
   }
   .section-title {
     font-weight: 700; font-size: clamp(1.8rem, 3.5vw, 2.4rem);
-    letter-spacing: -0.025em; line-height: 1.2;
+    letter-spacing: -0.025em; line-height: 1.05;
     color: var(--text);
     max-width: 460px;
   }
@@ -262,7 +262,7 @@
 
   /* ─── PREVIEW CARDS ─── */
   .preview-section {
-    padding: 0 24px 90px;
+    padding: 0 24px 120px;
     max-width: 960px; margin: 0 auto;
   }
   .preview-header { margin-bottom: 40px; }
@@ -274,7 +274,7 @@
   .preview-card {
     background: var(--card);
     border-radius: var(--radius);
-    padding: 28px 22px;
+    padding: 24px 20px;
   }
   .preview-card-title {
     font-weight: 600; font-size: 0.7rem;
@@ -404,7 +404,7 @@
   .feature-card {
     background: var(--card);
     border-radius: var(--radius);
-    padding: 28px 24px;
+    padding: 24px 20px;
     transition: all var(--transition-fast);
     box-shadow: var(--shadow-sm);
     text-align: center;
@@ -457,14 +457,14 @@
   .philosophy-section {
     max-width: 720px;
     margin: 0 auto;
-    padding: 90px 24px;
+    padding: 120px 24px;
     text-align: center;
   }
   .philosophy-section h2 {
     font-weight: 700;
     font-size: clamp(1.8rem, 3.5vw, 2.4rem);
     letter-spacing: -0.025em;
-    line-height: 1.2;
+    line-height: 1.05;
     margin-bottom: 24px;
   }
   .philosophy-section p {
@@ -508,10 +508,27 @@
   footer a { color: var(--text-dim); text-decoration: none; margin: 0 10px; transition: color 0.2s; }
   footer a:hover { color: var(--text); }
 
+  @media (max-width: 640px) {
+    .features-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
   @media (max-width: 580px) {
     nav { padding: 14px 20px; }
     .hero { padding: 70px 24px 60px; }
+    .hero h1 { font-size: clamp(2.2rem, 7vw, 5.5rem); }
+    .section { padding: 80px 24px; }
+    .philosophy-section { padding: 80px 24px; }
+    .preview-section { padding: 0 24px 80px; }
     .cta-card { padding: 44px 24px; }
+  }
+
+  @media (max-width: 480px) {
+    .btn-primary, .btn-ghost {
+      width: 100%;
+      text-align: center;
+    }
   }
 
   /* ─── WAITLIST MODAL ─── */
@@ -708,20 +725,35 @@
 </nav>
 
 <section class="hero">
-  <div class="hero-badge">Now on TestFlight</div>
-  <h1>Cerial.<br>A Coach In Your Pocket.</h1>
-  <p>Just tell the AI what you ate—it logs, coaches, and tracks your progress. No databases, no weighing, no friction.</p>
+  <div class="hero-badge">Your AI Performance Coach</div>
+  <h1>Cerial.<br>Meet your AI coach.<br>Built for consistency, not perfection.</h1>
+  <p>Tell Cerial what you ate. Get personalized coaching, meal recommendations, and insights that meet you where you are.<br>No pressure. Just progress.</p>
   <div class="hero-actions">
     <a href="#" onclick="openWaitlistModal(); return false;" class="btn-primary">Join the Waitlist</a>
-    <a href="#how" class="btn-ghost">See How It Works</a>
   </div>
 </section>
 
-<div class="stats-bar">
-  <div class="stat"><div class="stat-num">&lt; 10s</div><div class="stat-label">To Log a Meal</div></div>
-  <div class="stat"><div class="stat-num">AI</div><div class="stat-label">Macro Est.</div></div>
-  <div class="stat"><div class="stat-num">Teams</div><div class="stat-label">Built In</div></div>
-</div>
+<!-- THE PROBLEM -->
+<section class="section" style="padding-bottom: 60px;">
+  <div class="section-label">The Challenge</div>
+  <h2 class="section-title">Tracking shouldn't feel like work.</h2>
+  <div style="max-width: 640px; margin-top: 32px;">
+    <div style="display: flex; flex-direction: column; gap: 20px;">
+      <div style="display: flex; gap: 12px; align-items: flex-start;">
+        <div style="flex-shrink: 0; width: 6px; height: 6px; background: var(--text); border-radius: 50%; margin-top: 10px;"></div>
+        <p style="color: var(--text-mid); font-size: 1rem; line-height: 1.7;">Tired of weighing food and searching databases?</p>
+      </div>
+      <div style="display: flex; gap: 12px; align-items: flex-start;">
+        <div style="flex-shrink: 0; width: 6px; height: 6px; background: var(--text); border-radius: 50%; margin-top: 10px;"></div>
+        <p style="color: var(--text-mid); font-size: 1rem; line-height: 1.7;">Want to build better habits without obsessing over every calorie?</p>
+      </div>
+      <div style="display: flex; gap: 12px; align-items: flex-start;">
+        <div style="flex-shrink: 0; width: 6px; height: 6px; background: var(--text); border-radius: 50%; margin-top: 10px;"></div>
+        <p style="color: var(--text-mid); font-size: 1rem; line-height: 1.7;">Need accountability that adapts to your lifestyle, not the other way around?</p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section class="section" id="how">
   <div class="section-label">How It Works</div>
@@ -729,210 +761,156 @@
   <div class="steps">
     <div class="step-card">
       <div class="step-num">1</div>
-      <h3>Say What You Ate</h3>
-      <p>Just type naturally: "eggs and toast for breakfast." No databases. No weighing. The AI handles the rest.</p>
+      <h3>Tell Your AI Coach</h3>
+      <p>Type 'I had eggs and toast for breakfast.' Cerial logs it, estimates macros, and gives you immediate feedback.</p>
     </div>
     <div class="step-card">
       <div class="step-num">2</div>
-      <h3>Get Daily Coaching</h3>
-      <p>Your AI coach provides context-aware feedback. Progress, not perfection. You're building a performance profile, not just a food log.</p>
+      <h3>Get Personalized Guidance</h3>
+      <p>Ask 'What should I eat for lunch?' Your AI coach suggests meals based on your remaining calories, time of day, and eating patterns.</p>
     </div>
     <div class="step-card">
       <div class="step-num">3</div>
       <h3>Build Your Streak</h3>
-      <p>Track consecutive days of hitting your targets. 80% of your target counts—no all-or-nothing pressure. Small choices, done consistently.</p>
+      <p>Track your consistency. See your progress. Cerial celebrates wins and helps you learn from misses—without judgment.</p>
     </div>
   </div>
 </section>
 
-<!-- FEATURES -->
+<!-- BENEFITS -->
 <section class="section" style="padding-top:0;">
-  <div class="section-label">Built for Performance</div>
-  <h2 class="section-title">Everything you need. Nothing you don't.</h2>
+  <div class="section-label">How Cerial Helps</div>
+  <h2 class="section-title">AI coaching that grows with you.</h2>
   <div class="features-grid">
     <div class="feature-card">
       <div class="intro-badge">
         <span class="intro-badge__text" style="font-size: 52px;">AI</span>
       </div>
-      <h3>Natural Language Logging</h3>
-      <p>Type what you ate like you're texting a friend. Cerial's AI handles the parsing, calculations, and logging.</p>
-    </div>
-    <div class="feature-card">
-      <div class="intro-badge">
-        <span class="intro-badge__text" style="font-size: 32px;">USDA</span>
-      </div>
-      <h3>Transparent Data Sources</h3>
-      <p>Every food item shows its source—USDA verified, branded database, or AI estimated. Trust built on transparency.</p>
+      <h3>Talk to your coach, anytime</h3>
+      <p>Ask 'What should I eat?' or 'How am I doing this week?' Your AI coach knows your patterns, understands your goals, and gives you real guidance—not generic advice.</p>
     </div>
     <div class="feature-card">
       <div class="intro-badge">
         <span class="intro-badge__text" style="font-size: 68px;">✓</span>
       </div>
-      <h3>Personalized Goals</h3>
-      <p>Conversational goal discovery with AI-calculated targets and rationale. No one-size-fits-all formulas.</p>
-    </div>
-    <div class="feature-card">
-      <div class="intro-badge">
-        <svg class="intro-badge__icon" xmlns="http://www.w3.org/2000/svg" width="68" height="68" viewBox="0 0 512 512" fill="none" stroke="#fff" stroke-width="32" stroke-linecap="round" stroke-linejoin="round">
-          <!-- Exact Ionicons "people-outline" -->
-          <path d="M402,168c-2.93,40.67-33.1,72-66,72s-63.12-31.32-66-72c-3-42.31,26.37-72,66-72S405,126.46,402,168Z"/>
-          <path d="M336,304c-65.17,0-127.84,32.37-143.54,95.41-2.08,8.34,3.15,16.59,11.72,16.59H467.83c8.57,0,13.77-8.25,11.72-16.59C463.85,335.36,401.18,304,336,304Z"/>
-          <path d="M200,185.94C197.66,218.42,173.28,244,147,244S96.3,218.43,94,185.94C91.61,152.15,115.34,128,147,128S202.39,152.77,200,185.94Z"/>
-          <path d="M206,306c-18.05-8.27-37.93-11.45-59-11.45-52,0-102.1,25.85-114.65,76.2C30.7,377.41,34.88,384,41.72,384H154"/>
-        </svg>
-      </div>
-      <h3>Group Accountability</h3>
-      <p>Create teams with friends. See rankings, share progress, stay accountable. Stronger together.</p>
+      <h3>Log meals in seconds</h3>
+      <p>Just type what you ate like you're texting a friend. Cerial handles the math, learns your preferences, and keeps you on track without the friction.</p>
     </div>
     <div class="feature-card">
       <div class="intro-badge">
         <span class="intro-badge__text" style="font-size: 48px;">365</span>
       </div>
-      <h3>Streak Tracking</h3>
-      <p>Build momentum with daily streaks. 80% of your target counts—no all-or-nothing pressure. Consistency beats intensity.</p>
-    </div>
-    <div class="feature-card">
-      <div class="intro-badge">
-        <svg class="intro-badge__icon" width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- Centered white bar chart with ascending bars -->
-          <rect x="4" y="36" width="10" height="14" fill="white" rx="2"/>
-          <rect x="17" y="26" width="10" height="24" fill="white" rx="2"/>
-          <rect x="30" y="16" width="10" height="34" fill="white" rx="2"/>
-          <rect x="43" y="6" width="10" height="44" fill="white" rx="2"/>
-        </svg>
-      </div>
-      <h3>Weight Trends</h3>
-      <p>Track weight with weekly averaging. Focus on the trajectory, not single weigh-ins. Trends, not daily noise.</p>
+      <h3>Build unstoppable momentum</h3>
+      <p>Track streaks, see patterns, and celebrate progress. 80% of your target counts—because consistency beats perfection every time.</p>
     </div>
   </div>
 </section>
 
-<!-- PREVIEW -->
+<!-- APP SCREENSHOTS -->
 <section class="preview-section">
   <div class="preview-header">
-    <div class="section-label">Inside the App</div>
+    <div class="section-label">See It In Action</div>
     <h2 class="section-title">Inside the App</h2>
   </div>
   <div class="preview-grid">
 
-    <!-- Today -->
+    <!-- AI Chat Screenshot -->
     <div class="preview-card">
-      <div class="preview-card-title">Today</div>
+      <div class="preview-card-title">AI Coach</div>
+      <!-- TODO: Replace with real screenshot from /app/(tabs)/ai.tsx showing meal recommendation -->
+      <!-- Placeholder content showing AI chat interface -->
+      <div style="background: #fff; border-radius: 12px; padding: 16px; margin-bottom: 16px;">
+        <div style="background: var(--card); border-radius: 12px; padding: 12px; margin-bottom: 12px; font-size: 0.85rem; color: var(--text-dim);">
+          Today so far: 1,450 kcal · 95g protein
+        </div>
+        <div style="background: var(--card); border-radius: 16px; padding: 14px; font-size: 0.88rem; line-height: 1.6;">
+          <strong>You:</strong> What should I eat for dinner?
+        </div>
+        <div style="background: #000; color: #fff; border-radius: 16px; padding: 14px; font-size: 0.88rem; line-height: 1.6; margin-top: 10px;">
+          <strong>Coach:</strong> Great question! You have 750 calories and 65g of protein left today. Consider grilled chicken (8oz) with roasted vegetables and quinoa. That would give you ~650 calories and hit your protein goal perfectly.
+        </div>
+      </div>
+      <p style="font-size: 0.82rem; color: var(--text-dim); line-height: 1.6;">
+        Your coach knows your goals, sees your patterns, and gives you meal recommendations that fit your day.
+      </p>
+    </div>
+
+    <!-- Progress Screenshot -->
+    <div class="preview-card">
+      <div class="preview-card-title">Your Progress</div>
+      <!-- TODO: Replace with real screenshot from /app/(tabs)/today.tsx with progress rings and streak calendar -->
       <div class="ring-wrap">
         <div class="ring">
           <svg width="96" height="96" viewBox="0 0 96 96">
             <circle cx="48" cy="48" r="38" fill="none" stroke="var(--card-hover)" stroke-width="7"/>
             <circle cx="48" cy="48" r="38" fill="none" stroke="#000" stroke-width="7" stroke-linecap="round"
-              stroke-dasharray="238.76" stroke-dashoffset="215" />
+              stroke-dasharray="238.76" stroke-dashoffset="100" />
           </svg>
-          <div class="ring-label"><div class="ring-val">401</div><div class="ring-sub">/ 2200 kcal</div></div>
+          <div class="ring-label"><div class="ring-val">1580</div><div class="ring-sub">/ 2200 kcal</div></div>
         </div>
         <div class="ring">
           <svg width="96" height="96" viewBox="0 0 96 96">
             <circle cx="48" cy="48" r="38" fill="none" stroke="var(--card-hover)" stroke-width="7"/>
             <circle cx="48" cy="48" r="38" fill="none" stroke="#000" stroke-width="7" stroke-linecap="round"
-              stroke-dasharray="238.76" stroke-dashoffset="194" />
+              stroke-dasharray="238.76" stroke-dashoffset="80" />
           </svg>
-          <div class="ring-label"><div class="ring-val">36</div><div class="ring-sub">/ 160 g</div></div>
+          <div class="ring-label"><div class="ring-val">124</div><div class="ring-sub">/ 160 g</div></div>
         </div>
       </div>
-      <div class="meal-row"><span class="meal-name">Breakfast</span><span class="meal-meta">161 kcal · 20g</span></div>
-      <div class="meal-row"><span class="meal-name">Lunch</span><span class="meal-meta">0 kcal · 0g</span></div>
-      <div class="meal-row"><span class="meal-name">Dinner</span><span class="meal-meta">240 kcal · 16g</span></div>
-      <div class="meal-row"><span class="meal-name">Snacks</span><span class="meal-meta">0 kcal · 0g</span></div>
+      <div style="margin-top: 20px; text-align: center;">
+        <div style="font-size: 2.5rem; margin-bottom: 8px;">🔥</div>
+        <div style="font-weight: 700; font-size: 2rem; letter-spacing: -0.02em;">14 Days</div>
+        <div style="font-size: 0.85rem; color: var(--text-dim); margin-top: 4px;">Current Streak</div>
+      </div>
+      <p style="font-size: 0.82rem; color: var(--text-dim); line-height: 1.6; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border);">
+        Track streaks, see patterns, and build momentum. 80% of your target counts—consistency over perfection.
+      </p>
     </div>
 
-    <!-- Coach -->
+    <!-- Smart Feedback Screenshot -->
     <div class="preview-card">
-      <div class="preview-card-title">Coach</div>
-      <p style="font-size:0.78rem; color:var(--text-dim); margin-bottom:14px;">Small choices, done consistently.</p>
-      <div class="bubble-context">Today so far: 401 kcal · 36g protein</div>
-      <div class="bubble">What do you want help with today?</div>
-      <div style="margin-top:20px; padding-top:16px; border-top:1px solid var(--border);">
-        <p style="font-size:0.78rem; color:var(--text-dim); line-height:1.55;">
-          Your AI coach recognizes eating patterns and nudges you toward better habits — no lectures, just real guidance tailored to your day.
-        </p>
+      <div class="preview-card-title">Smart Feedback</div>
+      <!-- TODO: Replace with real screenshot from /app/(tabs)/today.tsx showing meal log with coaching -->
+      <div style="margin-bottom: 16px;">
+        <div class="meal-row"><span class="meal-name">Breakfast</span><span class="meal-meta">580 kcal · 42g</span></div>
+        <div class="meal-row"><span class="meal-name">Lunch</span><span class="meal-meta">640 kcal · 48g</span></div>
+        <div class="meal-row"><span class="meal-name">Snack</span><span class="meal-meta">360 kcal · 34g</span></div>
       </div>
-    </div>
-
-    <!-- Streak -->
-    <div class="preview-card">
-      <div class="preview-card-title">Your Streak</div>
-      <div style="display:flex; gap:10px; margin-bottom:18px;">
-        <div style="flex:1; background:#fff; border-radius:12px; padding:14px; text-align:center;">
-          <div style="font-size:1.3rem;">🔥</div>
-          <div style="font-family:var(--font-brand); font-weight:700; font-size:1.3rem; margin-top:4px; letter-spacing:-0.02em;">0</div>
-          <div style="font-size:0.66rem; color:var(--text-dim); margin-top:2px;">Current Streak</div>
-        </div>
-        <div style="flex:1; background:#fff; border-radius:12px; padding:14px; text-align:center;">
-          <div style="font-size:1.3rem;">👑</div>
-          <div style="font-family:var(--font-brand); font-weight:700; font-size:1.3rem; margin-top:4px; letter-spacing:-0.02em;">1</div>
-          <div style="font-size:0.66rem; color:var(--text-dim); margin-top:2px;">Longest Streak</div>
-        </div>
+      <div style="background: var(--card); border-radius: 12px; padding: 16px; font-size: 0.82rem; line-height: 1.6;">
+        <strong style="display: block; margin-bottom: 8px; color: var(--text);">Today's Insight</strong>
+        <span style="color: var(--text-dim);">You're 77% to your protein goal—great progress! You have 750 calories left. Consider a protein-rich dinner to hit your targets.</span>
       </div>
-      <h3 class="streak-calendar__title">Last 30 Days</h3>
-      <div class="streak-calendar__grid">
-        <div class="streak-circle streak-circle--hit"><span class="streak-circle__check">✓</span></div>
-        <div class="streak-circle streak-circle--missed"></div>
-        <div class="streak-circle streak-circle--none"></div>
-        <div class="streak-circle streak-circle--hit"><span class="streak-circle__check">✓</span></div>
-        <div class="streak-circle streak-circle--hit"><span class="streak-circle__check">✓</span></div>
-        <div class="streak-circle streak-circle--missed"></div>
-        <div class="streak-circle streak-circle--hit"><span class="streak-circle__check">✓</span></div>
-        <div class="streak-circle streak-circle--hit"><span class="streak-circle__check">✓</span></div>
-        <div class="streak-circle streak-circle--hit"><span class="streak-circle__check">✓</span></div>
-        <div class="streak-circle streak-circle--missed"></div>
-        <div class="streak-circle streak-circle--missed"></div>
-        <div class="streak-circle streak-circle--hit"><span class="streak-circle__check">✓</span></div>
-        <div class="streak-circle streak-circle--hit"><span class="streak-circle__check">✓</span></div>
-        <div class="streak-circle streak-circle--hit"><span class="streak-circle__check">✓</span></div>
-        <div class="streak-circle streak-circle--missed"></div>
-        <div class="streak-circle streak-circle--missed"></div>
-        <div class="streak-circle streak-circle--hit"><span class="streak-circle__check">✓</span></div>
-        <div class="streak-circle streak-circle--hit"><span class="streak-circle__check">✓</span></div>
-        <div class="streak-circle streak-circle--hit"><span class="streak-circle__check">✓</span></div>
-        <div class="streak-circle streak-circle--hit"><span class="streak-circle__check">✓</span></div>
-        <div class="streak-circle streak-circle--missed"></div>
-        <div class="streak-circle streak-circle--missed"></div>
-        <div class="streak-circle streak-circle--hit"><span class="streak-circle__check">✓</span></div>
-        <div class="streak-circle streak-circle--hit"><span class="streak-circle__check">✓</span></div>
-        <div class="streak-circle streak-circle--hit"><span class="streak-circle__check">✓</span></div>
-        <div class="streak-circle streak-circle--hit"><span class="streak-circle__check">✓</span></div>
-        <div class="streak-circle streak-circle--missed"></div>
-        <div class="streak-circle streak-circle--hit"><span class="streak-circle__check">✓</span></div>
-        <div class="streak-circle streak-circle--hit"><span class="streak-circle__check">✓</span></div>
-        <div class="streak-circle streak-circle--today streak-circle--hit"><span class="streak-circle__check">✓</span></div>
-      </div>
-      <div class="streak-calendar__legend">
-        <div class="legend-item">
-          <div class="legend-dot legend-dot--hit"></div>
-          <span class="legend-label">Goals Hit</span>
-        </div>
-        <div class="legend-item">
-          <div class="legend-dot legend-dot--missed"></div>
-          <span class="legend-label">Goals Missed</span>
-        </div>
-        <div class="legend-item">
-          <div class="legend-dot legend-dot--none"></div>
-          <span class="legend-label">No Data</span>
-        </div>
-      </div>
+      <p style="font-size: 0.82rem; color: var(--text-dim); line-height: 1.6; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border);">
+        After every meal, get instant insights tailored to your day.
+      </p>
     </div>
 
   </div>
+  <p style="text-align: center; color: var(--text-dim); font-size: 0.85rem; margin-top: 36px; font-style: italic;">
+    📸 Screenshots shown are placeholders. Capture real app screenshots from the Cerial app to replace these.
+  </p>
 </section>
 
 <!-- PHILOSOPHY -->
 <section class="philosophy-section">
-  <h2>Progress over perfection</h2>
-  <p>Cerial was built through real experience. Greatness comes from consistency and commitment. Choose Cerial to be great.</p>
+  <h2>Meet you where you are.<br>Coach you to greatness.</h2>
+  <p>Cerial doesn't judge. It adapts. Whether you're crushing goals or starting over, your AI coach provides the guidance you need—when you need it. Because greatness isn't built in perfect days. It's built in consistent ones.</p>
+</section>
+
+<!-- SOCIAL PROOF -->
+<section style="max-width: 720px; margin: 0 auto 60px; padding: 0 24px;">
+  <div style="background: var(--card); border-radius: 24px; padding: 60px 40px; text-align: center;">
+    <p style="font-size: 1.15rem; line-height: 1.7; color: var(--text);">
+      Built by athletes, for athletes. Cerial understands that greatness comes from consistency, not perfection.
+    </p>
+  </div>
 </section>
 
 <!-- CTA -->
 <div class="cta-section">
   <div class="cta-card">
-    <h2>Ready to build better habits?</h2>
-    <p>Be the first on the bandwagon.</p>
+    <h2>Your AI coach is waiting.</h2>
+    <p>Join the waitlist and be the first to experience AI coaching that meets you where you are.</p>
     <a href="#" onclick="openWaitlistModal(); return false;" class="btn-primary">Join the Waitlist</a>
   </div>
 </div>
