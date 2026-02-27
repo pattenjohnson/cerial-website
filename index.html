@@ -107,10 +107,103 @@
      HERO
   ───────────────────────────────────────── */
   .hero {
-    max-width: 860px;
+    max-width: 1040px;
     margin: 0 auto;
-    padding: 130px 40px 110px;
+    padding: 120px 40px 100px;
     text-align: center;
+    position: relative;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -20%; right: -20%;
+    height: 65%;
+    background: radial-gradient(ellipse 55% 80% at 50% 0%, rgba(0,0,0,0.045) 0%, transparent 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .hero > * { position: relative; z-index: 1; }
+
+  /* Hero preview cards */
+  .hero-preview {
+    margin-top: 72px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    text-align: left;
+  }
+
+  .hero-card {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: 20px;
+    padding: 20px 18px;
+    box-shadow:
+      0 4px 28px rgba(0, 0, 0, 0.05),
+      0 1px 3px rgba(0, 0, 0, 0.06);
+  }
+
+  .hero-card-label {
+    font-family: var(--font-sans);
+    font-size: 0.64rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.11em;
+    color: var(--gray-400);
+    margin-bottom: 14px;
+  }
+
+  .hero-chat-user {
+    background: var(--gray-100);
+    border-radius: 12px 12px 12px 3px;
+    padding: 9px 12px;
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    color: var(--gray-700);
+    line-height: 1.5;
+    margin-bottom: 8px;
+  }
+
+  .hero-chat-ai {
+    background: var(--black);
+    border-radius: 12px 12px 3px 12px;
+    padding: 9px 12px;
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    color: #fff;
+    line-height: 1.5;
+  }
+
+  .hero-streak-num {
+    font-family: var(--font);
+    font-weight: 700;
+    font-size: 2.2rem;
+    letter-spacing: -0.045em;
+    line-height: 1;
+    color: var(--black);
+  }
+
+  .hero-dots {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin: 12px 0;
+  }
+
+  .dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+  }
+
+  .dot-hit   { background: var(--black); }
+  .dot-miss  { background: var(--gray-200); }
+  .dot-today { background: var(--black); outline: 2.5px solid var(--black); outline-offset: 2px; }
+
+  @media (max-width: 860px) {
+    .hero-preview { grid-template-columns: 1fr; max-width: 440px; margin-left: auto; margin-right: auto; }
   }
 
   .label-tag {
@@ -1262,6 +1355,54 @@
   <p>Cerial gives coaches real-time visibility into team nutrition. Athletes log meals in seconds using AI. You see who's fueled to perform — and who needs attention.</p>
   <a href="#" onclick="openWaitlistModal(); return false;" class="btn btn-primary">Join the Waitlist</a>
   <div class="platform-note">Available on iOS &nbsp;·&nbsp; Android coming soon</div>
+
+  <div class="hero-preview">
+
+    <!-- Card 1: AI Chat -->
+    <div class="hero-card">
+      <div class="hero-card-label">AI Coach</div>
+      <div class="hero-chat-user">Had grilled chicken, rice, and broccoli for lunch.</div>
+      <div class="hero-chat-ai">Good call. That's ~610 kcal and 49g protein. You're 79% to your daily goal — right on track.</div>
+    </div>
+
+    <!-- Card 2: Team Stats -->
+    <div class="hero-card">
+      <div class="hero-card-label">Team Today</div>
+      <div style="font-family: Georgia, serif; font-weight: 700; font-size: 0.95rem; letter-spacing: -0.02em; margin-bottom: 13px; color: var(--black);">Eagles Offense</div>
+      <div style="font-family: var(--font-sans); font-size: 0.7rem; font-weight: 600; color: var(--gray-700); margin-bottom: 5px;">Members Active: 4/5</div>
+      <div style="height: 5px; background: var(--gray-200); border-radius: 3px; overflow: hidden; margin-bottom: 14px;">
+        <div style="width: 80%; height: 100%; background: #16a34a; border-radius: 3px;"></div>
+      </div>
+      <div style="display: flex; gap: 8px;">
+        <div style="flex: 1; background: var(--gray-50); border-radius: 10px; padding: 10px 8px; text-align: center; border: 1px solid var(--gray-200);">
+          <div style="font-family: Georgia, serif; font-weight: 700; font-size: 1.1rem; letter-spacing: -0.02em; color: var(--black);">74%</div>
+          <div style="font-family: var(--font-sans); font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.07em; color: var(--gray-400); margin-top: 2px;">Calories</div>
+        </div>
+        <div style="flex: 1; background: var(--gray-50); border-radius: 10px; padding: 10px 8px; text-align: center; border: 1px solid var(--gray-200);">
+          <div style="font-family: Georgia, serif; font-weight: 700; font-size: 1.1rem; letter-spacing: -0.02em; color: var(--black);">79%</div>
+          <div style="font-family: var(--font-sans); font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.07em; color: var(--gray-400); margin-top: 2px;">Protein</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3: Streak -->
+    <div class="hero-card">
+      <div class="hero-card-label">Consistency</div>
+      <div style="display: flex; align-items: baseline; gap: 7px; margin-bottom: 14px;">
+        <span class="hero-streak-num">14</span>
+        <span style="font-family: var(--font-sans); font-size: 0.82rem; color: var(--gray-500);">day streak</span>
+      </div>
+      <div class="hero-dots">
+        <div class="dot dot-hit"></div><div class="dot dot-hit"></div><div class="dot dot-hit"></div>
+        <div class="dot dot-hit"></div><div class="dot dot-hit"></div><div class="dot dot-hit"></div>
+        <div class="dot dot-hit"></div><div class="dot dot-miss"></div><div class="dot dot-hit"></div>
+        <div class="dot dot-hit"></div><div class="dot dot-hit"></div><div class="dot dot-hit"></div>
+        <div class="dot dot-hit"></div><div class="dot dot-today"></div>
+      </div>
+      <div style="font-family: var(--font-sans); font-size: 0.74rem; color: var(--gray-500); line-height: 1.5;">Hit 80% of target on 13 of 14 days. One miss doesn't break the streak.</div>
+    </div>
+
+  </div>
 </section>
 
 <div class="full-divider"></div>
