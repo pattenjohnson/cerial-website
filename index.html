@@ -3,544 +3,961 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Cerial. — Your AI Performance Coach</title>
-<meta name="description" content="Your AI performance coach. Just tell the AI what you ate—it logs, coaches, and tracks your progress. No databases, no weighing, no friction." />
+<title>Cerial. — Fuel Your Team's Performance</title>
+<meta name="description" content="Cerial gives coaches real-time visibility into team nutrition. Athletes log meals in seconds using AI. See who's fueled to perform — and who needs attention." />
 <link rel="icon" type="image/svg+xml" href="favicon.svg" />
 
-<!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://cerial.app/" />
-<meta property="og:title" content="Cerial. — Your AI Performance Coach" />
-<meta property="og:description" content="Your AI performance coach. Just tell the AI what you ate—it logs, coaches, and tracks your progress. No databases, no weighing, no friction." />
-<!-- TODO: Add og:image when you have a social sharing image (1200x630px recommended) -->
+<meta property="og:title" content="Cerial. — Fuel Your Team's Performance" />
+<meta property="og:description" content="Cerial gives coaches real-time visibility into team nutrition. Athletes log meals in seconds using AI." />
 
-<!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:url" content="https://cerial.app/" />
-<meta property="twitter:title" content="Cerial. — Your AI Performance Coach" />
-<meta property="twitter:description" content="Your AI performance coach. Just tell the AI what you ate—it logs, coaches, and tracks your progress. No databases, no weighing, no friction." />
-<!-- TODO: Add twitter:image when you have a social sharing image (1200x630px recommended) -->
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+<meta property="twitter:title" content="Cerial. — Fuel Your Team's Performance" />
+<meta property="twitter:description" content="Cerial gives coaches real-time visibility into team nutrition. Athletes log meals in seconds using AI." />
 
+<style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    /* Colors - Primary */
-    --color-primary: #000000;
-    --color-background: #ffffff;
-    --color-accent: #0a7ea4;
-
-    /* Colors - Grayscale */
-    --color-gray-50: #f7f7f7;
-    --color-gray-100: #f3f4f6;
-    --color-gray-200: #e5e7eb;
-    --color-gray-400: #999999;
-    --color-gray-500: #6b7280;
-    --color-gray-600: #555555;
-    --color-gray-700: #333333;
-    --color-gray-900: #111827;
-
-    /* Legacy aliases for backward compatibility */
-    --bg: var(--color-background);
-    --card: var(--color-gray-50);
-    --card-hover: var(--color-gray-200);
-    --text: var(--color-primary);
-    --text-mid: var(--color-gray-500);
-    --text-dim: var(--color-gray-500);
-    --border: var(--color-gray-200);
-    --accent: var(--color-primary);
-    --radius: 14px;
-
-    /* Typography */
-    --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    --font-brand: Georgia, "Times New Roman", serif;
-    --font-signature: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-
-    /* Spacing */
-    --spacing-sm: 8px;
-    --spacing-md: 12px;
-    --spacing-lg: 16px;
-    --spacing-xl: 24px;
-    --spacing-2xl: 32px;
-
-    /* Shadows */
-    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 1px 3px rgba(0, 0, 0, 0.15);
-
-    /* Transitions */
-    --transition-fast: 150ms ease;
+    --black:       #000000;
+    --white:       #ffffff;
+    --gray-50:     #f9f9f9;
+    --gray-100:    #f3f4f6;
+    --gray-200:    #e5e7eb;
+    --gray-400:    #9ca3af;
+    --gray-500:    #6b7280;
+    --gray-700:    #374151;
+    --green:       #16a34a;
+    --green-bg:    #dcfce7;
+    --amber:       #d97706;
+    --amber-bg:    #fef3c7;
+    --red:         #dc2626;
+    --red-bg:      #fee2e2;
+    --radius:      14px;
+    --radius-lg:   24px;
+    --font:        Georgia, "Times New Roman", serif;
+    --font-sans:   system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --transition:  150ms ease;
+    --shadow:      0 1px 3px rgba(0,0,0,0.10);
+    --shadow-lg:   0 20px 60px rgba(0,0,0,0.12);
   }
 
   html { scroll-behavior: smooth; }
 
   body {
-    font-family: var(--font-brand);
-    background: var(--bg);
-    color: var(--text);
+    font-family: var(--font);
+    background: var(--white);
+    color: var(--black);
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Use Georgia for everything - signature font */
-  * {
-    font-family: var(--font-brand) !important;
-  }
 
-  /* ─── NAV ─── */
+  /* ─────────────────────────────────────────
+     NAV
+  ───────────────────────────────────────── */
   nav {
-    position: sticky; top: 0; z-index: 100;
-    padding: 18px 32px;
-    display: flex; justify-content: space-between; align-items: center;
-    background: rgba(255,255,255,0.85);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 20px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.92);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border);
-  }
-  .nav-logo {
-    font-weight: 700; font-size: 1.25rem;
-    color: var(--text);
-    letter-spacing: -0.02em;
-  }
-  .nav-cta {
-    background: var(--accent);
-    color: #fff;
-    font-family: inherit;
-    font-weight: 600; font-size: 0.82rem;
-    padding: 9px 22px;
-    border-radius: var(--radius);
-    border: none; cursor: pointer;
-    text-decoration: none;
-    transition: all var(--transition-fast);
-    box-shadow: var(--shadow-md);
-  }
-  .nav-cta:hover {
-    opacity: 0.9;
-    transform: translateY(-1px) scale(1.02);
+    border-bottom: 1px solid var(--gray-200);
   }
 
-  /* ─── HERO ─── */
-  .hero {
-    text-align: center;
-    padding: 100px 24px 80px;
+  .nav-logo {
+    font-family: var(--font);
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--black);
+    letter-spacing: -0.03em;
+    text-decoration: none;
   }
-  .hero-badge {
+
+  .nav-cta {
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--font);
+    font-weight: 600;
+    font-size: 0.84rem;
+    letter-spacing: -0.01em;
+    padding: 10px 24px;
+    border-radius: var(--radius);
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all var(--transition);
+  }
+
+  .nav-cta:hover {
+    opacity: 0.82;
+    transform: translateY(-1px);
+  }
+
+
+  /* ─────────────────────────────────────────
+     HERO
+  ───────────────────────────────────────── */
+  .hero {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 130px 40px 110px;
+    text-align: center;
+  }
+
+  .label-tag {
     display: inline-block;
-    background: var(--card);
-    color: var(--text-mid);
-    font-size: 0.75rem; font-weight: 500;
-    padding: 6px 16px; border-radius: 50px;
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--gray-500);
+    background: var(--gray-100);
+    padding: 6px 16px;
+    border-radius: 50px;
+    margin-bottom: 40px;
+  }
+
+  .hero h1 {
+    font-family: var(--font);
+    font-weight: 700;
+    font-size: clamp(3rem, 7.5vw, 5.8rem);
+    line-height: 1.04;
+    letter-spacing: -0.045em;
+    color: var(--black);
     margin-bottom: 28px;
   }
-  .hero h1 {
-    font-weight: 800;
-    font-size: clamp(2.8rem, 7vw, 5.5rem);
-    line-height: 1.05;
-    letter-spacing: -0.035em;
-    color: var(--text);
-  }
+
   .hero p {
-    max-width: 480px;
-    margin: 22px auto 0;
-    color: var(--text-dim);
-    font-size: 1.05rem; font-weight: 400;
-    line-height: 1.6;
+    font-family: var(--font-sans);
+    font-size: 1.125rem;
+    line-height: 1.72;
+    color: var(--gray-500);
+    max-width: 520px;
+    margin: 0 auto 48px;
   }
-  .hero-actions {
-    margin-top: 36px;
-    display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+
+  .btn {
+    display: inline-block;
+    font-family: var(--font);
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: -0.01em;
+    padding: 15px 40px;
+    border-radius: var(--radius);
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all var(--transition);
   }
+
   .btn-primary {
-    background: var(--accent);
-    color: #fff;
-    font-family: inherit;
-    font-weight: 600; font-size: 0.9rem;
-    padding: 14px 32px; border-radius: var(--radius);
-    border: none; cursor: pointer; text-decoration: none;
-    transition: all var(--transition-fast);
-    box-shadow: var(--shadow-md);
+    background: var(--black);
+    color: var(--white);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
   }
+
   .btn-primary:hover {
-    opacity: 0.9;
-    transform: translateY(-1px) scale(1.02);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 0.82;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
   }
+
   .btn-primary:active {
     transform: translateY(0);
   }
-  .btn-ghost {
-    color: var(--text);
-    font-family: inherit;
-    font-weight: 500; font-size: 0.9rem;
-    padding: 14px 28px; border-radius: var(--radius);
-    border: 1.5px solid var(--border);
-    background: transparent; cursor: pointer; text-decoration: none;
-    transition: all var(--transition-fast);
-    box-shadow: var(--shadow-sm);
-  }
-  .btn-ghost:hover {
-    background: var(--card);
-    transform: translateY(-1px) scale(1.02);
-  }
-  .btn-ghost:active {
-    transform: translateY(0);
+
+  .platform-note {
+    margin-top: 20px;
+    font-family: var(--font-sans);
+    font-size: 0.76rem;
+    color: var(--gray-400);
+    letter-spacing: 0.01em;
   }
 
-  /* ─── STATS ─── */
-  .stats-bar {
-    display: flex; justify-content: center; gap: 0;
-    max-width: 700px; margin: 0 auto;
-    padding: 0 24px;
-  }
-  .stat {
-    flex: 1; min-width: 120px;
-    text-align: center;
-    padding: 30px 12px;
-    background: var(--card);
-    border-right: 1px solid var(--border);
-  }
-  .stat:first-child { border-radius: var(--radius) 0 0 var(--radius); }
-  .stat:last-child { border-radius: 0 var(--radius) var(--radius) 0; border-right: none; }
-  .stat-num {
-    font-family: var(--font-brand);
-    font-weight: 700; font-size: 1.5rem;
-    color: var(--text);
-    letter-spacing: -0.02em;
-  }
-  .stat-label {
-    color: var(--text-dim); font-size: 0.68rem;
-    font-weight: 500; margin-top: 4px;
-    text-transform: uppercase; letter-spacing: 0.06em;
+
+  /* ─────────────────────────────────────────
+     SECTION HELPERS
+  ───────────────────────────────────────── */
+  .full-divider {
+    width: 100%;
+    height: 1px;
+    background: var(--gray-200);
   }
 
-  /* ─── SECTION ─── */
-  .section { padding: 120px 24px; max-width: 960px; margin: 0 auto; }
   .section-label {
-    font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em;
-    color: var(--text-dim); font-weight: 600; margin-bottom: 10px;
-  }
-  .section-title {
-    font-weight: 700; font-size: clamp(1.8rem, 3.5vw, 2.4rem);
-    letter-spacing: -0.025em; line-height: 1.05;
-    color: var(--text);
-    max-width: 460px;
-  }
-
-  /* ─── HOW IT WORKS ─── */
-  .steps {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 12px; margin-top: 48px;
-  }
-  .step-card {
-    background: var(--card);
-    border-radius: var(--radius);
-    padding: 32px 26px;
-    transition: all var(--transition-fast);
-    box-shadow: var(--shadow-sm);
-  }
-  .step-card:hover {
-    background: var(--card-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
-  }
-  .step-num {
-    font-family: var(--font-brand);
-    font-weight: 700; font-size: 0.78rem;
-    color: var(--text-dim);
-    background: rgba(0,0,0,0.06);
-    display: inline-flex; align-items: center; justify-content: center;
-    width: 30px; height: 30px; border-radius: 50%;
-  }
-  .step-card h3 {
-    font-weight: 600; font-size: 1rem;
-    margin-top: 18px; margin-bottom: 8px;
-    color: var(--text);
-  }
-  .step-card p { color: var(--text-dim); font-size: 0.85rem; line-height: 1.6; }
-
-  /* ─── PREVIEW CARDS ─── */
-  .preview-section {
-    padding: 0 24px 120px;
-    max-width: 960px; margin: 0 auto;
-  }
-  .preview-header { margin-bottom: 40px; }
-  .preview-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 12px;
-  }
-  .preview-card {
-    background: var(--card);
-    border-radius: var(--radius);
-    padding: 24px 20px;
-  }
-  .preview-card-title {
-    font-weight: 600; font-size: 0.7rem;
-    text-transform: uppercase; letter-spacing: 0.08em;
-    color: var(--text-dim); margin-bottom: 18px;
-  }
-  /* Ring */
-  .ring-wrap { display: flex; justify-content: center; gap: 20px; }
-  .ring { width: 96px; height: 96px; position: relative; }
-  .ring svg { transform: rotate(-90deg); }
-  .ring-label {
-    position: absolute; inset: 0;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-  }
-  .ring-val { font-family: var(--font-brand); font-weight: 700; font-size: 1.2rem; color: var(--text); letter-spacing: -0.02em; }
-  .ring-sub { font-size: 0.64rem; color: var(--text-dim); margin-top: 1px; }
-  /* Meal rows */
-  .meal-row {
-    display: flex; justify-content: space-between; align-items: baseline;
-    padding: 9px 0;
-    border-top: 1px solid var(--border);
-  }
-  .meal-name { font-weight: 500; font-size: 0.84rem; color: var(--text); }
-  .meal-meta { font-size: 0.73rem; color: var(--text-dim); }
-  /* Chat bubble */
-  .bubble {
-    background: #fff;
-    border-radius: 18px 18px 18px 4px;
-    padding: 11px 15px;
-    font-size: 0.84rem; color: var(--text);
-    box-shadow: var(--shadow-sm);
-    display: inline-block;
-    margin-top: 8px;
-  }
-  .bubble-context {
-    font-size: 0.73rem; color: var(--text-dim);
-    background: var(--card-hover);
-    border-radius: 10px;
-    padding: 8px 12px;
-    margin-bottom: 10px;
-  }
-  /* Streak Calendar - New Design */
-  .streak-calendar__title {
-    font-size: 0.8rem;
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
     font-weight: 600;
-    color: var(--text);
-    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--gray-400);
+    margin-bottom: 18px;
   }
 
-  .streak-calendar__grid {
+
+  /* ─────────────────────────────────────────
+     PROBLEM
+  ───────────────────────────────────────── */
+  .problem-section {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 100px 40px;
+  }
+
+  .problem-section h2 {
+    font-family: var(--font);
+    font-weight: 700;
+    font-size: clamp(2rem, 3.8vw, 2.8rem);
+    letter-spacing: -0.035em;
+    line-height: 1.1;
+    margin-bottom: 56px;
+    max-width: 480px;
+  }
+
+  .problem-list {
     display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 16px;
+    flex-direction: column;
+    max-width: 640px;
   }
 
-  .streak-circle {
-    width: 32px;
-    height: 32px;
-    border-radius: 16px;
+  .problem-item {
+    display: flex;
+    gap: 28px;
+    padding: 30px 0;
+    border-top: 1px solid var(--gray-200);
+  }
+
+  .problem-item:last-child {
+    border-bottom: 1px solid var(--gray-200);
+  }
+
+  .problem-num {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--gray-400);
+    padding-top: 3px;
+    flex-shrink: 0;
+    width: 22px;
+    letter-spacing: 0.02em;
+  }
+
+  .problem-text h3 {
+    font-family: var(--font);
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: -0.02em;
+    margin-bottom: 7px;
+    color: var(--black);
+  }
+
+  .problem-text p {
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    line-height: 1.72;
+    color: var(--gray-500);
+  }
+
+
+  /* ─────────────────────────────────────────
+     SPLIT SECTIONS
+  ───────────────────────────────────────── */
+  .split-section {
+    padding: 100px 48px;
+  }
+
+  .split-section.bg-subtle {
+    background: var(--gray-50);
+  }
+
+  .split-grid {
+    max-width: 1080px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .split-text .section-label {
+    margin-bottom: 14px;
+  }
+
+  .split-text h2 {
+    font-family: var(--font);
+    font-weight: 700;
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    letter-spacing: -0.035em;
+    line-height: 1.08;
+    margin-bottom: 14px;
+  }
+
+  .split-text .split-sub {
+    font-family: var(--font-sans);
+    font-size: 0.975rem;
+    line-height: 1.72;
+    color: var(--gray-500);
+    margin-bottom: 44px;
+  }
+
+  .steps-list {
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+  }
+
+  .step-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .step-dot {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--font-sans);
+    font-size: 0.68rem;
+    font-weight: 700;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-sizing: border-box;
+    flex-shrink: 0;
+    margin-top: 1px;
   }
 
-  .streak-circle--hit {
-    background: #000;
+  .step-item h4 {
+    font-family: var(--font);
+    font-weight: 700;
+    font-size: 0.975rem;
+    letter-spacing: -0.015em;
+    margin-bottom: 4px;
+    color: var(--black);
   }
 
-  .streak-circle--missed,
-  .streak-circle--none {
-    background: #e5e7eb;
+  .step-item p {
+    font-family: var(--font-sans);
+    font-size: 0.855rem;
+    line-height: 1.65;
+    color: var(--gray-500);
   }
 
-  .streak-circle--today {
-    border: 2px solid #000;
-  }
-
-  .streak-circle__check {
-    color: #fff;
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 1;
-  }
-
-  .streak-calendar__legend {
+  /* Phone column alignment */
+  .phone-col {
     display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-    margin-top: 16px;
+    justify-content: center;
+    align-items: flex-start;
   }
 
-  .legend-item {
+
+  /* ─────────────────────────────────────────
+     PHONE FRAME
+  ───────────────────────────────────────── */
+  .phone-frame {
+    background: #111;
+    border-radius: 48px;
+    padding: 14px;
+    width: 296px;
+    box-shadow:
+      0 40px 90px rgba(0, 0, 0, 0.28),
+      0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+    position: relative;
+  }
+
+  .phone-notch {
+    position: absolute;
+    top: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 96px;
+    height: 26px;
+    background: #111;
+    border-radius: 0 0 14px 14px;
+    z-index: 2;
+  }
+
+  .phone-screen {
+    background: #f2f2f7;
+    border-radius: 36px;
+    overflow: hidden;
+    padding-top: 30px;
+  }
+
+
+  /* ─────────────────────────────────────────
+     APP UI — SHARED
+  ───────────────────────────────────────── */
+  .app-header {
+    padding: 10px 20px 14px;
+    text-align: center;
+    background: #f2f2f7;
+  }
+
+  .app-title {
+    font-family: Georgia, serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: -0.025em;
+    color: #000;
+  }
+
+  .app-subtitle-text {
+    font-family: var(--font-sans);
+    font-size: 0.68rem;
+    color: #8e8e93;
+    margin-top: 2px;
+  }
+
+  .app-tab-row {
+    display: flex;
+    margin: 0 14px 12px;
+    background: #e5e5ea;
+    border-radius: 10px;
+    padding: 3px;
+  }
+
+  .app-tab {
+    flex: 1;
+    padding: 7px 0;
+    border-radius: 7px;
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-align: center;
+    color: #636366;
+    cursor: default;
+  }
+
+  .app-tab.active {
+    background: #000;
+    color: #fff;
+  }
+
+  .app-stats-card {
+    margin: 0 12px 10px;
+    background: #fff;
+    border-radius: 16px;
+    padding: 14px;
+  }
+
+  .app-stats-lbl {
+    font-family: var(--font-sans);
+    font-size: 0.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #8e8e93;
+    margin-bottom: 10px;
+  }
+
+  .app-active-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+
+  .app-active-text {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #000;
+  }
+
+  .app-bar-track {
+    height: 5px;
+    background: #e5e5ea;
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 12px;
+  }
+
+  .app-bar-fill-green {
+    height: 100%;
+    background: #16a34a;
+    border-radius: 3px;
+  }
+
+  .app-gauges {
+    display: flex;
+    gap: 6px;
+  }
+
+  .app-gauge {
+    flex: 1;
+    background: #f2f2f7;
+    border-radius: 10px;
+    padding: 9px 6px;
+    text-align: center;
+  }
+
+  .app-gauge-val {
+    font-family: Georgia, serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: #000;
+    letter-spacing: -0.02em;
+  }
+
+  .app-gauge-lbl {
+    font-family: var(--font-sans);
+    font-size: 0.57rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #8e8e93;
+    margin-top: 2px;
+  }
+
+  .app-group-header {
+    padding: 2px 16px 5px;
     display: flex;
     align-items: center;
     gap: 6px;
   }
 
-  .legend-dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 6px;
+  .app-group-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    flex-shrink: 0;
   }
 
-  .legend-dot--hit {
-    background: #000;
+  .app-group-lbl {
+    font-family: var(--font-sans);
+    font-size: 0.64rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: #8e8e93;
   }
 
-  .legend-dot--missed,
-  .legend-dot--none {
-    background: #e5e7eb;
+
+  /* ─────────────────────────────────────────
+     ATHLETE CARDS (ROSTER)
+  ───────────────────────────────────────── */
+  .athlete-card {
+    margin: 0 12px 7px;
+    background: #fff;
+    border-radius: 14px;
+    padding: 11px 13px;
+    border-left: 3px solid transparent;
   }
 
-  .legend-label {
-    font-size: 12px;
-    color: #666;
+  .athlete-card.on-track    { border-left-color: #16a34a; }
+  .athlete-card.in-progress { border-left-color: #d97706; }
+  .athlete-card.no-log      { border-left-color: #d1d5db; }
+
+  .athlete-row-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
   }
 
-  /* ─── FEATURES ─── */
-  .features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 12px; margin-top: 48px;
+  .athlete-name-text {
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #000;
   }
-  .feature-card {
-    background: var(--card);
-    border-radius: var(--radius);
-    padding: 24px 20px;
-    transition: all var(--transition-fast);
-    box-shadow: var(--shadow-sm);
+
+  .status-badge {
+    font-family: var(--font-sans);
+    font-size: 0.57rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 3px 8px;
+    border-radius: 50px;
+  }
+
+  .badge-on-track    { background: #dcfce7; color: #16a34a; }
+  .badge-in-progress { background: #fef3c7; color: #d97706; }
+  .badge-no-log      { background: #f3f4f6; color: #6b7280; }
+
+  .athlete-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .micro-bar-row {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .micro-bar-label {
+    font-family: var(--font-sans);
+    font-size: 0.58rem;
+    font-weight: 600;
+    color: #8e8e93;
+    width: 18px;
+    flex-shrink: 0;
+  }
+
+  .micro-bar-track {
+    flex: 1;
+    height: 4px;
+    background: #e5e5ea;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .micro-bar-fill {
+    height: 100%;
+    border-radius: 2px;
+  }
+
+  .fill-green  { background: #16a34a; }
+  .fill-amber  { background: #d97706; }
+  .fill-red    { background: #dc2626; }
+  .fill-gray   { background: #d1d5db; }
+
+  .micro-bar-pct {
+    font-family: var(--font-sans);
+    font-size: 0.58rem;
+    color: #8e8e93;
+    width: 24px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .nudge-btn {
+    margin-top: 8px;
+    font-family: var(--font-sans);
+    font-size: 0.62rem;
+    font-weight: 600;
+    padding: 5px 10px;
+    background: #f3f4f6;
+    border: none;
+    border-radius: 8px;
+    color: #374151;
+    cursor: default;
+    display: inline-block;
+  }
+
+
+  /* ─────────────────────────────────────────
+     LEADERBOARD CARD
+  ───────────────────────────────────────── */
+  .lb-card {
+    margin: 0 12px 8px;
+    background: #fff;
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .lb-row {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 10px 13px;
+    border-bottom: 1px solid #f3f4f6;
+  }
+
+  .lb-row:last-child {
+    border-bottom: none;
+  }
+
+  .lb-rank {
+    font-family: Georgia, serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    width: 20px;
     text-align: center;
-  }
-  .feature-card:hover {
-    background: var(--card-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
+    flex-shrink: 0;
   }
 
-  /* Intro Badge Circles (replacing emoji icons) */
-  .intro-badge {
-    width: 120px;
-    height: 120px;
-    border-radius: 60px;
+  .lb-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
     background: #000;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 24px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  }
-
-  .intro-badge__text {
-    font-family: Georgia, serif;
+    font-family: var(--font-sans);
+    font-size: 0.6rem;
     font-weight: 700;
     color: #fff;
-    line-height: 1;
+    flex-shrink: 0;
   }
 
-  .intro-badge__icon {
-    color: #fff;
+  .lb-avatar.muted { background: #9ca3af; }
+
+  .lb-info {
+    flex: 1;
+    min-width: 0;
   }
 
-  @media (max-width: 480px) {
-    .intro-badge {
-      width: 100px;
-      height: 100px;
-      border-radius: 50px;
-    }
+  .lb-name {
+    font-family: var(--font-sans);
+    font-size: 0.74rem;
+    font-weight: 700;
+    color: #000;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 4px;
   }
-  .feature-card h3 {
-    font-weight: 600; font-size: 0.92rem;
-    margin-top: 16px; margin-bottom: 6px;
-    color: var(--text);
-  }
-  .feature-card p { color: var(--text-dim); font-size: 0.82rem; line-height: 1.6; }
 
-  /* ─── PHILOSOPHY ─── */
-  .philosophy-section {
-    max-width: 720px;
+  .lb-bar-track {
+    height: 3px;
+    background: #e5e5ea;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .lb-bar-fill {
+    height: 100%;
+    border-radius: 2px;
+  }
+
+  .lb-pct {
+    font-family: Georgia, serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #000;
+    flex-shrink: 0;
+    width: 32px;
+    text-align: right;
+  }
+
+  .lb-pct.muted {
+    color: #9ca3af;
+    font-size: 0.72rem;
+  }
+
+  .phone-end-space {
+    height: 20px;
+    background: #f2f2f7;
+  }
+
+
+  /* ─────────────────────────────────────────
+     FEATURES
+  ───────────────────────────────────────── */
+  .features-section {
+    max-width: 1080px;
     margin: 0 auto;
-    padding: 120px 24px;
+    padding: 100px 48px;
+  }
+
+  .features-section h2 {
+    font-family: var(--font);
+    font-weight: 700;
+    font-size: clamp(1.9rem, 3.5vw, 2.6rem);
+    letter-spacing: -0.035em;
+    line-height: 1.08;
+    margin-bottom: 8px;
+  }
+
+  .features-section .section-sub {
+    font-family: var(--font-sans);
+    font-size: 0.975rem;
+    color: var(--gray-500);
+    margin-bottom: 52px;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 14px;
+  }
+
+  .feature-card {
+    background: var(--gray-50);
+    border-radius: var(--radius-lg);
+    padding: 32px 28px;
+    border: 1px solid var(--gray-200);
+    transition: all var(--transition);
+  }
+
+  .feature-card:hover {
+    border-color: var(--gray-400);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .feature-icon {
+    width: 42px;
+    height: 42px;
+    background: var(--black);
+    border-radius: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .feature-card h3 {
+    font-family: var(--font);
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: -0.02em;
+    margin-bottom: 9px;
+    color: var(--black);
+  }
+
+  .feature-card p {
+    font-family: var(--font-sans);
+    font-size: 0.87rem;
+    line-height: 1.68;
+    color: var(--gray-500);
+  }
+
+
+  /* ─────────────────────────────────────────
+     PHILOSOPHY (DARK)
+  ───────────────────────────────────────── */
+  .philosophy-section {
+    background: var(--black);
+    color: var(--white);
+    padding: 130px 48px;
     text-align: center;
   }
+
+  .philosophy-inner {
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .philosophy-section .section-label {
+    color: rgba(255, 255, 255, 0.35);
+    margin-bottom: 30px;
+  }
+
   .philosophy-section h2 {
+    font-family: var(--font);
     font-weight: 700;
-    font-size: clamp(1.8rem, 3.5vw, 2.4rem);
-    letter-spacing: -0.025em;
-    line-height: 1.05;
-    margin-bottom: 24px;
+    font-size: clamp(2.4rem, 6vw, 4.2rem);
+    letter-spacing: -0.045em;
+    line-height: 1.04;
+    margin-bottom: 36px;
+    color: var(--white);
   }
+
   .philosophy-section p {
-    color: var(--text-mid);
+    font-family: var(--font-sans);
     font-size: 1.05rem;
-    line-height: 1.7;
-    margin-bottom: 16px;
+    line-height: 1.78;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 20px;
   }
+
   .philosophy-section p:last-child {
     margin-bottom: 0;
   }
 
-  /* ─── CTA ─── */
+
+  /* ─────────────────────────────────────────
+     BOTTOM CTA
+  ───────────────────────────────────────── */
   .cta-section {
-    max-width: 640px; margin: 0 auto 100px;
-    padding: 0 24px;
-  }
-  .cta-card {
-    background: var(--card);
-    border-radius: 24px;
-    padding: 56px 40px;
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 110px 40px;
     text-align: center;
   }
-  .cta-card h2 {
-    font-weight: 700; font-size: clamp(1.6rem, 3.5vw, 2.1rem);
-    letter-spacing: -0.02em; line-height: 1.2;
-  }
-  .cta-card p {
-    color: var(--text-dim); font-size: 0.9rem;
-    max-width: 380px; margin: 14px auto 0; line-height: 1.6;
-  }
-  .cta-card .btn-primary { margin-top: 28px; display: inline-block; }
 
-  /* ─── FOOTER ─── */
+  .cta-section .section-label {
+    margin-bottom: 24px;
+  }
+
+  .cta-section h2 {
+    font-family: var(--font);
+    font-weight: 700;
+    font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+    margin-bottom: 18px;
+  }
+
+  .cta-section p {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.72;
+    color: var(--gray-500);
+    max-width: 400px;
+    margin: 0 auto 40px;
+  }
+
+  .cta-footnote {
+    margin-top: 18px;
+    font-family: var(--font-sans);
+    font-size: 0.76rem;
+    color: var(--gray-400);
+  }
+
+
+  /* ─────────────────────────────────────────
+     FOOTER
+  ───────────────────────────────────────── */
   footer {
-    border-top: 1px solid var(--border);
-    padding: 36px 24px;
-    text-align: center;
-    color: var(--text-dim); font-size: 0.78rem;
-  }
-  footer a { color: var(--text-dim); text-decoration: none; margin: 0 10px; transition: color 0.2s; }
-  footer a:hover { color: var(--text); }
-
-  @media (max-width: 640px) {
-    .features-grid {
-      grid-template-columns: 1fr;
-    }
+    border-top: 1px solid var(--gray-200);
+    padding: 32px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
   }
 
-  @media (max-width: 580px) {
-    nav { padding: 14px 20px; }
-    .hero { padding: 70px 24px 60px; }
-    .hero h1 { font-size: clamp(2.2rem, 7vw, 5.5rem); }
-    .section { padding: 80px 24px; }
-    .philosophy-section { padding: 80px 24px; }
-    .preview-section { padding: 0 24px 80px; }
-    .cta-card { padding: 44px 24px; }
+  .footer-logo {
+    font-family: var(--font);
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--black);
+    letter-spacing: -0.025em;
   }
 
-  @media (max-width: 480px) {
-    .btn-primary, .btn-ghost {
-      width: 100%;
-      text-align: center;
-    }
+  .footer-right {
+    display: flex;
+    gap: 28px;
+    align-items: center;
+    flex-wrap: wrap;
   }
 
-  /* ─── WAITLIST MODAL ─── */
+  footer a {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    color: var(--gray-500);
+    text-decoration: none;
+    transition: color var(--transition);
+  }
+
+  footer a:hover { color: var(--black); }
+
+  .footer-copy {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    color: var(--gray-400);
+  }
+
+
+  /* ─────────────────────────────────────────
+     WAITLIST MODAL
+  ───────────────────────────────────────── */
   .modal {
     display: none;
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
     z-index: 10000;
-    animation: fadeIn 0.3s ease;
+    animation: fadeIn 0.25s ease;
   }
 
   .modal.active {
@@ -551,95 +968,110 @@
 
   .modal-overlay {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(4px);
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.72);
+    backdrop-filter: blur(8px);
   }
 
   .modal-content {
     position: relative;
     background: #fff;
-    border-radius: 24px;
-    padding: 48px 40px;
-    max-width: 480px;
-    width: 90%;
+    border-radius: 28px;
+    padding: 52px 44px;
+    max-width: 460px;
+    width: 92%;
     text-align: center;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-    animation: slideUp 0.3s ease;
+    box-shadow: 0 32px 80px rgba(0, 0, 0, 0.35);
+    animation: slideUp 0.28s ease;
   }
 
   .modal-close {
     position: absolute;
-    top: 20px;
-    right: 20px;
-    background: none;
+    top: 18px; right: 18px;
+    background: var(--gray-100);
     border: none;
-    font-size: 32px;
-    color: #999;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    font-size: 20px;
+    color: var(--gray-500);
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition);
     line-height: 1;
     padding: 0;
-    width: 32px;
-    height: 32px;
-    transition: color 0.2s;
   }
 
   .modal-close:hover {
-    color: #000;
+    background: var(--gray-200);
+    color: var(--black);
   }
 
   .modal-title {
-    font-size: 2rem;
+    font-family: var(--font);
+    font-size: 1.9rem;
     font-weight: 700;
-    margin: 0 0 12px 0;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.03em;
+    color: var(--black);
+    margin-bottom: 8px;
   }
 
   .modal-subtitle {
-    font-size: 1.05rem;
-    color: var(--text-mid);
-    margin: 0 0 32px 0;
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    color: var(--gray-500);
+    margin-bottom: 32px;
+    line-height: 1.6;
   }
 
   .waitlist-form {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 12px;
   }
 
   .modal-input {
-    padding: 16px 20px;
-    font-size: 1rem;
-    border: 2px solid var(--border);
+    width: 100%;
+    padding: 15px 18px;
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    border: 1.5px solid var(--gray-200);
     border-radius: var(--radius);
     transition: border-color 0.2s;
     background: #fff;
+    color: var(--black);
   }
 
   .modal-input:focus {
     outline: none;
-    border-color: #000;
+    border-color: var(--black);
+  }
+
+  .modal-input::placeholder {
+    color: var(--gray-400);
   }
 
   .modal-button {
-    background: #000;
+    width: 100%;
+    background: var(--black);
     color: #fff;
-    padding: 16px 32px;
-    font-size: 1rem;
-    font-weight: 600;
+    padding: 15px 32px;
+    font-family: var(--font);
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
     border: none;
     border-radius: var(--radius);
     cursor: pointer;
-    transition: all var(--transition-fast);
-    box-shadow: var(--shadow-md);
+    transition: all var(--transition);
+    margin-top: 4px;
   }
 
   .modal-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    opacity: 0.82;
+    transform: translateY(-1px);
   }
 
   .modal-button:active {
@@ -647,362 +1079,590 @@
   }
 
   .modal-note {
-    font-size: 0.85rem;
-    color: var(--text-dim);
-    margin: 20px 0 0 0;
+    font-family: var(--font-sans);
+    font-size: 0.76rem;
+    color: var(--gray-400);
+    margin-top: 18px;
   }
 
   @keyframes fadeIn {
     from { opacity: 0; }
-    to { opacity: 1; }
+    to   { opacity: 1; }
   }
 
   @keyframes slideUp {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+
+  /* ─────────────────────────────────────────
+     RESPONSIVE
+  ───────────────────────────────────────── */
+  @media (max-width: 860px) {
+    nav { padding: 16px 24px; }
+
+    .hero { padding: 80px 24px 70px; }
+
+    .problem-section { padding: 70px 24px; }
+
+    .split-section { padding: 70px 24px; }
+
+    .split-grid {
+      grid-template-columns: 1fr;
+      gap: 52px;
     }
-    to {
-      opacity: 1;
-      transform: translateY(0);
+
+    /* On mobile, always show phone after text */
+    .split-grid .phone-col { order: 2; }
+    .split-grid .split-text { order: 1; }
+
+    .features-section { padding: 70px 24px; }
+
+    .philosophy-section { padding: 90px 24px; }
+
+    .cta-section { padding: 80px 24px; }
+
+    footer {
+      padding: 28px 24px;
+      flex-direction: column;
+      align-items: flex-start;
     }
   }
 
-  @media (max-width: 580px) {
-    .modal-content {
-      padding: 40px 28px;
-      width: 95%;
-    }
-    .modal-title {
-      font-size: 1.6rem;
-    }
+  @media (max-width: 600px) {
+    .hero h1 { font-size: clamp(2.6rem, 9vw, 3.5rem); }
+    .features-grid { grid-template-columns: 1fr; }
+    .modal-content { padding: 40px 24px; width: 95%; }
+    .modal-title { font-size: 1.65rem; }
+    .phone-frame { width: 272px; }
   }
 </style>
 </head>
 <body>
 
-<!-- WAITLIST MODAL -->
+
+<!-- ─── WAITLIST MODAL ─── -->
 <div id="waitlistModal" class="modal">
   <div class="modal-overlay"></div>
   <div class="modal-content">
-    <button class="modal-close" onclick="closeWaitlistModal()">&times;</button>
+    <button class="modal-close" onclick="closeWaitlistModal()">&#215;</button>
     <h2 class="modal-title">Join the Waitlist</h2>
     <p class="modal-subtitle">Be the first to experience Cerial.</p>
     <form id="waitlistForm" class="waitlist-form">
-      <input
-        type="text"
-        id="nameInput"
-        name="name"
-        placeholder="Full name"
-        required
-        class="modal-input"
-      />
-      <input
-        type="email"
-        id="emailInput"
-        name="email"
-        placeholder="Email address"
-        required
-        class="modal-input"
-      />
-      <input
-        type="tel"
-        id="phoneInput"
-        name="phone"
-        placeholder="Phone number"
-        required
-        class="modal-input"
-      />
+      <input type="text"  id="nameInput"  name="name"  placeholder="Full name"       required class="modal-input" />
+      <input type="email" id="emailInput" name="email" placeholder="Email address"   required class="modal-input" />
+      <input type="tel"   id="phoneInput" name="phone" placeholder="Phone number"    required class="modal-input" />
       <button type="submit" class="modal-button">Join the Waitlist</button>
     </form>
-    <p class="modal-note">We'll notify you when Cerial is ready.</p>
+    <p class="modal-note">No spam. We'll reach out when Cerial is ready.</p>
   </div>
 </div>
 
+
+<!-- ─── NAV ─── -->
 <nav>
   <div class="nav-logo">Cerial.</div>
   <a href="#" onclick="openWaitlistModal(); return false;" class="nav-cta">Join the Waitlist</a>
 </nav>
 
+
+<!-- ─── HERO ─── -->
 <section class="hero">
-  <div class="hero-badge">Your AI Performance Coach</div>
-  <h1>Cerial.<br>Meet your AI coach.<br>Built for consistency, not perfection.</h1>
-  <p>Tell Cerial what you ate. Get personalized coaching, meal recommendations, and insights that meet you where you are.<br>No pressure. Just progress.</p>
-  <div class="hero-actions">
-    <a href="#" onclick="openWaitlistModal(); return false;" class="btn-primary">Join the Waitlist</a>
+  <div class="label-tag">AI Nutrition Coaching for Teams</div>
+  <h1>Your team trains hard.<br>Make sure they're eating for it.</h1>
+  <p>Cerial gives coaches real-time visibility into team nutrition. Athletes log meals in seconds using AI. You see who's fueled to perform — and who needs attention.</p>
+  <a href="#" onclick="openWaitlistModal(); return false;" class="btn btn-primary">Join the Waitlist</a>
+  <div class="platform-note">Available on iOS &nbsp;·&nbsp; Android coming soon</div>
+</section>
+
+<div class="full-divider"></div>
+
+
+<!-- ─── THE PROBLEM ─── -->
+<section class="problem-section">
+  <div class="section-label">The Problem</div>
+  <h2>The gap between training and results.</h2>
+  <div class="problem-list">
+
+    <div class="problem-item">
+      <div class="problem-num">01</div>
+      <div class="problem-text">
+        <h3>Your athletes are underfeeding their work.</h3>
+        <p>Undereating is silent. It doesn't show up on film — but it shows up in the weight room, on the field, and in recovery. Athletes who miss caloric and protein targets are putting in the reps and leaving gains behind.</p>
+      </div>
+    </div>
+
+    <div class="problem-item">
+      <div class="problem-num">02</div>
+      <div class="problem-text">
+        <h3>Coaches plan every rep. But have zero nutrition visibility.</h3>
+        <p>You design the program, run the film, and track every metric that matters — except the one variable you can't control in the building. What your athletes eat is the missing piece of every performance plan.</p>
+      </div>
+    </div>
+
+    <div class="problem-item">
+      <div class="problem-num">03</div>
+      <div class="problem-text">
+        <h3>Existing apps are too complex. Athletes quit after a week.</h3>
+        <p>MyFitnessPal is a database, not a coach. Athletes search for food, weigh portions, grow frustrated, and stop logging. No data means no accountability. No accountability means no change.</p>
+      </div>
+    </div>
+
   </div>
 </section>
 
-<!-- THE PROBLEM -->
-<section class="section" style="padding-bottom: 60px;">
-  <div class="section-label">The Challenge</div>
-  <h2 class="section-title">Tracking shouldn't feel like work.</h2>
-  <div style="max-width: 640px; margin-top: 32px;">
-    <div style="display: flex; flex-direction: column; gap: 20px;">
-      <div style="display: flex; gap: 12px; align-items: flex-start;">
-        <div style="flex-shrink: 0; width: 6px; height: 6px; background: var(--text); border-radius: 50%; margin-top: 10px;"></div>
-        <p style="color: var(--text-mid); font-size: 1rem; line-height: 1.7;">Tired of weighing food and searching databases?</p>
-      </div>
-      <div style="display: flex; gap: 12px; align-items: flex-start;">
-        <div style="flex-shrink: 0; width: 6px; height: 6px; background: var(--text); border-radius: 50%; margin-top: 10px;"></div>
-        <p style="color: var(--text-mid); font-size: 1rem; line-height: 1.7;">Want to build better habits without obsessing over every calorie?</p>
-      </div>
-      <div style="display: flex; gap: 12px; align-items: flex-start;">
-        <div style="flex-shrink: 0; width: 6px; height: 6px; background: var(--text); border-radius: 50%; margin-top: 10px;"></div>
-        <p style="color: var(--text-mid); font-size: 1rem; line-height: 1.7;">Need accountability that adapts to your lifestyle, not the other way around?</p>
+
+<!-- ─── FOR COACHES ─── -->
+<section class="split-section bg-subtle">
+  <div class="split-grid">
+
+    <div class="split-text">
+      <div class="section-label">For Coaches</div>
+      <h2>See everything.<br>Act instantly.</h2>
+      <p class="split-sub">Create your team, invite your athletes, and get a live dashboard showing every player's calorie and protein progress — updated in real time. Know who's fueled before practice even starts.</p>
+      <div class="steps-list">
+        <div class="step-item">
+          <div class="step-dot">1</div>
+          <div>
+            <h4>Create your team</h4>
+            <p>Name it, organize by depth chart, and set it up in minutes. Invite athletes with a simple code.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-dot">2</div>
+          <div>
+            <h4>Set individual targets</h4>
+            <p>A lineman's goals aren't a receiver's goals. Every athlete gets calorie and protein targets built for them.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-dot">3</div>
+          <div>
+            <h4>See who's on track</h4>
+            <p>Live dashboard. Color-coded progress. Spot who's falling behind before it affects performance.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-dot">4</div>
+          <div>
+            <h4>Send a nudge</h4>
+            <p>One tap to motivate athletes who are behind. No texts, no group chats — just a push that keeps the team accountable.</p>
+          </div>
+        </div>
       </div>
     </div>
+
+    <!-- DASHBOARD PHONE MOCKUP -->
+    <div class="phone-col">
+      <div class="phone-frame">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+
+          <div class="app-header">
+            <div class="app-title">Eagles Offense</div>
+            <div class="app-subtitle-text">Today &nbsp;·&nbsp; 5 Members</div>
+          </div>
+
+          <div class="app-tab-row">
+            <div class="app-tab active">Roster</div>
+            <div class="app-tab">Leaderboard</div>
+          </div>
+
+          <div class="app-stats-card">
+            <div class="app-stats-lbl">Team Stats &nbsp;·&nbsp; Today</div>
+            <div class="app-active-row">
+              <div class="app-active-text">Members Active: 4/5</div>
+            </div>
+            <div class="app-bar-track">
+              <div class="app-bar-fill-green" style="width: 80%;"></div>
+            </div>
+            <div class="app-gauges">
+              <div class="app-gauge">
+                <div class="app-gauge-val">74%</div>
+                <div class="app-gauge-lbl">Calories</div>
+              </div>
+              <div class="app-gauge">
+                <div class="app-gauge-val">79%</div>
+                <div class="app-gauge-lbl">Protein</div>
+              </div>
+              <div class="app-gauge">
+                <div class="app-gauge-val">2,460</div>
+                <div class="app-gauge-lbl">Avg kcal</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="app-group-header">
+            <div class="app-group-dot" style="background: #16a34a;"></div>
+            <div class="app-group-lbl">On Track (2)</div>
+          </div>
+
+          <div class="athlete-card on-track">
+            <div class="athlete-row-top">
+              <div class="athlete-name-text">M. Williams</div>
+              <div class="status-badge badge-on-track">On Track</div>
+            </div>
+            <div class="athlete-bars">
+              <div class="micro-bar-row">
+                <div class="micro-bar-label">Cal</div>
+                <div class="micro-bar-track"><div class="micro-bar-fill fill-green" style="width:86%;"></div></div>
+                <div class="micro-bar-pct">86%</div>
+              </div>
+              <div class="micro-bar-row">
+                <div class="micro-bar-label">Pro</div>
+                <div class="micro-bar-track"><div class="micro-bar-fill fill-green" style="width:88%;"></div></div>
+                <div class="micro-bar-pct">88%</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="athlete-card on-track">
+            <div class="athlete-row-top">
+              <div class="athlete-name-text">J. Mitchell</div>
+              <div class="status-badge badge-on-track">On Track</div>
+            </div>
+            <div class="athlete-bars">
+              <div class="micro-bar-row">
+                <div class="micro-bar-label">Cal</div>
+                <div class="micro-bar-track"><div class="micro-bar-fill fill-green" style="width:81%;"></div></div>
+                <div class="micro-bar-pct">81%</div>
+              </div>
+              <div class="micro-bar-row">
+                <div class="micro-bar-label">Pro</div>
+                <div class="micro-bar-track"><div class="micro-bar-fill fill-green" style="width:82%;"></div></div>
+                <div class="micro-bar-pct">82%</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="app-group-header">
+            <div class="app-group-dot" style="background: #d97706;"></div>
+            <div class="app-group-lbl">In Progress (1)</div>
+          </div>
+
+          <div class="athlete-card in-progress">
+            <div class="athlete-row-top">
+              <div class="athlete-name-text">D. Harris</div>
+              <div class="status-badge badge-in-progress">In Progress</div>
+            </div>
+            <div class="athlete-bars">
+              <div class="micro-bar-row">
+                <div class="micro-bar-label">Cal</div>
+                <div class="micro-bar-track"><div class="micro-bar-fill fill-red" style="width:48%;"></div></div>
+                <div class="micro-bar-pct">48%</div>
+              </div>
+              <div class="micro-bar-row">
+                <div class="micro-bar-label">Pro</div>
+                <div class="micro-bar-track"><div class="micro-bar-fill fill-amber" style="width:55%;"></div></div>
+                <div class="micro-bar-pct">55%</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="app-group-header">
+            <div class="app-group-dot" style="background: #9ca3af;"></div>
+            <div class="app-group-lbl">Hasn't Logged (1)</div>
+          </div>
+
+          <div class="athlete-card no-log">
+            <div class="athlete-row-top">
+              <div class="athlete-name-text">T. Brooks</div>
+              <div class="status-badge badge-no-log">No Log</div>
+            </div>
+            <div class="nudge-btn">Send Nudge 👋</div>
+          </div>
+
+          <div class="phone-end-space"></div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
-<section class="section" id="how">
-  <div class="section-label">How It Works</div>
-  <h2 class="section-title">From meal to macro in seconds.</h2>
-  <div class="steps">
-    <div class="step-card">
-      <div class="step-num">1</div>
-      <h3>Tell Your AI Coach</h3>
-      <p>Type 'I had eggs and toast for breakfast.' Cerial logs it, estimates macros, and gives you immediate feedback.</p>
+
+<!-- ─── FOR ATHLETES ─── -->
+<section class="split-section">
+  <div class="split-grid">
+
+    <!-- LEADERBOARD PHONE MOCKUP — rendered first in HTML, moved left on desktop via order -->
+    <div class="phone-col" style="order: 1;">
+      <div class="phone-frame">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+
+          <div class="app-header">
+            <div class="app-title">Eagles Offense</div>
+            <div class="app-subtitle-text">Leaderboard &nbsp;·&nbsp; This Week</div>
+          </div>
+
+          <div class="app-tab-row">
+            <div class="app-tab">Roster</div>
+            <div class="app-tab active">Leaderboard</div>
+          </div>
+
+          <div class="app-stats-card">
+            <div class="app-stats-lbl">Team Stats &nbsp;·&nbsp; Today</div>
+            <div class="app-active-row">
+              <div class="app-active-text">Members Active: 4/5</div>
+            </div>
+            <div class="app-bar-track">
+              <div class="app-bar-fill-green" style="width: 80%;"></div>
+            </div>
+            <div class="app-gauges">
+              <div class="app-gauge">
+                <div class="app-gauge-val">74%</div>
+                <div class="app-gauge-lbl">Calories</div>
+              </div>
+              <div class="app-gauge">
+                <div class="app-gauge-val">79%</div>
+                <div class="app-gauge-lbl">Protein</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lb-card">
+            <div class="lb-row">
+              <div class="lb-rank">🥇</div>
+              <div class="lb-avatar">MW</div>
+              <div class="lb-info">
+                <div class="lb-name">M. Williams</div>
+                <div class="lb-bar-track"><div class="lb-bar-fill fill-green" style="width:88%;"></div></div>
+              </div>
+              <div class="lb-pct">88%</div>
+            </div>
+            <div class="lb-row">
+              <div class="lb-rank">🥈</div>
+              <div class="lb-avatar">JM</div>
+              <div class="lb-info">
+                <div class="lb-name">J. Mitchell</div>
+                <div class="lb-bar-track"><div class="lb-bar-fill fill-green" style="width:82%;"></div></div>
+              </div>
+              <div class="lb-pct">82%</div>
+            </div>
+            <div class="lb-row">
+              <div class="lb-rank">🥉</div>
+              <div class="lb-avatar">RJ</div>
+              <div class="lb-info">
+                <div class="lb-name">R. Johnson</div>
+                <div class="lb-bar-track"><div class="lb-bar-fill fill-amber" style="width:61%;"></div></div>
+              </div>
+              <div class="lb-pct">61%</div>
+            </div>
+            <div class="lb-row">
+              <div class="lb-rank" style="font-family:var(--font-sans);font-size:0.72rem;color:#9ca3af;font-weight:700;">4</div>
+              <div class="lb-avatar">DH</div>
+              <div class="lb-info">
+                <div class="lb-name">D. Harris</div>
+                <div class="lb-bar-track"><div class="lb-bar-fill fill-amber" style="width:55%;"></div></div>
+              </div>
+              <div class="lb-pct">55%</div>
+            </div>
+            <div class="lb-row">
+              <div class="lb-rank" style="font-family:var(--font-sans);font-size:0.72rem;color:#9ca3af;font-weight:700;">5</div>
+              <div class="lb-avatar muted">TB</div>
+              <div class="lb-info">
+                <div class="lb-name" style="color:#9ca3af;">T. Brooks</div>
+                <div class="lb-bar-track"><div class="lb-bar-fill fill-gray" style="width:3%;"></div></div>
+              </div>
+              <div class="lb-pct muted">—</div>
+            </div>
+          </div>
+
+          <div class="phone-end-space"></div>
+        </div>
+      </div>
     </div>
-    <div class="step-card">
-      <div class="step-num">2</div>
-      <h3>Get Personalized Guidance</h3>
-      <p>Ask 'What should I eat for lunch?' Your AI coach suggests meals based on your remaining calories, time of day, and eating patterns.</p>
+
+    <div class="split-text" style="order: 2;">
+      <div class="section-label">For Athletes</div>
+      <h2>Log in seconds.<br>Compete with your team.</h2>
+      <p class="split-sub">Just say what you ate. Your AI coach handles the math, tracks your progress, and puts you on the leaderboard. No databases. No weighing. Just show up and log.</p>
+      <div class="steps-list">
+        <div class="step-item">
+          <div class="step-dot">1</div>
+          <div>
+            <h4>Join your team</h4>
+            <p>Your coach sends a code. Download Cerial, enter it. You're in and on the board.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-dot">2</div>
+          <div>
+            <h4>Talk to your AI coach</h4>
+            <p>Type what you ate like you're texting. "Chicken, rice, and broccoli." Cerial logs it, estimates your macros, and tells you where you stand.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-dot">3</div>
+          <div>
+            <h4>Build your streak</h4>
+            <p>Hit 80% of your targets and it counts. Miss a day — it doesn't define you. Consistency is the game, not perfection.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-dot">4</div>
+          <div>
+            <h4>Climb the leaderboard</h4>
+            <p>Your team sees who's fueling best. The competition is motivating. Accountability builds itself.</p>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="step-card">
-      <div class="step-num">3</div>
-      <h3>Build Your Streak</h3>
-      <p>Track your consistency. See your progress. Cerial celebrates wins and helps you learn from misses—without judgment.</p>
-    </div>
+
   </div>
 </section>
 
-<!-- BENEFITS -->
-<section class="section" style="padding-top:0;">
-  <div class="section-label">How Cerial Helps</div>
-  <h2 class="section-title">AI coaching that grows with you.</h2>
+
+<!-- ─── FEATURES ─── -->
+<section class="features-section">
+  <div class="section-label">Features</div>
+  <h2>Built different.</h2>
+  <p class="section-sub">Everything a coach needs. Everything an athlete will actually stick to.</p>
   <div class="features-grid">
+
     <div class="feature-card">
-      <div class="intro-badge">
-        <span class="intro-badge__text" style="font-size: 52px;">AI</span>
+      <div class="feature-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
+          <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
+        </svg>
       </div>
-      <h3>Talk to your coach, anytime</h3>
-      <p>Ask 'What should I eat?' or 'How am I doing this week?' Your AI coach knows your patterns, understands your goals, and gives you real guidance—not generic advice.</p>
+      <h3>Team Dashboard</h3>
+      <p>Every athlete's calorie and protein progress on one screen. Color-coded statuses — on track, in progress, no log — so you always know who needs your attention.</p>
     </div>
+
     <div class="feature-card">
-      <div class="intro-badge">
-        <span class="intro-badge__text" style="font-size: 68px;">✓</span>
+      <div class="feature-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+          <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+        </svg>
       </div>
-      <h3>Log meals in seconds</h3>
-      <p>Just type what you ate like you're texting a friend. Cerial handles the math, learns your preferences, and keeps you on track without the friction.</p>
+      <h3>Send a Nudge</h3>
+      <p>One tap to remind athletes who haven't logged. No separate texts. No group chat noise. Just a simple push that keeps your team's compliance high.</p>
     </div>
+
     <div class="feature-card">
-      <div class="intro-badge">
-        <span class="intro-badge__text" style="font-size: 48px;">365</span>
+      <div class="feature-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+        </svg>
       </div>
-      <h3>Build unstoppable momentum</h3>
-      <p>Track streaks, see patterns, and celebrate progress. 80% of your target counts—because consistency beats perfection every time.</p>
+      <h3>AI Meal Logging</h3>
+      <p>Athletes type naturally — "I had a burger and fries." Cerial estimates macros, logs the meal, and coaches on what to eat next. No databases. No friction. Actual compliance.</p>
     </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/>
+          <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/>
+          <path d="M4 22h16"/>
+          <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/>
+          <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/>
+          <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/>
+        </svg>
+      </div>
+      <h3>Streak & Leaderboard</h3>
+      <p>Athletes earn rank by logging consistently. 80% of your target counts. Your team competes. Accountability becomes automatic — without anyone having to demand it.</p>
+    </div>
+
   </div>
 </section>
 
-<!-- APP SCREENSHOTS -->
-<section class="preview-section">
-  <div class="preview-header">
-    <div class="section-label">See It In Action</div>
-    <h2 class="section-title">Inside the App</h2>
-  </div>
-  <div class="preview-grid">
 
-    <!-- AI Chat Screenshot -->
-    <div class="preview-card">
-      <div class="preview-card-title">AI Coach</div>
-      <!-- TODO: Replace with real screenshot from /app/(tabs)/ai.tsx showing meal recommendation -->
-      <!-- Placeholder content showing AI chat interface -->
-      <div style="background: #fff; border-radius: 12px; padding: 16px; margin-bottom: 16px;">
-        <div style="background: var(--card); border-radius: 12px; padding: 12px; margin-bottom: 12px; font-size: 0.85rem; color: var(--text-dim);">
-          Today so far: 1,450 kcal · 95g protein
-        </div>
-        <div style="background: var(--card); border-radius: 16px; padding: 14px; font-size: 0.88rem; line-height: 1.6;">
-          <strong>You:</strong> What should I eat for dinner?
-        </div>
-        <div style="background: #000; color: #fff; border-radius: 16px; padding: 14px; font-size: 0.88rem; line-height: 1.6; margin-top: 10px;">
-          <strong>Coach:</strong> Great question! You have 750 calories and 65g of protein left today. Consider grilled chicken (8oz) with roasted vegetables and quinoa. That would give you ~650 calories and hit your protein goal perfectly.
-        </div>
-      </div>
-      <p style="font-size: 0.82rem; color: var(--text-dim); line-height: 1.6;">
-        Your coach knows your goals, sees your patterns, and gives you meal recommendations that fit your day.
-      </p>
-    </div>
-
-    <!-- Progress Screenshot -->
-    <div class="preview-card">
-      <div class="preview-card-title">Your Progress</div>
-      <!-- TODO: Replace with real screenshot from /app/(tabs)/today.tsx with progress rings and streak calendar -->
-      <div class="ring-wrap">
-        <div class="ring">
-          <svg width="96" height="96" viewBox="0 0 96 96">
-            <circle cx="48" cy="48" r="38" fill="none" stroke="var(--card-hover)" stroke-width="7"/>
-            <circle cx="48" cy="48" r="38" fill="none" stroke="#000" stroke-width="7" stroke-linecap="round"
-              stroke-dasharray="238.76" stroke-dashoffset="100" />
-          </svg>
-          <div class="ring-label"><div class="ring-val">1580</div><div class="ring-sub">/ 2200 kcal</div></div>
-        </div>
-        <div class="ring">
-          <svg width="96" height="96" viewBox="0 0 96 96">
-            <circle cx="48" cy="48" r="38" fill="none" stroke="var(--card-hover)" stroke-width="7"/>
-            <circle cx="48" cy="48" r="38" fill="none" stroke="#000" stroke-width="7" stroke-linecap="round"
-              stroke-dasharray="238.76" stroke-dashoffset="80" />
-          </svg>
-          <div class="ring-label"><div class="ring-val">124</div><div class="ring-sub">/ 160 g</div></div>
-        </div>
-      </div>
-      <div style="margin-top: 20px; text-align: center;">
-        <div style="font-size: 2.5rem; margin-bottom: 8px;">🔥</div>
-        <div style="font-weight: 700; font-size: 2rem; letter-spacing: -0.02em;">14 Days</div>
-        <div style="font-size: 0.85rem; color: var(--text-dim); margin-top: 4px;">Current Streak</div>
-      </div>
-      <p style="font-size: 0.82rem; color: var(--text-dim); line-height: 1.6; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border);">
-        Track streaks, see patterns, and build momentum. 80% of your target counts—consistency over perfection.
-      </p>
-    </div>
-
-    <!-- Smart Feedback Screenshot -->
-    <div class="preview-card">
-      <div class="preview-card-title">Smart Feedback</div>
-      <!-- TODO: Replace with real screenshot from /app/(tabs)/today.tsx showing meal log with coaching -->
-      <div style="margin-bottom: 16px;">
-        <div class="meal-row"><span class="meal-name">Breakfast</span><span class="meal-meta">580 kcal · 42g</span></div>
-        <div class="meal-row"><span class="meal-name">Lunch</span><span class="meal-meta">640 kcal · 48g</span></div>
-        <div class="meal-row"><span class="meal-name">Snack</span><span class="meal-meta">360 kcal · 34g</span></div>
-      </div>
-      <div style="background: var(--card); border-radius: 12px; padding: 16px; font-size: 0.82rem; line-height: 1.6;">
-        <strong style="display: block; margin-bottom: 8px; color: var(--text);">Today's Insight</strong>
-        <span style="color: var(--text-dim);">You're 77% to your protein goal—great progress! You have 750 calories left. Consider a protein-rich dinner to hit your targets.</span>
-      </div>
-      <p style="font-size: 0.82rem; color: var(--text-dim); line-height: 1.6; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border);">
-        After every meal, get instant insights tailored to your day.
-      </p>
-    </div>
-
-  </div>
-  <p style="text-align: center; color: var(--text-dim); font-size: 0.85rem; margin-top: 36px; font-style: italic;">
-    📸 Screenshots shown are placeholders. Capture real app screenshots from the Cerial app to replace these.
-  </p>
-</section>
-
-<!-- PHILOSOPHY -->
+<!-- ─── PHILOSOPHY ─── -->
 <section class="philosophy-section">
-  <h2>Meet you where you are.<br>Coach you to greatness.</h2>
-  <p>Cerial doesn't judge. It adapts. Whether you're crushing goals or starting over, your AI coach provides the guidance you need—when you need it. Because greatness isn't built in perfect days. It's built in consistent ones.</p>
-</section>
-
-<!-- SOCIAL PROOF -->
-<section style="max-width: 720px; margin: 0 auto 60px; padding: 0 24px;">
-  <div style="background: var(--card); border-radius: 24px; padding: 60px 40px; text-align: center;">
-    <p style="font-size: 1.15rem; line-height: 1.7; color: var(--text);">
-      Built by athletes, for athletes. Cerial understands that greatness comes from consistency, not perfection.
-    </p>
+  <div class="philosophy-inner">
+    <div class="section-label">Our Philosophy</div>
+    <h2>Are you Cerial?</h2>
+    <p>That's what coaches say when athletes stop taking it seriously. It became the name because it captures everything the product stands for — nutrition isn't optional. It isn't separate from training. It is training. Cerial exists to close the gap between the work your athletes put in and the results they deserve to see.</p>
+    <p>We built it on one belief: consistency beats perfection. Log 80% of your days. Hit 80% of your targets. That compounds into something real. That's where results live.</p>
   </div>
 </section>
 
-<!-- CTA -->
-<div class="cta-section">
-  <div class="cta-card">
-    <h2>Your AI coach is waiting.</h2>
-    <p>Join the waitlist and be the first to experience AI coaching that meets you where you are.</p>
-    <a href="#" onclick="openWaitlistModal(); return false;" class="btn-primary">Join the Waitlist</a>
-  </div>
-</div>
 
+<!-- ─── BOTTOM CTA ─── -->
+<section class="cta-section">
+  <div class="section-label">Get Early Access</div>
+  <h2>Ready to fuel your team?</h2>
+  <p>Coaches and athletes both welcome. Join the waitlist and be the first to experience AI nutrition coaching built for teams.</p>
+  <a href="#" onclick="openWaitlistModal(); return false;" class="btn btn-primary">Join the Waitlist</a>
+  <div class="cta-footnote">Available on iOS &nbsp;·&nbsp; Android coming soon</div>
+</section>
+
+
+<!-- ─── FOOTER ─── -->
 <footer>
-  <p style="margin-bottom:10px;">© 2026 Cerial. All rights reserved.</p>
-  <a href="privacy.html">Privacy Policy</a>
+  <div class="footer-logo">Cerial.</div>
+  <div class="footer-right">
+    <a href="privacy.html">Privacy Policy</a>
+    <span class="footer-copy">&copy; 2026 Cerial. All rights reserved.</span>
+  </div>
 </footer>
 
+
 <script>
-  // Cloud Function endpoint (deployed from github.com/pattenjohnson/cerial)
-  // Source: https://github.com/pattenjohnson/cerial/blob/main/functions/src/waitlist.ts
   const WAITLIST_ENDPOINT = 'https://addtowaitlist-hvxr3deonq-uc.a.run.app';
 
-  // Open waitlist modal
   function openWaitlistModal() {
     document.getElementById('waitlistModal').classList.add('active');
-    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    document.body.style.overflow = 'hidden';
   }
 
-  // Close waitlist modal
   function closeWaitlistModal() {
     document.getElementById('waitlistModal').classList.remove('active');
-    document.body.style.overflow = ''; // Restore scrolling
+    document.body.style.overflow = '';
   }
 
-  // Close modal when clicking overlay
-  document.querySelector('.modal-overlay')?.addEventListener('click', closeWaitlistModal);
+  document.querySelector('.modal-overlay').addEventListener('click', closeWaitlistModal);
 
-  // Close modal with Escape key
   document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-      closeWaitlistModal();
-    }
+    if (e.key === 'Escape') closeWaitlistModal();
   });
 
-  // Handle form submission
   document.getElementById('waitlistForm').addEventListener('submit', async function(e) {
     e.preventDefault();
 
-    const name = document.getElementById('nameInput').value;
+    const name  = document.getElementById('nameInput').value;
     const email = document.getElementById('emailInput').value;
     const phone = document.getElementById('phoneInput').value;
     const button = this.querySelector('button[type="submit"]');
     const originalText = button.textContent;
 
-    // Show loading state
     button.textContent = 'Joining...';
     button.disabled = true;
 
     try {
       const response = await fetch(WAITLIST_ENDPOINT, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: name,
-          email: email,
-          phone: phone
-        })
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, phone })
       });
 
       const data = await response.json();
 
       if (response.ok && data.success) {
-        // Show success message
         const modalContent = document.querySelector('.modal-content');
         modalContent.innerHTML = `
-          <h2 class="modal-title">You're on the list!</h2>
-          <p class="modal-subtitle">We'll notify you when Cerial. is ready.</p>
+          <h2 class="modal-title">You're on the list.</h2>
+          <p class="modal-subtitle" style="margin-bottom: 28px;">We'll reach out when Cerial is ready.</p>
           <button onclick="closeWaitlistModal()" class="modal-button">Close</button>
         `;
-
-        // Reset form and close after 3 seconds
         setTimeout(() => {
           closeWaitlistModal();
-          // Reset modal content
-          setTimeout(() => {
-            location.reload();
-          }, 300);
+          setTimeout(() => location.reload(), 300);
         }, 3000);
       } else {
-        // Handle error from function
         throw new Error(data.message || data.error || 'Failed to join waitlist');
       }
     } catch (error) {
-      console.error('Error:', error);
-      // Show error message
-      button.textContent = 'Join the Waitlist';
+      console.error('Waitlist error:', error);
+      button.textContent = originalText;
       button.disabled = false;
-      alert('Something went wrong. Please try again or contact us directly.');
+      alert('Something went wrong. Please try again.');
     }
   });
 </script>
