@@ -1175,152 +1175,6 @@
   }
 
 
-  /* ─────────────────────────────────────────
-     WAITLIST MODAL
-  ───────────────────────────────────────── */
-  .modal {
-    display: none;
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    z-index: 10000;
-    animation: fadeIn 0.25s ease;
-  }
-
-  .modal.active {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .modal-overlay {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.72);
-    backdrop-filter: blur(8px);
-  }
-
-  .modal-content {
-    position: relative;
-    background: #fff;
-    border-radius: 28px;
-    padding: 52px 44px;
-    max-width: 460px;
-    width: 92%;
-    text-align: center;
-    box-shadow: 0 32px 80px rgba(0, 0, 0, 0.35);
-    animation: slideUp 0.28s ease;
-  }
-
-  .modal-close {
-    position: absolute;
-    top: 18px; right: 18px;
-    background: var(--gray-100);
-    border: none;
-    width: 32px; height: 32px;
-    border-radius: 50%;
-    font-size: 20px;
-    color: var(--gray-500);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all var(--transition);
-    line-height: 1;
-    padding: 0;
-  }
-
-  .modal-close:hover {
-    background: var(--gray-200);
-    color: var(--black);
-  }
-
-  .modal-title {
-    font-family: var(--font);
-    font-size: 1.9rem;
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    color: var(--black);
-    margin-bottom: 8px;
-  }
-
-  .modal-subtitle {
-    font-family: var(--font-sans);
-    font-size: 0.95rem;
-    color: var(--gray-500);
-    margin-bottom: 32px;
-    line-height: 1.6;
-  }
-
-  .waitlist-form {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .modal-input {
-    width: 100%;
-    padding: 15px 18px;
-    font-family: var(--font-sans);
-    font-size: 0.95rem;
-    border: 1.5px solid var(--gray-200);
-    border-radius: var(--radius);
-    transition: border-color 0.2s;
-    background: #fff;
-    color: var(--black);
-  }
-
-  .modal-input:focus {
-    outline: none;
-    border-color: var(--black);
-  }
-
-  .modal-input::placeholder {
-    color: var(--gray-400);
-  }
-
-  .modal-button {
-    width: 100%;
-    background: var(--black);
-    color: #fff;
-    padding: 15px 32px;
-    font-family: var(--font);
-    font-size: 0.95rem;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    border: none;
-    border-radius: var(--radius);
-    cursor: pointer;
-    transition: all var(--transition);
-    margin-top: 4px;
-  }
-
-  .modal-button:hover {
-    opacity: 0.82;
-    transform: translateY(-1px);
-  }
-
-  .modal-button:active {
-    transform: translateY(0);
-  }
-
-  .modal-note {
-    font-family: var(--font-sans);
-    font-size: 0.76rem;
-    color: var(--gray-400);
-    margin-top: 18px;
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-  }
-
-  @keyframes slideUp {
-    from { opacity: 0; transform: translateY(22px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
 
 
   /* ─────────────────────────────────────────
@@ -1379,8 +1233,7 @@
   @media (max-width: 600px) {
     .hero h1 { font-size: clamp(2.6rem, 9vw, 3.5rem); }
     .features-grid { grid-template-columns: 1fr; }
-    .modal-content { padding: 40px 24px; width: 95%; }
-    .modal-title { font-size: 1.65rem; }
+
     .phone-frame { width: 272px; }
   }
 </style>
@@ -1388,28 +1241,11 @@
 <body>
 
 
-<!-- ─── WAITLIST MODAL ─── -->
-<div id="waitlistModal" class="modal">
-  <div class="modal-overlay"></div>
-  <div class="modal-content">
-    <button class="modal-close" onclick="closeWaitlistModal()">&#215;</button>
-    <h2 class="modal-title">Join the Waitlist</h2>
-    <p class="modal-subtitle">Be the first to experience Cerial.</p>
-    <form id="waitlistForm" class="waitlist-form">
-      <input type="text"  id="nameInput"  name="name"  placeholder="Full name"       required class="modal-input" />
-      <input type="email" id="emailInput" name="email" placeholder="Email address"   required class="modal-input" />
-      <input type="tel"   id="phoneInput" name="phone" placeholder="Phone number"    required class="modal-input" />
-      <button type="submit" class="modal-button">Join the Waitlist</button>
-    </form>
-    <p class="modal-note">No spam. We'll reach out when Cerial is ready.</p>
-  </div>
-</div>
-
 
 <!-- ─── NAV ─── -->
 <nav>
   <div class="nav-logo">Cerial.</div>
-  <a href="#" onclick="openWaitlistModal(); return false;" class="nav-cta">Join the Waitlist</a>
+  <a href="https://testflight.apple.com/join/b511ur7V" class="nav-cta" target="_blank" rel="noopener">Download iOS</a>
 </nav>
 
 
@@ -1422,7 +1258,7 @@
     <a href="https://testflight.apple.com/join/b511ur7V" class="btn btn-primary" target="_blank" rel="noopener">Download iOS</a>
     <a href="#problem" class="btn btn-outline">Learn More</a>
   </div>
-  <div class="platform-note">Available on iOS &nbsp;·&nbsp; Android coming soon</div>
+  <div class="platform-note">Available on iOS</div>
 
   <div class="hero-preview">
 
@@ -2019,12 +1855,9 @@
 <section class="cta-section reveal">
   <div class="section-label">Get Early Access</div>
   <h2>Ready to fuel your team?</h2>
-  <p>Coaches and athletes both welcome. Join the waitlist and be the first to experience AI nutrition coaching built for teams.</p>
-  <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
-    <a href="https://testflight.apple.com/join/b511ur7V" class="btn btn-primary" target="_blank" rel="noopener">Download iOS</a>
-    <a href="#" onclick="openWaitlistModal(); return false;" class="btn btn-outline">Join the Waitlist</a>
-  </div>
-  <div class="cta-footnote">Available on iOS &nbsp;·&nbsp; Android coming soon</div>
+  <p>Coaches and athletes both welcome. Download the app and get your team fueled today.</p>
+  <a href="https://testflight.apple.com/join/b511ur7V" class="btn btn-primary" target="_blank" rel="noopener">Download iOS</a>
+  <div class="cta-footnote">Available on iOS</div>
 </section>
 
 
@@ -2051,66 +1884,6 @@
   }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
   revealEls.forEach(function(el) { revealObserver.observe(el); });
 
-  const WAITLIST_ENDPOINT = 'https://addtowaitlist-hvxr3deonq-uc.a.run.app';
-
-  function openWaitlistModal() {
-    document.getElementById('waitlistModal').classList.add('active');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeWaitlistModal() {
-    document.getElementById('waitlistModal').classList.remove('active');
-    document.body.style.overflow = '';
-  }
-
-  document.querySelector('.modal-overlay').addEventListener('click', closeWaitlistModal);
-
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') closeWaitlistModal();
-  });
-
-  document.getElementById('waitlistForm').addEventListener('submit', async function(e) {
-    e.preventDefault();
-
-    const name  = document.getElementById('nameInput').value;
-    const email = document.getElementById('emailInput').value;
-    const phone = document.getElementById('phoneInput').value;
-    const button = this.querySelector('button[type="submit"]');
-    const originalText = button.textContent;
-
-    button.textContent = 'Joining...';
-    button.disabled = true;
-
-    try {
-      const response = await fetch(WAITLIST_ENDPOINT, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, phone })
-      });
-
-      const data = await response.json();
-
-      if (response.ok && data.success) {
-        const modalContent = document.querySelector('.modal-content');
-        modalContent.innerHTML = `
-          <h2 class="modal-title">You're on the list.</h2>
-          <p class="modal-subtitle" style="margin-bottom: 28px;">We'll reach out when Cerial is ready.</p>
-          <button onclick="closeWaitlistModal()" class="modal-button">Close</button>
-        `;
-        setTimeout(() => {
-          closeWaitlistModal();
-          setTimeout(() => location.reload(), 300);
-        }, 3000);
-      } else {
-        throw new Error(data.message || data.error || 'Failed to join waitlist');
-      }
-    } catch (error) {
-      console.error('Waitlist error:', error);
-      button.textContent = originalText;
-      button.disabled = false;
-      alert('Something went wrong. Please try again.');
-    }
-  });
 </script>
 
 </body>
