@@ -4,1873 +4,1073 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Cerial. — Fuel Your Team's Performance</title>
-<meta name="description" content="Cerial gives coaches real-time visibility into team nutrition. Athletes log meals in seconds using AI. See who's fueled to perform — and who needs attention." />
+<meta name="description" content="AI nutrition coaching built for teams. Coaches get real-time visibility. Athletes log in seconds." />
 <link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png" />
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
 
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://cerial.app/" />
+<meta property="og:url" content="https://cerial.co/" />
 <meta property="og:title" content="Cerial. — Fuel Your Team's Performance" />
-<meta property="og:description" content="Cerial gives coaches real-time visibility into team nutrition. Athletes log meals in seconds using AI." />
+<meta property="og:description" content="AI nutrition coaching built for teams. Coaches get real-time visibility. Athletes log in seconds." />
 
 <meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:url" content="https://cerial.app/" />
+<meta property="twitter:url" content="https://cerial.co/" />
 <meta property="twitter:title" content="Cerial. — Fuel Your Team's Performance" />
-<meta property="twitter:description" content="Cerial gives coaches real-time visibility into team nutrition. Athletes log meals in seconds using AI." />
+<meta property="twitter:description" content="AI nutrition coaching built for teams. Coaches get real-time visibility. Athletes log in seconds." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
 
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --black:       #000000;
+    --bg:          #0a0f1e;
+    --bg-card:     #111827;
+    --bg-card-2:   #1a2235;
     --white:       #ffffff;
-    --gray-50:     #f9f9f9;
     --gray-100:    #f3f4f6;
-    --gray-200:    #e5e7eb;
+    --gray-300:    #d1d5db;
     --gray-400:    #9ca3af;
     --gray-500:    #6b7280;
-    --gray-700:    #374151;
+    --gray-600:    #4b5563;
     --green:       #16a34a;
-    --green-bg:    #dcfce7;
+    --green-light: #22c55e;
+    --green-glow:  rgba(22, 163, 74, 0.25);
     --amber:       #d97706;
-    --amber-bg:    #fef3c7;
-    --red:         #dc2626;
-    --red-bg:      #fee2e2;
-    --radius:      14px;
-    --radius-lg:   24px;
-    --font:        Georgia, "Times New Roman", serif;
-    --font-sans:   system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    --transition:  150ms ease;
-    --shadow:      0 1px 3px rgba(0,0,0,0.10);
-    --shadow-lg:   0 20px 60px rgba(0,0,0,0.12);
+    --amber-light: #f59e0b;
+    --border:      rgba(255,255,255,0.07);
+    --border-light:rgba(255,255,255,0.12);
+    --font-display: 'Syne', sans-serif;
+    --font-body:    'Inter', sans-serif;
+    --radius:       16px;
+    --radius-sm:    10px;
+    --transition:   150ms ease;
   }
 
   html { scroll-behavior: smooth; }
 
   body {
-    font-family: var(--font);
-    background: var(--white);
-    color: var(--black);
-    line-height: 1.5;
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--white);
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
   }
 
-
-  /* ─────────────────────────────────────────
-     NAV
-  ───────────────────────────────────────── */
+  /* ── NAV ── */
   nav {
-    position: sticky;
-    top: 0;
+    position: fixed;
+    top: 0; left: 0; right: 0;
     z-index: 100;
-    padding: 20px 48px;
+    padding: 20px 40px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    background: rgba(255, 255, 255, 0.92);
+    justify-content: space-between;
+    background: transparent;
+    transition: background 300ms ease, backdrop-filter 300ms ease;
+  }
+
+  nav.scrolled {
+    background: rgba(10, 15, 30, 0.85);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--gray-200);
+    border-bottom: 1px solid var(--border);
   }
 
   .nav-logo {
-    font-family: var(--font);
-    font-weight: 700;
-    font-size: 1.25rem;
-    color: var(--black);
-    letter-spacing: -0.03em;
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--white);
+    letter-spacing: -0.02em;
     text-decoration: none;
   }
 
   .nav-cta {
-    background: var(--black);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--green);
     color: var(--white);
-    font-family: var(--font);
+    font-family: var(--font-body);
+    font-size: 0.875rem;
     font-weight: 600;
-    font-size: 0.84rem;
-    letter-spacing: -0.01em;
-    padding: 10px 24px;
-    border-radius: var(--radius);
-    border: none;
-    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 10px;
     text-decoration: none;
     transition: all var(--transition);
   }
 
   .nav-cta:hover {
-    opacity: 0.82;
+    background: var(--green-light);
     transform: translateY(-1px);
   }
 
-
-  /* ─────────────────────────────────────────
-     HERO
-  ───────────────────────────────────────── */
-  .hero {
-    max-width: 1040px;
-    margin: 0 auto;
-    padding: 120px 40px 100px;
-    text-align: center;
-    position: relative;
-  }
-
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: 0; left: -20%; right: -20%;
-    height: 65%;
-    background: radial-gradient(ellipse 55% 80% at 50% 0%, rgba(0,0,0,0.045) 0%, transparent 100%);
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  .hero > * { position: relative; z-index: 1; }
-
-  /* Hero preview cards */
-  .hero-preview {
-    margin-top: 72px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 14px;
-    text-align: left;
-  }
-
-  .hero-card {
-    background: var(--white);
-    border: 1px solid var(--gray-200);
-    border-radius: 20px;
-    padding: 20px 18px;
-    box-shadow:
-      0 4px 28px rgba(0, 0, 0, 0.05),
-      0 1px 3px rgba(0, 0, 0, 0.06);
-  }
-
-  .hero-card-label {
-    font-family: var(--font-sans);
-    font-size: 0.64rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.11em;
-    color: var(--gray-400);
-    margin-bottom: 14px;
-  }
-
-  .hero-chat-user {
-    background: var(--gray-100);
-    border-radius: 12px 12px 12px 3px;
-    padding: 9px 12px;
-    font-family: var(--font-sans);
-    font-size: 0.78rem;
-    color: var(--gray-700);
-    line-height: 1.5;
-    margin-bottom: 8px;
-  }
-
-  .hero-chat-ai {
-    background: var(--black);
-    border-radius: 12px 12px 3px 12px;
-    padding: 9px 12px;
-    font-family: var(--font-sans);
-    font-size: 0.78rem;
-    color: #fff;
-    line-height: 1.5;
-  }
-
-  .hero-streak-num {
-    font-family: var(--font);
-    font-weight: 700;
-    font-size: 2.2rem;
-    letter-spacing: -0.045em;
-    line-height: 1;
-    color: var(--black);
-  }
-
-  .hero-dots {
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
     display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-    margin: 12px 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 120px 24px 80px;
+    position: relative;
+    overflow: hidden;
   }
 
-  .dot {
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 30%, transparent 100%);
+    -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 30%, transparent 100%);
   }
 
-  .dot-hit   { background: var(--black); }
-  .dot-miss  { background: var(--gray-200); }
-  .dot-today { background: var(--black); outline: 2.5px solid var(--black); outline-offset: 2px; }
-
-  @media (max-width: 860px) {
-    .hero-preview { grid-template-columns: 1fr; max-width: 440px; margin-left: auto; margin-right: auto; }
+  .hero-glow {
+    position: absolute;
+    top: -200px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 800px;
+    height: 600px;
+    background: radial-gradient(ellipse at center, rgba(22,163,74,0.12) 0%, transparent 70%);
+    pointer-events: none;
   }
 
-  .label-tag {
-    display: inline-block;
-    font-family: var(--font-sans);
-    font-size: 0.7rem;
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(22,163,74,0.12);
+    border: 1px solid rgba(22,163,74,0.3);
+    color: var(--green-light);
+    font-size: 0.8rem;
     font-weight: 600;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--gray-500);
-    background: var(--gray-100);
-    padding: 6px 16px;
+    padding: 7px 16px;
     border-radius: 50px;
-    margin-bottom: 40px;
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 0.6s ease 0.1s forwards;
   }
 
-  .hero h1 {
-    font-family: var(--font);
-    font-weight: 700;
-    font-size: clamp(3rem, 7.5vw, 5.8rem);
-    line-height: 1.04;
-    letter-spacing: -0.045em;
-    color: var(--black);
-    margin-bottom: 28px;
+  .hero-badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--green-light);
+    animation: pulse 2s ease infinite;
   }
 
-  .hero p {
-    font-family: var(--font-sans);
-    font-size: 1.125rem;
-    line-height: 1.72;
-    color: var(--gray-500);
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(0.8); }
+  }
+
+  h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    max-width: 820px;
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.25s forwards;
+  }
+
+  h1 em {
+    font-style: normal;
+    background: linear-gradient(135deg, #22c55e 0%, #86efac 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-sub {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    color: var(--gray-400);
     max-width: 520px;
-    margin: 0 auto 48px;
+    line-height: 1.6;
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.4s forwards;
   }
 
-  .btn {
-    display: inline-block;
-    font-family: var(--font);
-    font-weight: 700;
-    font-size: 0.95rem;
-    letter-spacing: -0.01em;
-    padding: 15px 40px;
-    border-radius: var(--radius);
-    border: none;
-    cursor: pointer;
+  .hero-ctas {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    justify-content: center;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.55s forwards;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--green);
+    color: var(--white);
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 16px 32px;
+    border-radius: 14px;
+    text-decoration: none;
+    transition: all var(--transition);
+    box-shadow: 0 0 0 rgba(22,163,74,0);
+  }
+
+  .btn-primary:hover {
+    background: var(--green-light);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px var(--green-glow);
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid var(--border-light);
+    color: var(--gray-300);
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 16px 32px;
+    border-radius: 14px;
     text-decoration: none;
     transition: all var(--transition);
   }
 
-  .btn-primary {
-    background: var(--black);
+  .btn-secondary:hover {
+    background: rgba(255,255,255,0.12);
     color: var(--white);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
-  }
-
-  .btn-primary:hover {
-    opacity: 0.82;
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
   }
 
-  .btn-primary:active {
-    transform: translateY(0);
+  .hero-scroll-hint {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 1s forwards;
   }
 
-  .platform-note {
-    margin-top: 20px;
-    font-family: var(--font-sans);
-    font-size: 0.76rem;
-    color: var(--gray-400);
-    letter-spacing: 0.01em;
+  .hero-scroll-hint span {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray-500);
   }
 
+  .scroll-arrow {
+    width: 20px;
+    height: 20px;
+    border-right: 2px solid var(--gray-500);
+    border-bottom: 2px solid var(--gray-500);
+    transform: rotate(45deg);
+    animation: bounce 1.5s ease infinite;
+  }
 
-  /* ─────────────────────────────────────────
-     SECTION HELPERS
-  ───────────────────────────────────────── */
-  .full-divider {
-    width: 100%;
-    height: 1px;
-    background: var(--gray-200);
+  @keyframes bounce {
+    0%, 100% { transform: rotate(45deg) translateY(0); }
+    50% { transform: rotate(45deg) translateY(4px); }
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    padding: 120px 24px;
+    max-width: 1200px;
+    margin: 0 auto;
   }
 
   .section-label {
-    font-family: var(--font-sans);
-    font-size: 0.7rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--gray-400);
-    margin-bottom: 18px;
-  }
-
-
-  /* ─────────────────────────────────────────
-     PROBLEM
-  ───────────────────────────────────────── */
-  .problem-section {
-    max-width: 860px;
-    margin: 0 auto;
-    padding: 100px 40px;
-  }
-
-  .problem-section h2 {
-    font-family: var(--font);
+    font-size: 0.75rem;
     font-weight: 700;
-    font-size: clamp(2rem, 3.8vw, 2.8rem);
-    letter-spacing: -0.035em;
-    line-height: 1.1;
-    margin-bottom: 56px;
-    max-width: 480px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--green-light);
+    margin-bottom: 16px;
   }
 
-  .problem-list {
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+
+  .section-sub {
+    font-size: 1.1rem;
+    color: var(--gray-400);
+    line-height: 1.6;
+    max-width: 520px;
+  }
+
+  /* ── PROBLEM SECTION ── */
+  #problem {
+    border-top: 1px solid var(--border);
+  }
+
+  .problem-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 64px;
+  }
+
+  .problem-card {
+    background: var(--bg-card);
+    padding: 40px 36px;
     display: flex;
     flex-direction: column;
-    max-width: 640px;
+    gap: 16px;
+    transition: background var(--transition);
   }
 
-  .problem-item {
+  .problem-card:hover {
+    background: var(--bg-card-2);
+  }
+
+  .problem-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
     display: flex;
-    gap: 28px;
-    padding: 30px 0;
-    border-top: 1px solid var(--gray-200);
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    background: rgba(217,119,6,0.12);
+    border: 1px solid rgba(217,119,6,0.2);
   }
 
-  .problem-item:last-child {
-    border-bottom: 1px solid var(--gray-200);
-  }
-
-  .problem-num {
-    font-family: var(--font-sans);
-    font-size: 0.72rem;
+  .problem-title {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
     font-weight: 700;
+    color: var(--white);
+  }
+
+  .problem-body {
+    font-size: 0.95rem;
     color: var(--gray-400);
-    padding-top: 3px;
-    flex-shrink: 0;
-    width: 22px;
-    letter-spacing: 0.02em;
+    line-height: 1.65;
   }
 
-  .problem-text h3 {
-    font-family: var(--font);
-    font-weight: 700;
-    font-size: 1.05rem;
-    letter-spacing: -0.02em;
-    margin-bottom: 7px;
-    color: var(--black);
+  /* ── COACHES / ATHLETES SECTIONS ── */
+  .feature-section {
+    border-top: 1px solid var(--border);
   }
 
-  .problem-text p {
-    font-family: var(--font-sans);
-    font-size: 0.9rem;
-    line-height: 1.72;
-    color: var(--gray-500);
-  }
-
-
-  /* ─────────────────────────────────────────
-     SPLIT SECTIONS
-  ───────────────────────────────────────── */
-  .split-section {
-    padding: 100px 48px;
-  }
-
-  .split-section.bg-subtle {
-    background: var(--gray-50);
-  }
-
-  .split-grid {
-    max-width: 1080px;
-    margin: 0 auto;
+  .feature-header {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
+    gap: 48px;
+    align-items: end;
+    margin-bottom: 64px;
   }
 
-  .split-text .section-label {
-    margin-bottom: 14px;
+  .feature-steps {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
   }
 
-  .split-text h2 {
-    font-family: var(--font);
-    font-weight: 700;
-    font-size: clamp(1.8rem, 3vw, 2.5rem);
-    letter-spacing: -0.035em;
-    line-height: 1.08;
-    margin-bottom: 14px;
-  }
-
-  .split-text .split-sub {
-    font-family: var(--font-sans);
-    font-size: 0.975rem;
-    line-height: 1.72;
-    color: var(--gray-500);
-    margin-bottom: 44px;
-  }
-
-  .steps-list {
+  .step-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px 24px;
     display: flex;
     flex-direction: column;
-    gap: 26px;
-  }
-
-  .step-item {
-    display: flex;
-    gap: 16px;
-    align-items: flex-start;
-  }
-
-  .step-dot {
-    width: 26px;
-    height: 26px;
-    border-radius: 50%;
-    background: var(--black);
-    color: var(--white);
-    font-family: var(--font-sans);
-    font-size: 0.68rem;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    margin-top: 1px;
-  }
-
-  .step-item h4 {
-    font-family: var(--font);
-    font-weight: 700;
-    font-size: 0.975rem;
-    letter-spacing: -0.015em;
-    margin-bottom: 4px;
-    color: var(--black);
-  }
-
-  .step-item p {
-    font-family: var(--font-sans);
-    font-size: 0.855rem;
-    line-height: 1.65;
-    color: var(--gray-500);
-  }
-
-  /* Phone column alignment */
-  .phone-col {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-  }
-
-
-  /* ─────────────────────────────────────────
-     PHONE FRAME
-  ───────────────────────────────────────── */
-  .phone-frame {
-    background: linear-gradient(160deg, #2c2c2c 0%, #0d0d0d 55%, #1c1c1c 100%);
-    border-radius: 52px;
-    padding: 14px;
-    width: 296px;
-    box-shadow:
-      0 60px 110px rgba(0, 0, 0, 0.5),
-      0 24px 48px rgba(0, 0, 0, 0.28),
-      0 0 0 1.5px rgba(255, 255, 255, 0.09) inset,
-      0 0 0 3px rgba(0, 0, 0, 0.9);
+    gap: 14px;
+    transition: all 200ms ease;
     position: relative;
-  }
-
-  /* Physical side buttons */
-  .phone-btn {
-    position: absolute;
-    background: linear-gradient(90deg, #252525, #1a1a1a);
-    border-radius: 3px;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.07);
-  }
-  .phone-btn-vol-up  { left: -4px; top:  98px; width: 4px; height: 30px; }
-  .phone-btn-vol-dn  { left: -4px; top: 140px; width: 4px; height: 30px; }
-  .phone-btn-power   { right: -4px; top: 112px; width: 4px; height: 58px; }
-
-  .phone-screen {
-    background: #f2f2f7;
-    border-radius: 40px;
     overflow: hidden;
   }
 
-  /* Dynamic Island */
-  .dynamic-island {
-    width: 118px;
-    height: 34px;
-    background: #000;
-    border-radius: 20px;
-    margin: 12px auto 0;
-    position: relative;
-    z-index: 2;
+  .step-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(22,163,74,0.04) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 200ms ease;
   }
 
-  /* Status bar */
-  .status-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 6px 22px 4px;
+  .step-card:hover {
+    border-color: rgba(22,163,74,0.25);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.3);
   }
-  .status-time {
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-    font-size: 0.82rem;
+
+  .step-card:hover::before {
+    opacity: 1;
+  }
+
+  .step-number {
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--green-light);
+    letter-spacing: 0.08em;
+  }
+
+  .step-title {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
     font-weight: 700;
-    color: #000;
-    letter-spacing: -0.03em;
-  }
-  .status-icons {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    color: #000;
+    color: var(--white);
   }
 
-
-  /* ─────────────────────────────────────────
-     APP UI — SHARED
-  ───────────────────────────────────────── */
-  /* App navigation bar */
-  .app-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 2px 14px 10px;
-  }
-  .app-nav-icon {
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #000;
-  }
-  .app-nav-center { text-align: center; flex: 1; }
-  .app-nav-title {
-    font-family: Georgia, serif;
-    font-weight: 700;
-    font-size: 1rem;
-    letter-spacing: -0.025em;
-    color: #000;
-  }
-  .app-nav-sub {
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-    font-size: 0.62rem;
-    color: #8e8e93;
-    margin-top: 1px;
+  .step-body {
+    font-size: 0.9rem;
+    color: var(--gray-400);
+    line-height: 1.6;
   }
 
-  .app-tab-row {
-    display: flex;
-    margin: 0 14px 12px;
-    background: #e5e5ea;
+  /* Mock App UI inside cards */
+  .mock-ui {
     border-radius: 10px;
-    padding: 3px;
+    overflow: hidden;
+    margin-top: 4px;
   }
 
-  .app-tab {
-    flex: 1;
+  /* Coach Dashboard Mock */
+  .mock-dashboard {
+    background: #0d1117;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+    padding: 14px;
+    font-size: 0.75rem;
+  }
+
+  .mock-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     padding: 7px 0;
-    border-radius: 7px;
-    font-family: var(--font-sans);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .mock-row:last-child { border-bottom: none; }
+
+  .mock-avatar {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--gray-600);
+    display: inline-block;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+
+  .mock-name { color: var(--gray-300); }
+
+  .mock-bar-wrap {
+    flex: 1;
+    margin: 0 12px;
+    height: 4px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .mock-bar {
+    height: 100%;
+    border-radius: 2px;
+  }
+
+  .bar-green { background: var(--green-light); }
+  .bar-amber { background: var(--amber-light); }
+  .bar-red   { background: #ef4444; }
+
+  .mock-pct {
     font-size: 0.7rem;
     font-weight: 600;
-    text-align: center;
-    color: #636366;
-    cursor: default;
+    min-width: 28px;
+    text-align: right;
   }
 
-  .app-tab.active {
-    background: #000;
-    color: #fff;
-  }
+  .pct-green { color: var(--green-light); }
+  .pct-amber { color: var(--amber-light); }
+  .pct-red   { color: #ef4444; }
 
-  .app-stats-card {
-    margin: 0 12px 10px;
-    background: #fff;
-    border-radius: 16px;
-    padding: 14px;
-  }
-
-  .app-stats-lbl {
-    font-family: var(--font-sans);
-    font-size: 0.6rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: #8e8e93;
-    margin-bottom: 10px;
-  }
-
-  .app-active-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 5px;
-  }
-
-  .app-active-text {
-    font-family: var(--font-sans);
-    font-size: 0.72rem;
-    font-weight: 600;
-    color: #000;
-  }
-
-  .app-bar-track {
-    height: 5px;
-    background: #e5e5ea;
-    border-radius: 3px;
-    overflow: hidden;
-    margin-bottom: 12px;
-  }
-
-  .app-bar-fill-green {
-    height: 100%;
-    background: #16a34a;
-    border-radius: 3px;
-  }
-
-  .app-gauges {
-    display: flex;
-    gap: 6px;
-  }
-
-  .app-gauge {
-    flex: 1;
-    background: #f2f2f7;
+  /* Chat mock */
+  .mock-chat {
+    background: #0d1117;
+    border: 1px solid rgba(255,255,255,0.08);
     border-radius: 10px;
-    padding: 9px 6px;
-    text-align: center;
-  }
-
-  .app-gauge-val {
-    font-family: Georgia, serif;
-    font-weight: 700;
-    font-size: 0.95rem;
-    color: #000;
-    letter-spacing: -0.02em;
-  }
-
-  .app-gauge-lbl {
-    font-family: var(--font-sans);
-    font-size: 0.57rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: #8e8e93;
-    margin-top: 2px;
-  }
-
-  .app-group-header {
-    padding: 2px 16px 5px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-
-  .app-group-dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-
-  .app-group-lbl {
-    font-family: var(--font-sans);
-    font-size: 0.64rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.07em;
-    color: #8e8e93;
-  }
-
-
-  /* ─────────────────────────────────────────
-     ATHLETE CARDS (ROSTER)
-  ───────────────────────────────────────── */
-  .athlete-card {
-    margin: 0 12px 7px;
-    background: #fff;
-    border-radius: 14px;
-    padding: 11px 13px;
-    border-left: 3px solid transparent;
-  }
-
-  .athlete-card.on-track    { border-left-color: #16a34a; }
-  .athlete-card.in-progress { border-left-color: #d97706; }
-  .athlete-card.no-log      { border-left-color: #d1d5db; }
-
-  .athlete-row-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 8px;
-  }
-
-  .athlete-name-text {
-    font-family: var(--font-sans);
-    font-size: 0.78rem;
-    font-weight: 700;
-    color: #000;
-  }
-
-  .status-badge {
-    font-family: var(--font-sans);
-    font-size: 0.57rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    padding: 3px 8px;
-    border-radius: 50px;
-  }
-
-  .badge-on-track    { background: #dcfce7; color: #16a34a; }
-  .badge-in-progress { background: #fef3c7; color: #d97706; }
-  .badge-no-log      { background: #f3f4f6; color: #6b7280; }
-
-  .athlete-bars {
+    padding: 12px;
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 8px;
+    font-size: 0.75rem;
   }
 
-  .micro-bar-row {
+  .chat-bubble {
+    padding: 8px 12px;
+    border-radius: 14px;
+    line-height: 1.4;
+    max-width: 80%;
+  }
+
+  .chat-user {
+    background: var(--green);
+    color: var(--white);
+    align-self: flex-end;
+    border-bottom-right-radius: 4px;
+  }
+
+  .chat-ai {
+    background: rgba(255,255,255,0.07);
+    color: var(--gray-300);
+    align-self: flex-start;
+    border-bottom-left-radius: 4px;
+  }
+
+  /* Streak Mock */
+  .mock-streak {
+    background: #0d1117;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+    padding: 14px;
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+  }
+
+  .streak-dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 6px;
+    font-size: 0.65rem;
     display: flex;
     align-items: center;
-    gap: 5px;
+    justify-content: center;
   }
 
-  .micro-bar-label {
-    font-family: var(--font-sans);
-    font-size: 0.58rem;
-    font-weight: 600;
-    color: #8e8e93;
-    width: 18px;
-    flex-shrink: 0;
-  }
+  .s-fire { background: rgba(234,88,12,0.2); }
+  .s-check { background: rgba(22,163,74,0.2); color: var(--green-light); }
+  .s-miss  { background: rgba(255,255,255,0.04); color: var(--gray-600); }
 
-  .micro-bar-track {
-    flex: 1;
-    height: 4px;
-    background: #e5e5ea;
-    border-radius: 2px;
-    overflow: hidden;
-  }
-
-  .micro-bar-fill {
-    height: 100%;
-    border-radius: 2px;
-  }
-
-  .fill-green  { background: #16a34a; }
-  .fill-amber  { background: #d97706; }
-  .fill-red    { background: #dc2626; }
-  .fill-gray   { background: #d1d5db; }
-
-  .micro-bar-pct {
-    font-family: var(--font-sans);
-    font-size: 0.58rem;
-    color: #8e8e93;
-    width: 24px;
-    text-align: right;
-    flex-shrink: 0;
-  }
-
-  .nudge-btn {
-    margin-top: 8px;
-    font-family: var(--font-sans);
-    font-size: 0.62rem;
-    font-weight: 600;
-    padding: 5px 10px;
-    background: #f3f4f6;
-    border: none;
-    border-radius: 8px;
-    color: #374151;
-    cursor: default;
-    display: inline-block;
-  }
-
-
-  /* ─────────────────────────────────────────
-     LEADERBOARD CARD
-  ───────────────────────────────────────── */
-  .lb-card {
-    margin: 0 12px 8px;
-    background: #fff;
-    border-radius: 14px;
-    overflow: hidden;
+  /* Leaderboard mock */
+  .mock-lb {
+    background: #0d1117;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+    padding: 12px;
   }
 
   .lb-row {
     display: flex;
     align-items: center;
-    gap: 9px;
-    padding: 10px 13px;
-    border-bottom: 1px solid #f3f4f6;
+    gap: 10px;
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    font-size: 0.75rem;
   }
 
-  .lb-row:last-child {
-    border-bottom: none;
-  }
+  .lb-row:last-child { border-bottom: none; }
 
   .lb-rank {
-    font-family: Georgia, serif;
-    font-weight: 700;
-    font-size: 0.85rem;
-    width: 20px;
-    text-align: center;
-    flex-shrink: 0;
-  }
-
-  .lb-avatar {
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    background: #000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--font-sans);
-    font-size: 0.6rem;
-    font-weight: 700;
-    color: #fff;
-    flex-shrink: 0;
-  }
-
-  .lb-avatar.muted { background: #9ca3af; }
-
-  .lb-info {
-    flex: 1;
-    min-width: 0;
-  }
-
-  .lb-name {
-    font-family: var(--font-sans);
-    font-size: 0.74rem;
-    font-weight: 700;
-    color: #000;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    margin-bottom: 4px;
-  }
-
-  .lb-bar-track {
-    height: 3px;
-    background: #e5e5ea;
-    border-radius: 2px;
-    overflow: hidden;
-  }
-
-  .lb-bar-fill {
-    height: 100%;
-    border-radius: 2px;
-  }
-
-  .lb-pct {
-    font-family: Georgia, serif;
-    font-size: 0.82rem;
-    font-weight: 700;
-    color: #000;
-    flex-shrink: 0;
-    width: 32px;
-    text-align: right;
-  }
-
-  .lb-pct.muted {
-    color: #9ca3af;
-    font-size: 0.72rem;
-  }
-
-  /* Bottom tab bar */
-  .app-bottom-bar {
-    background: rgba(249, 249, 249, 0.96);
-    border-top: 0.5px solid rgba(0, 0, 0, 0.1);
-    padding: 10px 6px 2px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-  }
-  .tab-icon {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 2px 8px;
-    color: #c7c7cc;
-  }
-  .tab-icon.active { color: #000; }
-  .tab-ai-btn {
-    width: 44px;
-    height: 44px;
-    background: #000;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: -10px;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.38);
-  }
-  .tab-ai-text {
-    font-family: Georgia, serif;
-    font-size: 0.62rem;
-    font-weight: 700;
-    color: #fff;
-    letter-spacing: 0.01em;
-  }
-
-  /* Home indicator */
-  .home-indicator {
-    height: 28px;
-    background: rgba(249, 249, 249, 0.96);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .home-bar {
-    width: 120px;
-    height: 5px;
-    background: #000;
-    border-radius: 3px;
-    opacity: 0.18;
-  }
-
-
-  /* ─────────────────────────────────────────
-     FEATURES
-  ───────────────────────────────────────── */
-  .features-section {
-    max-width: 1080px;
-    margin: 0 auto;
-    padding: 100px 48px;
-  }
-
-  .features-section h2 {
-    font-family: var(--font);
-    font-weight: 700;
-    font-size: clamp(1.9rem, 3.5vw, 2.6rem);
-    letter-spacing: -0.035em;
-    line-height: 1.08;
-    margin-bottom: 8px;
-  }
-
-  .features-section .section-sub {
-    font-family: var(--font-sans);
-    font-size: 0.975rem;
-    color: var(--gray-500);
-    margin-bottom: 52px;
-  }
-
-  .features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-    gap: 14px;
-  }
-
-  .feature-card {
-    background: var(--gray-50);
-    border-radius: var(--radius-lg);
-    padding: 32px 28px;
-    border: 1px solid var(--gray-200);
-    transition: all var(--transition);
-  }
-
-  .feature-card:hover {
-    border-color: var(--gray-400);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-lg);
-  }
-
-  .feature-icon {
-    width: 42px;
-    height: 42px;
-    background: var(--black);
-    border-radius: 11px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
-  }
-
-  .feature-card h3 {
-    font-family: var(--font);
-    font-weight: 700;
-    font-size: 1rem;
-    letter-spacing: -0.02em;
-    margin-bottom: 9px;
-    color: var(--black);
-  }
-
-  .feature-card p {
-    font-family: var(--font-sans);
-    font-size: 0.87rem;
-    line-height: 1.68;
-    color: var(--gray-500);
-  }
-
-
-  /* ─────────────────────────────────────────
-     PHILOSOPHY (DARK)
-  ───────────────────────────────────────── */
-  .philosophy-section {
-    background: var(--black);
-    color: var(--white);
-    padding: 130px 48px;
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    font-weight: 800;
+    width: 18px;
     text-align: center;
   }
 
-  .philosophy-inner {
-    max-width: 640px;
+  .rank-1 { color: #fbbf24; }
+  .rank-2 { color: var(--gray-400); }
+  .rank-3 { color: #c4724a; }
+
+  .lb-name { flex: 1; color: var(--gray-300); }
+  .lb-streak { color: var(--green-light); font-weight: 600; }
+
+  /* ── PHILOSOPHY ── */
+  #philosophy {
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+
+  #philosophy .philosophy-inner {
+    max-width: 760px;
     margin: 0 auto;
   }
 
-  .philosophy-section .section-label {
-    color: rgba(255, 255, 255, 0.35);
-    margin-bottom: 30px;
-  }
-
-  .philosophy-section h2 {
-    font-family: var(--font);
-    font-weight: 700;
-    font-size: clamp(2.4rem, 6vw, 4.2rem);
-    letter-spacing: -0.045em;
-    line-height: 1.04;
-    margin-bottom: 36px;
+  .philosophy-quote {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 4vw, 2.8rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.2;
+    margin-bottom: 32px;
     color: var(--white);
   }
 
-  .philosophy-section p {
-    font-family: var(--font-sans);
-    font-size: 1.05rem;
-    line-height: 1.78;
-    color: rgba(255, 255, 255, 0.6);
-    margin-bottom: 20px;
+  .philosophy-quote span {
+    color: var(--green-light);
   }
 
-  .philosophy-section p:last-child {
-    margin-bottom: 0;
-  }
-
-
-  /* ─────────────────────────────────────────
-     BOTTOM CTA
-  ───────────────────────────────────────── */
-  .cta-section {
-    max-width: 640px;
-    margin: 0 auto;
-    padding: 110px 40px;
-    text-align: center;
-  }
-
-  .cta-section .section-label {
+  .philosophy-body {
+    font-size: 1.1rem;
+    color: var(--gray-400);
+    line-height: 1.7;
     margin-bottom: 24px;
   }
 
-  .cta-section h2 {
-    font-family: var(--font);
-    font-weight: 700;
-    font-size: clamp(2.2rem, 4.5vw, 3.4rem);
-    letter-spacing: -0.04em;
-    line-height: 1.05;
-    margin-bottom: 18px;
-  }
-
-  .cta-section p {
-    font-family: var(--font-sans);
-    font-size: 1rem;
-    line-height: 1.72;
-    color: var(--gray-500);
-    max-width: 400px;
-    margin: 0 auto 40px;
-  }
-
-  .cta-footnote {
-    margin-top: 18px;
-    font-family: var(--font-sans);
-    font-size: 0.76rem;
-    color: var(--gray-400);
-  }
-
-
-  /* ─────────────────────────────────────────
-     FOOTER
-  ───────────────────────────────────────── */
-  footer {
-    border-top: 1px solid var(--gray-200);
-    padding: 32px 48px;
-    display: flex;
-    justify-content: space-between;
+  .philosophy-stat {
+    display: inline-flex;
     align-items: center;
+    gap: 12px;
+    background: rgba(22,163,74,0.08);
+    border: 1px solid rgba(22,163,74,0.2);
+    border-radius: 14px;
+    padding: 20px 32px;
+    margin-top: 24px;
+  }
+
+  .stat-number {
+    font-family: 'Syne', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--green-light);
+  }
+
+  .stat-label {
+    font-size: 0.9rem;
+    color: var(--gray-400);
+    text-align: left;
+    line-height: 1.4;
+  }
+
+  /* ── FINAL CTA ── */
+  #final-cta {
+    border-top: 1px solid var(--border);
+    text-align: center;
+    padding-bottom: 160px;
+  }
+
+  #final-cta .section-title {
+    max-width: 600px;
+    margin: 0 auto 20px;
+  }
+
+  #final-cta .section-sub {
+    max-width: 440px;
+    margin: 0 auto 48px;
+  }
+
+  .waitlist-form {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
     flex-wrap: wrap;
-    gap: 14px;
+    margin-top: 24px;
+  }
+
+  .waitlist-input {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    padding: 14px 20px;
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    width: 280px;
+    outline: none;
+    transition: border-color var(--transition);
+  }
+
+  .waitlist-input::placeholder { color: var(--gray-500); }
+
+  .waitlist-input:focus {
+    border-color: rgba(22,163,74,0.5);
+  }
+
+  .waitlist-btn {
+    background: var(--green);
+    color: var(--white);
+    border: none;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 14px 28px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all var(--transition);
+  }
+
+  .waitlist-btn:hover {
+    background: var(--green-light);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px var(--green-glow);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 40px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
   }
 
   .footer-logo {
-    font-family: var(--font);
-    font-weight: 700;
-    font-size: 1rem;
-    color: var(--black);
-    letter-spacing: -0.025em;
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--white);
+    text-decoration: none;
   }
 
-  .footer-right {
+  .footer-links {
     display: flex;
-    gap: 28px;
+    gap: 32px;
     align-items: center;
-    flex-wrap: wrap;
   }
 
-  footer a {
-    font-family: var(--font-sans);
-    font-size: 0.8rem;
+  .footer-links a {
+    font-size: 0.875rem;
     color: var(--gray-500);
     text-decoration: none;
     transition: color var(--transition);
   }
 
-  footer a:hover { color: var(--black); }
+  .footer-links a:hover { color: var(--white); }
 
   .footer-copy {
-    font-family: var(--font-sans);
     font-size: 0.8rem;
-    color: var(--gray-400);
+    color: var(--gray-600);
   }
 
-
-  /* ─────────────────────────────────────────
-     WAITLIST MODAL
-  ───────────────────────────────────────── */
-  .modal {
-    display: none;
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    z-index: 10000;
-    animation: fadeIn 0.25s ease;
-  }
-
-  .modal.active {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .modal-overlay {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.72);
-    backdrop-filter: blur(8px);
-  }
-
-  .modal-content {
-    position: relative;
-    background: #fff;
-    border-radius: 28px;
-    padding: 52px 44px;
-    max-width: 460px;
-    width: 92%;
-    text-align: center;
-    box-shadow: 0 32px 80px rgba(0, 0, 0, 0.35);
-    animation: slideUp 0.28s ease;
-  }
-
-  .modal-close {
-    position: absolute;
-    top: 18px; right: 18px;
-    background: var(--gray-100);
-    border: none;
-    width: 32px; height: 32px;
-    border-radius: 50%;
-    font-size: 20px;
-    color: var(--gray-500);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all var(--transition);
-    line-height: 1;
-    padding: 0;
-  }
-
-  .modal-close:hover {
-    background: var(--gray-200);
-    color: var(--black);
-  }
-
-  .modal-title {
-    font-family: var(--font);
-    font-size: 1.9rem;
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    color: var(--black);
-    margin-bottom: 8px;
-  }
-
-  .modal-subtitle {
-    font-family: var(--font-sans);
-    font-size: 0.95rem;
-    color: var(--gray-500);
-    margin-bottom: 32px;
-    line-height: 1.6;
-  }
-
-  .waitlist-form {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .modal-input {
-    width: 100%;
-    padding: 15px 18px;
-    font-family: var(--font-sans);
-    font-size: 0.95rem;
-    border: 1.5px solid var(--gray-200);
-    border-radius: var(--radius);
-    transition: border-color 0.2s;
-    background: #fff;
-    color: var(--black);
-  }
-
-  .modal-input:focus {
-    outline: none;
-    border-color: var(--black);
-  }
-
-  .modal-input::placeholder {
-    color: var(--gray-400);
-  }
-
-  .modal-button {
-    width: 100%;
-    background: var(--black);
-    color: #fff;
-    padding: 15px 32px;
-    font-family: var(--font);
-    font-size: 0.95rem;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    border: none;
-    border-radius: var(--radius);
-    cursor: pointer;
-    transition: all var(--transition);
-    margin-top: 4px;
-  }
-
-  .modal-button:hover {
-    opacity: 0.82;
-    transform: translateY(-1px);
-  }
-
-  .modal-button:active {
-    transform: translateY(0);
-  }
-
-  .modal-note {
-    font-family: var(--font-sans);
-    font-size: 0.76rem;
-    color: var(--gray-400);
-    margin-top: 18px;
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-  }
-
-  @keyframes slideUp {
-    from { opacity: 0; transform: translateY(22px); }
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
     to   { opacity: 1; transform: translateY(0); }
   }
 
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
 
-  /* ─────────────────────────────────────────
-     RESPONSIVE
-  ───────────────────────────────────────── */
-  @media (max-width: 860px) {
-    nav { padding: 16px 24px; }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
 
-    .hero { padding: 80px 24px 70px; }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
 
-    .problem-section { padding: 70px 24px; }
+  /* ── DIVIDER LINE ── */
+  .full-bleed-section {
+    width: 100%;
+    max-width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+  }
 
-    .split-section { padding: 70px 24px; }
+  .full-bleed-section > * {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
 
-    .split-grid {
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 16px 20px; }
+
+    .feature-header {
       grid-template-columns: 1fr;
-      gap: 52px;
+      gap: 32px;
     }
 
-    /* On mobile, always show phone after text */
-    .split-grid .phone-col { order: 2; }
-    .split-grid .split-text { order: 1; }
+    .feature-steps {
+      grid-template-columns: 1fr;
+    }
 
-    .features-section { padding: 70px 24px; }
-
-    .philosophy-section { padding: 90px 24px; }
-
-    .cta-section { padding: 80px 24px; }
+    .problem-grid {
+      grid-template-columns: 1fr;
+    }
 
     footer {
-      padding: 28px 24px;
+      padding: 32px 20px;
       flex-direction: column;
       align-items: flex-start;
     }
+
+    .hero-ctas { gap: 10px; }
+
+    .btn-primary, .btn-secondary {
+      padding: 14px 24px;
+      font-size: 0.9rem;
+    }
+
+    section { padding: 80px 20px; }
   }
 
-  @media (max-width: 600px) {
-    .hero h1 { font-size: clamp(2.6rem, 9vw, 3.5rem); }
-    .features-grid { grid-template-columns: 1fr; }
-    .modal-content { padding: 40px 24px; width: 95%; }
-    .modal-title { font-size: 1.65rem; }
-    .phone-frame { width: 272px; }
+  @media (max-width: 480px) {
+    h1 { font-size: 2.4rem; }
+
+    .section-title { font-size: 2rem; }
+
+    .waitlist-form { flex-direction: column; align-items: center; }
+    .waitlist-input { width: 100%; max-width: 320px; }
   }
 </style>
 </head>
+
 <body>
 
-
-<!-- ─── WAITLIST MODAL ─── -->
-<div id="waitlistModal" class="modal">
-  <div class="modal-overlay"></div>
-  <div class="modal-content">
-    <button class="modal-close" onclick="closeWaitlistModal()">&#215;</button>
-    <h2 class="modal-title">Join the Waitlist</h2>
-    <p class="modal-subtitle">Be the first to experience Cerial.</p>
-    <form id="waitlistForm" class="waitlist-form">
-      <input type="text"  id="nameInput"  name="name"  placeholder="Full name"       required class="modal-input" />
-      <input type="email" id="emailInput" name="email" placeholder="Email address"   required class="modal-input" />
-      <input type="tel"   id="phoneInput" name="phone" placeholder="Phone number"    required class="modal-input" />
-      <button type="submit" class="modal-button">Join the Waitlist</button>
-    </form>
-    <p class="modal-note">No spam. We'll reach out when Cerial is ready.</p>
-  </div>
-</div>
-
-
-<!-- ─── NAV ─── -->
-<nav>
-  <div class="nav-logo">Cerial.</div>
-  <a href="#" onclick="openWaitlistModal(); return false;" class="nav-cta">Join the Waitlist</a>
+<!-- ── NAV ── -->
+<nav id="nav">
+  <a href="#" class="nav-logo">Cerial.</a>
+  <a href="https://testflight.apple.com/join/b511ur7V" class="nav-cta" target="_blank" rel="noopener">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+    Download iOS
+  </a>
 </nav>
 
+<!-- ── HERO ── -->
+<section id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
 
-<!-- ─── HERO ─── -->
-<section class="hero">
-  <div class="label-tag">AI Nutrition Coaching for Teams</div>
-  <h1>Your team trains hard.<br>Make sure they fuel for it.</h1>
-  <p>Cerial gives coaches real-time visibility into team nutrition. Athletes log meals in seconds using AI. You see who's fueled to perform — and who needs attention.</p>
-  <a href="#" onclick="openWaitlistModal(); return false;" class="btn btn-primary">Join the Waitlist</a>
-  <div class="platform-note">Available on iOS &nbsp;·&nbsp; Android coming soon</div>
+  <div class="hero-badge">
+    <span class="hero-badge-dot"></span>
+    Now available on iOS
+  </div>
 
-  <div class="hero-preview">
+  <h1>Your team trains hard.<br>Make sure they <em>fuel for it.</em></h1>
 
-    <!-- Card 1: AI Chat -->
-    <div class="hero-card">
-      <div class="hero-card-label">AI Coach</div>
-      <div class="hero-chat-user">Had grilled chicken, rice, and broccoli for lunch.</div>
-      <div class="hero-chat-ai">Good call. That's ~610 kcal and 49g protein. You're 79% to your daily goal — right on track.</div>
+  <p class="hero-sub">AI nutrition coaching built for teams. Coaches see everything. Athletes log in seconds.</p>
+
+  <div class="hero-ctas">
+    <a href="https://testflight.apple.com/join/b511ur7V" class="btn-primary" target="_blank" rel="noopener">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      Download iOS
+    </a>
+    <a href="#problem" class="btn-secondary">
+      Learn More
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    </a>
+  </div>
+
+  <div class="hero-scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- ── PROBLEM ── -->
+<section id="problem">
+  <div class="reveal">
+    <p class="section-label">The problem</p>
+    <h2 class="section-title">Nutrition is the gap<br>nobody's tracking.</h2>
+  </div>
+
+  <div class="problem-grid reveal reveal-delay-1">
+    <div class="problem-card">
+      <div class="problem-icon">⚡</div>
+      <div class="problem-title">Athletes are underfeeding their work</div>
+      <p class="problem-body">Undereating is silent. It doesn't show on film. It shows in the weight room, in recovery, in the fourth quarter — when it's already too late.</p>
+    </div>
+    <div class="problem-card">
+      <div class="problem-icon">👁</div>
+      <div class="problem-title">Coaches have zero nutrition visibility</div>
+      <p class="problem-body">You design every rep, every set, every drill. But you have zero visibility into what's actually fueling your team. Strength coaches are flying blind.</p>
+    </div>
+    <div class="problem-card">
+      <div class="problem-icon">📵</div>
+      <div class="problem-title">Existing apps are too complex</div>
+      <p class="problem-body">Athletes log once, hate the experience, and quit. No data means no accountability. The best tool is one athletes actually use — every single day.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOR COACHES ── -->
+<section id="coaches" class="feature-section">
+  <div class="feature-header">
+    <div class="reveal">
+      <p class="section-label">For coaches</p>
+      <h2 class="section-title">See everything.<br>Act instantly.</h2>
+    </div>
+    <div class="reveal reveal-delay-1">
+      <p class="section-sub">One dashboard. Every athlete. Real-time nutrition status so you can intervene before it affects performance — not after.</p>
+    </div>
+  </div>
+
+  <div class="feature-steps">
+
+    <div class="step-card reveal">
+      <div class="step-number">STEP 01</div>
+      <div class="step-title">Create your team</div>
+      <p class="step-body">Set up your roster in minutes. Invite athletes via link. No complex onboarding — they're logging the same day.</p>
     </div>
 
-    <!-- Card 2: Team Stats -->
-    <div class="hero-card">
-      <div class="hero-card-label">Team Today</div>
-      <div style="font-family: Georgia, serif; font-weight: 700; font-size: 0.95rem; letter-spacing: -0.02em; margin-bottom: 13px; color: var(--black);">Eagles Offense</div>
-      <div style="font-family: var(--font-sans); font-size: 0.7rem; font-weight: 600; color: var(--gray-700); margin-bottom: 5px;">Members Active: 4/5</div>
-      <div style="height: 5px; background: var(--gray-200); border-radius: 3px; overflow: hidden; margin-bottom: 14px;">
-        <div style="width: 80%; height: 100%; background: #16a34a; border-radius: 3px;"></div>
-      </div>
-      <div style="display: flex; gap: 8px;">
-        <div style="flex: 1; background: var(--gray-50); border-radius: 10px; padding: 10px 8px; text-align: center; border: 1px solid var(--gray-200);">
-          <div style="font-family: Georgia, serif; font-weight: 700; font-size: 1.1rem; letter-spacing: -0.02em; color: var(--black);">74%</div>
-          <div style="font-family: var(--font-sans); font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.07em; color: var(--gray-400); margin-top: 2px;">Calories</div>
-        </div>
-        <div style="flex: 1; background: var(--gray-50); border-radius: 10px; padding: 10px 8px; text-align: center; border: 1px solid var(--gray-200);">
-          <div style="font-family: Georgia, serif; font-weight: 700; font-size: 1.1rem; letter-spacing: -0.02em; color: var(--black);">79%</div>
-          <div style="font-family: var(--font-sans); font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.07em; color: var(--gray-400); margin-top: 2px;">Protein</div>
+    <div class="step-card reveal reveal-delay-1">
+      <div class="step-number">STEP 02</div>
+      <div class="step-title">Set individual targets</div>
+      <p class="step-body">Calories, protein, carbs — personalized per athlete based on their position, body weight, and training load.</p>
+      <div class="mock-ui">
+        <div class="mock-dashboard">
+          <div class="mock-row">
+            <span class="mock-name"><span class="mock-avatar" style="background:#3b5bdb;"></span>M. Johnson</span>
+            <div class="mock-bar-wrap"><div class="mock-bar bar-green" style="width:91%;"></div></div>
+            <span class="mock-pct pct-green">91%</span>
+          </div>
+          <div class="mock-row">
+            <span class="mock-name"><span class="mock-avatar" style="background:#7950f2;"></span>T. Williams</span>
+            <div class="mock-bar-wrap"><div class="mock-bar bar-amber" style="width:62%;"></div></div>
+            <span class="mock-pct pct-amber">62%</span>
+          </div>
+          <div class="mock-row">
+            <span class="mock-name"><span class="mock-avatar" style="background:#2f9e44;"></span>D. Carter</span>
+            <div class="mock-bar-wrap"><div class="mock-bar bar-green" style="width:85%;"></div></div>
+            <span class="mock-pct pct-green">85%</span>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Card 3: Streak -->
-    <div class="hero-card">
-      <div class="hero-card-label">Consistency</div>
-      <div style="display: flex; align-items: baseline; gap: 7px; margin-bottom: 14px;">
-        <span class="hero-streak-num">14</span>
-        <span style="font-family: var(--font-sans); font-size: 0.82rem; color: var(--gray-500);">day streak</span>
+    <div class="step-card reveal reveal-delay-2">
+      <div class="step-number">STEP 03</div>
+      <div class="step-title">See who's on track</div>
+      <p class="step-body">At a glance — green means fueled, amber means behind, red means you need to have a conversation today.</p>
+      <div class="mock-ui">
+        <div class="mock-dashboard">
+          <div class="mock-row">
+            <span class="mock-name"><span class="mock-avatar" style="background:#c2255c;"></span>K. Davis</span>
+            <div class="mock-bar-wrap"><div class="mock-bar bar-red" style="width:38%;"></div></div>
+            <span class="mock-pct pct-red">38%</span>
+          </div>
+          <div class="mock-row">
+            <span class="mock-name"><span class="mock-avatar" style="background:#1971c2;"></span>J. Brown</span>
+            <div class="mock-bar-wrap"><div class="mock-bar bar-green" style="width:88%;"></div></div>
+            <span class="mock-pct pct-green">88%</span>
+          </div>
+          <div class="mock-row">
+            <span class="mock-name"><span class="mock-avatar" style="background:#e67700;"></span>A. Wilson</span>
+            <div class="mock-bar-wrap"><div class="mock-bar bar-amber" style="width:57%;"></div></div>
+            <span class="mock-pct pct-amber">57%</span>
+          </div>
+        </div>
       </div>
-      <div class="hero-dots">
-        <div class="dot dot-hit"></div><div class="dot dot-hit"></div><div class="dot dot-hit"></div>
-        <div class="dot dot-hit"></div><div class="dot dot-hit"></div><div class="dot dot-hit"></div>
-        <div class="dot dot-hit"></div><div class="dot dot-miss"></div><div class="dot dot-hit"></div>
-        <div class="dot dot-hit"></div><div class="dot dot-hit"></div><div class="dot dot-hit"></div>
-        <div class="dot dot-hit"></div><div class="dot dot-today"></div>
-      </div>
-      <div style="font-family: var(--font-sans); font-size: 0.74rem; color: var(--gray-500); line-height: 1.5;">Hit 80% of target on 13 of 14 days. One miss doesn't break the streak.</div>
+    </div>
+
+    <div class="step-card reveal reveal-delay-3">
+      <div class="step-number">STEP 04</div>
+      <div class="step-title">Send a nudge</div>
+      <p class="step-body">Tap once to send a direct reminder. Athletes get notified instantly. No group chat noise — targeted, private, effective.</p>
     </div>
 
   </div>
 </section>
 
-<div class="full-divider"></div>
-
-
-<!-- ─── THE PROBLEM ─── -->
-<section class="problem-section">
-  <div class="section-label">The Problem</div>
-  <h2>The gap between training and results.</h2>
-  <div class="problem-list">
-
-    <div class="problem-item">
-      <div class="problem-num">01</div>
-      <div class="problem-text">
-        <h3>Your athletes are underfeeding their work.</h3>
-        <p>Undereating is silent. It doesn't show up on film — it shows up in the weight room, on the field, and in recovery. Athletes who miss caloric and protein targets are putting in the reps but leaving gains behind.</p>
-      </div>
+<!-- ── FOR ATHLETES ── -->
+<section id="athletes" class="feature-section">
+  <div class="feature-header">
+    <div class="reveal">
+      <p class="section-label">For athletes</p>
+      <h2 class="section-title">Log in seconds.<br>Compete with<br>your team.</h2>
     </div>
-
-    <div class="problem-item">
-      <div class="problem-num">02</div>
-      <div class="problem-text">
-        <h3>Coaches plan every rep. But have zero nutrition visibility.</h3>
-        <p>You design the program, run the film, and track every metric that matters — except the one variable you can't control in the building. What your athletes eat is the missing piece of every performance plan.</p>
-      </div>
+    <div class="reveal reveal-delay-1">
+      <p class="section-sub">No database hunting. No barcode scanning. Just tell your AI coach what you ate — like you're texting a friend. It handles the rest.</p>
     </div>
-
-    <div class="problem-item">
-      <div class="problem-num">03</div>
-      <div class="problem-text">
-        <h3>Existing apps are too complex. Athletes quit after a week.</h3>
-        <p>Existing apps are databases, not coaches. Athletes search for food, weigh portions, grow frustrated, and stop logging. No data means no accountability. No accountability means no change.</p>
-      </div>
-    </div>
-
   </div>
-</section>
 
+  <div class="feature-steps">
 
-<!-- ─── FOR COACHES ─── -->
-<section class="split-section bg-subtle">
-  <div class="split-grid">
+    <div class="step-card reveal">
+      <div class="step-number">STEP 01</div>
+      <div class="step-title">Join your team</div>
+      <p class="step-body">Coach sends a link. Tap it. You're in. Your targets are already set. No setup, no spreadsheets — just start logging.</p>
+    </div>
 
-    <div class="split-text">
-      <div class="section-label">For Coaches</div>
-      <h2>See everything.<br>Act instantly.</h2>
-      <p class="split-sub">Create your team, invite your athletes, and get a live dashboard showing every player's calorie and protein progress — updated in real time. Know who's fueled before practice even starts.</p>
-      <div class="steps-list">
-        <div class="step-item">
-          <div class="step-dot">1</div>
-          <div>
-            <h4>Create your team</h4>
-            <p>Name it, organize by depth chart, and set it up in minutes. Invite athletes with a simple code.</p>
-          </div>
-        </div>
-        <div class="step-item">
-          <div class="step-dot">2</div>
-          <div>
-            <h4>Set individual targets</h4>
-            <p>A lineman's goals aren't a receiver's goals. Every athlete gets calorie and protein targets built for them.</p>
-          </div>
-        </div>
-        <div class="step-item">
-          <div class="step-dot">3</div>
-          <div>
-            <h4>See who's on track</h4>
-            <p>Live dashboard. Color-coded progress. Spot who's falling behind before it affects performance.</p>
-          </div>
-        </div>
-        <div class="step-item">
-          <div class="step-dot">4</div>
-          <div>
-            <h4>Send a nudge</h4>
-            <p>One tap to motivate athletes who are behind. No texts, no group chats — just a push that keeps the team accountable.</p>
-          </div>
+    <div class="step-card reveal reveal-delay-1">
+      <div class="step-number">STEP 02</div>
+      <div class="step-title">Talk to your AI coach</div>
+      <p class="step-body">Type "had a chicken sandwich and fries for lunch" — and you're done. Cerial understands natural language and logs it instantly.</p>
+      <div class="mock-ui">
+        <div class="mock-chat">
+          <div class="chat-bubble chat-user">Had a chicken sandwich and fries for lunch</div>
+          <div class="chat-bubble chat-ai">Logged ✓ — ~720 kcal, 38g protein. You're at 68% of your daily goal. Nice work, keep it up 💪</div>
         </div>
       </div>
     </div>
 
-    <!-- DASHBOARD PHONE MOCKUP -->
-    <div class="phone-col">
-      <div class="phone-frame">
-        <div class="phone-btn phone-btn-vol-up"></div>
-        <div class="phone-btn phone-btn-vol-dn"></div>
-        <div class="phone-btn phone-btn-power"></div>
-        <div class="phone-screen">
-
-          <div class="dynamic-island"></div>
-
-          <div class="status-bar">
-            <span class="status-time">9:41</span>
-            <div class="status-icons">
-              <svg width="17" height="12" viewBox="0 0 17 12" fill="currentColor">
-                <rect x="0" y="8" width="3" height="4" rx="0.8"/>
-                <rect x="4.5" y="5.5" width="3" height="6.5" rx="0.8"/>
-                <rect x="9" y="2.5" width="3" height="9.5" rx="0.8"/>
-                <rect x="13.5" y="0" width="3" height="12" rx="0.8"/>
-              </svg>
-              <svg width="16" height="12" viewBox="0 0 16 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
-                <path d="M1 4c3.9-3.9 10.1-3.9 14 0"/>
-                <path d="M3.5 6.5c2.5-2.5 6.5-2.5 9 0"/>
-                <path d="M6 9c1.1-1.1 3-1.1 4 0"/>
-                <circle cx="8" cy="11.5" r="1.2" fill="currentColor" stroke="none"/>
-              </svg>
-              <svg width="27" height="13" viewBox="0 0 27 13" fill="currentColor">
-                <rect x="0.6" y="0.6" width="22" height="11.8" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.2"/>
-                <rect x="23" y="3.5" width="3" height="6" rx="1.2" fill="currentColor"/>
-                <rect x="2" y="2" width="17" height="9" rx="1.5"/>
-              </svg>
-            </div>
-          </div>
-
-          <div class="app-nav">
-            <div class="app-nav-icon">
-              <svg width="9" height="16" viewBox="0 0 9 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="8 1 1 8 8 15"/>
-              </svg>
-            </div>
-            <div class="app-nav-center">
-              <div class="app-nav-title">Eagles Offense</div>
-              <div class="app-nav-sub">Today &nbsp;·&nbsp; 5 Members</div>
-            </div>
-            <div class="app-nav-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="3"/>
-                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-              </svg>
-            </div>
-          </div>
-
-          <div class="app-tab-row">
-            <div class="app-tab active">Roster</div>
-            <div class="app-tab">Leaderboard</div>
-          </div>
-
-          <div class="app-stats-card">
-            <div class="app-stats-lbl">Team Stats &nbsp;·&nbsp; Today</div>
-            <div class="app-active-row">
-              <div class="app-active-text">Members Active: 4/5</div>
-            </div>
-            <div class="app-bar-track">
-              <div class="app-bar-fill-green" style="width: 80%;"></div>
-            </div>
-            <div class="app-gauges">
-              <div class="app-gauge">
-                <div class="app-gauge-val">74%</div>
-                <div class="app-gauge-lbl">Calories</div>
-              </div>
-              <div class="app-gauge">
-                <div class="app-gauge-val">79%</div>
-                <div class="app-gauge-lbl">Protein</div>
-              </div>
-              <div class="app-gauge">
-                <div class="app-gauge-val">2,460</div>
-                <div class="app-gauge-lbl">Avg kcal</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="app-group-header">
-            <div class="app-group-dot" style="background: #16a34a;"></div>
-            <div class="app-group-lbl">On Track (2)</div>
-          </div>
-
-          <div class="athlete-card on-track">
-            <div class="athlete-row-top">
-              <div class="athlete-name-text">M. Williams</div>
-              <div class="status-badge badge-on-track">On Track</div>
-            </div>
-            <div class="athlete-bars">
-              <div class="micro-bar-row">
-                <div class="micro-bar-label">Cal</div>
-                <div class="micro-bar-track"><div class="micro-bar-fill fill-green" style="width:86%;"></div></div>
-                <div class="micro-bar-pct">86%</div>
-              </div>
-              <div class="micro-bar-row">
-                <div class="micro-bar-label">Pro</div>
-                <div class="micro-bar-track"><div class="micro-bar-fill fill-green" style="width:88%;"></div></div>
-                <div class="micro-bar-pct">88%</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="athlete-card on-track">
-            <div class="athlete-row-top">
-              <div class="athlete-name-text">J. Mitchell</div>
-              <div class="status-badge badge-on-track">On Track</div>
-            </div>
-            <div class="athlete-bars">
-              <div class="micro-bar-row">
-                <div class="micro-bar-label">Cal</div>
-                <div class="micro-bar-track"><div class="micro-bar-fill fill-green" style="width:81%;"></div></div>
-                <div class="micro-bar-pct">81%</div>
-              </div>
-              <div class="micro-bar-row">
-                <div class="micro-bar-label">Pro</div>
-                <div class="micro-bar-track"><div class="micro-bar-fill fill-green" style="width:82%;"></div></div>
-                <div class="micro-bar-pct">82%</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="app-group-header">
-            <div class="app-group-dot" style="background: #d97706;"></div>
-            <div class="app-group-lbl">In Progress (1)</div>
-          </div>
-
-          <div class="athlete-card in-progress">
-            <div class="athlete-row-top">
-              <div class="athlete-name-text">D. Harris</div>
-              <div class="status-badge badge-in-progress">In Progress</div>
-            </div>
-            <div class="athlete-bars">
-              <div class="micro-bar-row">
-                <div class="micro-bar-label">Cal</div>
-                <div class="micro-bar-track"><div class="micro-bar-fill fill-red" style="width:48%;"></div></div>
-                <div class="micro-bar-pct">48%</div>
-              </div>
-              <div class="micro-bar-row">
-                <div class="micro-bar-label">Pro</div>
-                <div class="micro-bar-track"><div class="micro-bar-fill fill-amber" style="width:55%;"></div></div>
-                <div class="micro-bar-pct">55%</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="app-group-header">
-            <div class="app-group-dot" style="background: #9ca3af;"></div>
-            <div class="app-group-lbl">Hasn't Logged (1)</div>
-          </div>
-
-          <div class="athlete-card no-log">
-            <div class="athlete-row-top">
-              <div class="athlete-name-text">T. Brooks</div>
-              <div class="status-badge badge-no-log">No Log</div>
-            </div>
-            <div class="nudge-btn">Send Nudge 👋</div>
-          </div>
-
-          <div class="app-bottom-bar">
-            <div class="tab-icon active">
-              <svg width="22" height="18" viewBox="0 0 24 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M17 19v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
-                <path d="M23 19v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.74"/>
-              </svg>
-            </div>
-            <div class="tab-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/>
-                <line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
-              </svg>
-            </div>
-            <div class="tab-ai-btn"><span class="tab-ai-text">AI</span></div>
-            <div class="tab-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                <polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
-              </svg>
-            </div>
-            <div class="tab-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
-              </svg>
-            </div>
-          </div>
-          <div class="home-indicator"><div class="home-bar"></div></div>
-
+    <div class="step-card reveal reveal-delay-2">
+      <div class="step-number">STEP 03</div>
+      <div class="step-title">Build your streak</div>
+      <p class="step-body">80% of your target counts as a win. Miss a day? You're not starting over — consistency compounds, one rep at a time.</p>
+      <div class="mock-ui">
+        <div class="mock-streak">
+          <div class="streak-dot s-check">✓</div>
+          <div class="streak-dot s-check">✓</div>
+          <div class="streak-dot s-check">✓</div>
+          <div class="streak-dot s-fire">🔥</div>
+          <div class="streak-dot s-check">✓</div>
+          <div class="streak-dot s-check">✓</div>
+          <div class="streak-dot s-miss">·</div>
+          <div class="streak-dot s-check">✓</div>
+          <div class="streak-dot s-check">✓</div>
+          <div class="streak-dot s-fire">🔥</div>
+          <div class="streak-dot s-check">✓</div>
+          <div class="streak-dot s-check">✓</div>
+          <div class="streak-dot s-check">✓</div>
+          <div class="streak-dot s-check" style="background:rgba(250,204,21,0.2);">👑</div>
         </div>
       </div>
     </div>
 
-  </div>
-</section>
-
-
-<!-- ─── FOR ATHLETES ─── -->
-<section class="split-section">
-  <div class="split-grid">
-
-    <!-- LEADERBOARD PHONE MOCKUP — rendered first in HTML, moved left on desktop via order -->
-    <div class="phone-col" style="order: 1;">
-      <div class="phone-frame">
-        <div class="phone-btn phone-btn-vol-up"></div>
-        <div class="phone-btn phone-btn-vol-dn"></div>
-        <div class="phone-btn phone-btn-power"></div>
-        <div class="phone-screen">
-
-          <div class="dynamic-island"></div>
-
-          <div class="status-bar">
-            <span class="status-time">9:41</span>
-            <div class="status-icons">
-              <svg width="17" height="12" viewBox="0 0 17 12" fill="currentColor">
-                <rect x="0" y="8" width="3" height="4" rx="0.8"/>
-                <rect x="4.5" y="5.5" width="3" height="6.5" rx="0.8"/>
-                <rect x="9" y="2.5" width="3" height="9.5" rx="0.8"/>
-                <rect x="13.5" y="0" width="3" height="12" rx="0.8"/>
-              </svg>
-              <svg width="16" height="12" viewBox="0 0 16 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
-                <path d="M1 4c3.9-3.9 10.1-3.9 14 0"/>
-                <path d="M3.5 6.5c2.5-2.5 6.5-2.5 9 0"/>
-                <path d="M6 9c1.1-1.1 3-1.1 4 0"/>
-                <circle cx="8" cy="11.5" r="1.2" fill="currentColor" stroke="none"/>
-              </svg>
-              <svg width="27" height="13" viewBox="0 0 27 13" fill="currentColor">
-                <rect x="0.6" y="0.6" width="22" height="11.8" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.2"/>
-                <rect x="23" y="3.5" width="3" height="6" rx="1.2" fill="currentColor"/>
-                <rect x="2" y="2" width="17" height="9" rx="1.5"/>
-              </svg>
-            </div>
+    <div class="step-card reveal reveal-delay-3">
+      <div class="step-number">STEP 04</div>
+      <div class="step-title">Climb the leaderboard</div>
+      <p class="step-body">Every team has one. Consistency earns you the top spot — not genetics, not talent. Just showing up every day.</p>
+      <div class="mock-ui">
+        <div class="mock-lb">
+          <div class="lb-row">
+            <span class="lb-rank rank-1">1</span>
+            <span class="lb-name">M. Johnson</span>
+            <span class="lb-streak">🔥 14d</span>
           </div>
-
-          <div class="app-nav">
-            <div class="app-nav-icon">
-              <svg width="9" height="16" viewBox="0 0 9 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="8 1 1 8 8 15"/>
-              </svg>
-            </div>
-            <div class="app-nav-center">
-              <div class="app-nav-title">Eagles Offense</div>
-              <div class="app-nav-sub">Leaderboard &nbsp;·&nbsp; This Week</div>
-            </div>
-            <div class="app-nav-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="3"/>
-                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-              </svg>
-            </div>
+          <div class="lb-row">
+            <span class="lb-rank rank-2">2</span>
+            <span class="lb-name">D. Carter</span>
+            <span class="lb-streak" style="color:var(--amber-light);">🔥 11d</span>
           </div>
-
-          <div class="app-tab-row">
-            <div class="app-tab">Roster</div>
-            <div class="app-tab active">Leaderboard</div>
-          </div>
-
-          <div class="app-stats-card">
-            <div class="app-stats-lbl">Team Stats &nbsp;·&nbsp; Today</div>
-            <div class="app-active-row">
-              <div class="app-active-text">Members Active: 4/5</div>
-            </div>
-            <div class="app-bar-track">
-              <div class="app-bar-fill-green" style="width: 80%;"></div>
-            </div>
-            <div class="app-gauges">
-              <div class="app-gauge">
-                <div class="app-gauge-val">74%</div>
-                <div class="app-gauge-lbl">Calories</div>
-              </div>
-              <div class="app-gauge">
-                <div class="app-gauge-val">79%</div>
-                <div class="app-gauge-lbl">Protein</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="lb-card">
-            <div class="lb-row">
-              <div class="lb-rank">🥇</div>
-              <div class="lb-avatar">MW</div>
-              <div class="lb-info">
-                <div class="lb-name">M. Williams</div>
-                <div class="lb-bar-track"><div class="lb-bar-fill fill-green" style="width:88%;"></div></div>
-              </div>
-              <div class="lb-pct">88%</div>
-            </div>
-            <div class="lb-row">
-              <div class="lb-rank">🥈</div>
-              <div class="lb-avatar">JM</div>
-              <div class="lb-info">
-                <div class="lb-name">J. Mitchell</div>
-                <div class="lb-bar-track"><div class="lb-bar-fill fill-green" style="width:82%;"></div></div>
-              </div>
-              <div class="lb-pct">82%</div>
-            </div>
-            <div class="lb-row">
-              <div class="lb-rank">🥉</div>
-              <div class="lb-avatar">RJ</div>
-              <div class="lb-info">
-                <div class="lb-name">R. Johnson</div>
-                <div class="lb-bar-track"><div class="lb-bar-fill fill-amber" style="width:61%;"></div></div>
-              </div>
-              <div class="lb-pct">61%</div>
-            </div>
-            <div class="lb-row">
-              <div class="lb-rank" style="font-family:var(--font-sans);font-size:0.72rem;color:#9ca3af;font-weight:700;">4</div>
-              <div class="lb-avatar">DH</div>
-              <div class="lb-info">
-                <div class="lb-name">D. Harris</div>
-                <div class="lb-bar-track"><div class="lb-bar-fill fill-amber" style="width:55%;"></div></div>
-              </div>
-              <div class="lb-pct">55%</div>
-            </div>
-            <div class="lb-row">
-              <div class="lb-rank" style="font-family:var(--font-sans);font-size:0.72rem;color:#9ca3af;font-weight:700;">5</div>
-              <div class="lb-avatar muted">TB</div>
-              <div class="lb-info">
-                <div class="lb-name" style="color:#9ca3af;">T. Brooks</div>
-                <div class="lb-bar-track"><div class="lb-bar-fill fill-gray" style="width:3%;"></div></div>
-              </div>
-              <div class="lb-pct muted">—</div>
-            </div>
-          </div>
-
-          <div class="app-bottom-bar">
-            <div class="tab-icon">
-              <svg width="22" height="18" viewBox="0 0 24 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M17 19v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
-                <path d="M23 19v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.74"/>
-              </svg>
-            </div>
-            <div class="tab-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/>
-                <line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
-              </svg>
-            </div>
-            <div class="tab-ai-btn"><span class="tab-ai-text">AI</span></div>
-            <div class="tab-icon active">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                <polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
-              </svg>
-            </div>
-            <div class="tab-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
-              </svg>
-            </div>
-          </div>
-          <div class="home-indicator"><div class="home-bar"></div></div>
-
-        </div>
-      </div>
-    </div>
-
-    <div class="split-text" style="order: 2;">
-      <div class="section-label">For Athletes</div>
-      <h2>Log in seconds.<br>Compete with your team.</h2>
-      <p class="split-sub">Just say what you ate. Your AI coach handles the math, tracks your progress, and puts you on the leaderboard. No databases. No weighing. Just show up and work.</p>
-      <div class="steps-list">
-        <div class="step-item">
-          <div class="step-dot">1</div>
-          <div>
-            <h4>Join your team</h4>
-            <p>Your coach sends a code. Download Cerial, enter it. You're in and on the board.</p>
-          </div>
-        </div>
-        <div class="step-item">
-          <div class="step-dot">2</div>
-          <div>
-            <h4>Talk to your AI coach</h4>
-            <p>Type what you ate like you're texting. "Chicken, rice, and broccoli." Cerial logs it, estimates your macros, and tells you where you stand.</p>
-          </div>
-        </div>
-        <div class="step-item">
-          <div class="step-dot">3</div>
-          <div>
-            <h4>Build your streak</h4>
-            <p>Hit 80% of your targets and it counts. Miss a day — it doesn't define you. Consistency is the game, not perfection.</p>
-          </div>
-        </div>
-        <div class="step-item">
-          <div class="step-dot">4</div>
-          <div>
-            <h4>Climb the leaderboard</h4>
-            <p>Your team sees who's fueling best. The competition is motivating. Accountability builds itself.</p>
+          <div class="lb-row">
+            <span class="lb-rank rank-3">3</span>
+            <span class="lb-name">J. Brown</span>
+            <span class="lb-streak" style="color:#9ca3af;">🔥 9d</span>
           </div>
         </div>
       </div>
@@ -1879,156 +1079,113 @@
   </div>
 </section>
 
-
-<!-- ─── FEATURES ─── -->
-<section class="features-section">
-  <div class="section-label">Features</div>
-  <h2>Built different.</h2>
-  <p class="section-sub">Everything a coach needs. Everything an athlete will actually stick to.</p>
-  <div class="features-grid">
-
-    <div class="feature-card">
-      <div class="feature-icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
-          <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
-        </svg>
-      </div>
-      <h3>Team Dashboard</h3>
-      <p>Every athlete's calorie and protein progress on one screen. Color-coded statuses — on track, in progress, no log — so you always know who needs your attention.</p>
-    </div>
-
-    <div class="feature-card">
-      <div class="feature-icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
-          <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
-        </svg>
-      </div>
-      <h3>Send a Nudge</h3>
-      <p>One tap to remind athletes who haven't logged. No separate texts. No group chat noise. Just a simple push that keeps your team's compliance high.</p>
-    </div>
-
-    <div class="feature-card">
-      <div class="feature-icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-        </svg>
-      </div>
-      <h3>AI Meal Logging</h3>
-      <p>Athletes type naturally — "I had a burger and fries." Cerial estimates macros, logs the meal, and coaches on what to eat next. No databases. No friction. Actual compliance.</p>
-    </div>
-
-    <div class="feature-card">
-      <div class="feature-icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/>
-          <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/>
-          <path d="M4 22h16"/>
-          <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/>
-          <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/>
-          <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/>
-        </svg>
-      </div>
-      <h3>Streak & Leaderboard</h3>
-      <p>Athletes earn rank by logging consistently. 80% of your target counts. Your team competes. Accountability becomes automatic — without anyone having to demand it.</p>
-    </div>
-
-  </div>
-</section>
-
-
-<!-- ─── PHILOSOPHY ─── -->
-<section class="philosophy-section">
+<!-- ── PHILOSOPHY ── -->
+<section id="philosophy">
   <div class="philosophy-inner">
-    <div class="section-label">Our Philosophy</div>
-    <h2>Are you Cerial?</h2>
-    <p>That's what coaches say when athletes stop taking it seriously. It became the name because it captures everything the product stands for — nutrition isn't optional. It isn't separate from training. It is training. Cerial exists to close the gap between the work your athletes put in and the results they deserve to see.</p>
-    <p>We built it on one belief: consistency beats perfection. Log 80% of your days. Hit 80% of your targets. That compounds into something real. That's where results live.</p>
+    <div class="reveal">
+      <p class="section-label" style="text-align:center;">Philosophy</p>
+      <div class="philosophy-quote">
+        "Are you <span>Cerial</span>?"
+      </div>
+    </div>
+
+    <div class="reveal reveal-delay-1">
+      <p class="philosophy-body">
+        That's what coaches say when athletes stop taking it seriously. Nutrition isn't optional. It isn't separate from training.
+      </p>
+      <p class="philosophy-body">
+        <strong style="color: var(--white);">It IS training.</strong>
+      </p>
+    </div>
+
+    <div class="reveal reveal-delay-2">
+      <div class="philosophy-stat">
+        <span class="stat-number">80%</span>
+        <span class="stat-label">of your target counts as a win.<br><span style="color:var(--gray-500);">That threshold compounds into something real.</span></span>
+      </div>
+    </div>
+
+    <div class="reveal reveal-delay-3" style="margin-top: 48px;">
+      <p class="philosophy-body">
+        Consistency beats perfection. Log 80% of your days. Hit 80% of your targets.<br>One day doesn't define forever — but the streak does.
+      </p>
+    </div>
   </div>
 </section>
 
+<!-- ── FINAL CTA ── -->
+<section id="final-cta">
+  <div class="reveal">
+    <p class="section-label">Get started</p>
+    <h2 class="section-title">Ready to fuel<br>your team?</h2>
+    <p class="section-sub">Coaches and athletes both welcome. Download the app or join the waitlist below.</p>
+  </div>
 
-<!-- ─── BOTTOM CTA ─── -->
-<section class="cta-section">
-  <div class="section-label">Get Early Access</div>
-  <h2>Ready to fuel your team?</h2>
-  <p>Coaches and athletes both welcome. Join the waitlist and be the first to experience AI nutrition coaching built for teams.</p>
-  <a href="#" onclick="openWaitlistModal(); return false;" class="btn btn-primary">Join the Waitlist</a>
-  <div class="cta-footnote">Available on iOS &nbsp;·&nbsp; Android coming soon</div>
+  <div class="reveal reveal-delay-1">
+    <div class="hero-ctas" style="margin-bottom: 20px;">
+      <a href="https://testflight.apple.com/join/b511ur7V" class="btn-primary" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        Download iOS
+      </a>
+    </div>
+
+    <div class="waitlist-form">
+      <input class="waitlist-input" type="email" placeholder="Enter your email" />
+      <button class="waitlist-btn">Join the Waitlist</button>
+    </div>
+  </div>
 </section>
 
-
-<!-- ─── FOOTER ─── -->
+<!-- ── FOOTER ── -->
 <footer>
-  <div class="footer-logo">Cerial.</div>
-  <div class="footer-right">
-    <a href="privacy.html">Privacy Policy</a>
-    <span class="footer-copy">&copy; 2026 Cerial. All rights reserved.</span>
+  <a href="#" class="footer-logo">Cerial.</a>
+  <div class="footer-links">
+    <a href="/privacy">Privacy Policy</a>
+    <a href="mailto:hello@cerial.co">Contact</a>
   </div>
+  <span class="footer-copy">© 2026 Cerial. All rights reserved.</span>
 </footer>
 
-
 <script>
-  const WAITLIST_ENDPOINT = 'https://addtowaitlist-hvxr3deonq-uc.a.run.app';
+  // Nav scroll effect
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive: true });
 
-  function openWaitlistModal() {
-    document.getElementById('waitlistModal').classList.add('active');
-    document.body.style.overflow = 'hidden';
-  }
+  // Intersection observer for scroll reveals
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
-  function closeWaitlistModal() {
-    document.getElementById('waitlistModal').classList.remove('active');
-    document.body.style.overflow = '';
-  }
+  revealEls.forEach(el => observer.observe(el));
 
-  document.querySelector('.modal-overlay').addEventListener('click', closeWaitlistModal);
+  // Waitlist form
+  const waitlistBtn = document.querySelector('.waitlist-btn');
+  const waitlistInput = document.querySelector('.waitlist-input');
 
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') closeWaitlistModal();
+  waitlistBtn.addEventListener('click', () => {
+    const email = waitlistInput.value.trim();
+    if (!email || !email.includes('@')) {
+      waitlistInput.style.borderColor = 'rgba(239,68,68,0.5)';
+      waitlistInput.focus();
+      return;
+    }
+    waitlistBtn.textContent = 'You\'re on the list ✓';
+    waitlistBtn.style.background = '#15803d';
+    waitlistBtn.disabled = true;
+    waitlistInput.disabled = true;
+    waitlistInput.style.opacity = '0.5';
   });
 
-  document.getElementById('waitlistForm').addEventListener('submit', async function(e) {
-    e.preventDefault();
-
-    const name  = document.getElementById('nameInput').value;
-    const email = document.getElementById('emailInput').value;
-    const phone = document.getElementById('phoneInput').value;
-    const button = this.querySelector('button[type="submit"]');
-    const originalText = button.textContent;
-
-    button.textContent = 'Joining...';
-    button.disabled = true;
-
-    try {
-      const response = await fetch(WAITLIST_ENDPOINT, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, phone })
-      });
-
-      const data = await response.json();
-
-      if (response.ok && data.success) {
-        const modalContent = document.querySelector('.modal-content');
-        modalContent.innerHTML = `
-          <h2 class="modal-title">You're on the list.</h2>
-          <p class="modal-subtitle" style="margin-bottom: 28px;">We'll reach out when Cerial is ready.</p>
-          <button onclick="closeWaitlistModal()" class="modal-button">Close</button>
-        `;
-        setTimeout(() => {
-          closeWaitlistModal();
-          setTimeout(() => location.reload(), 300);
-        }, 3000);
-      } else {
-        throw new Error(data.message || data.error || 'Failed to join waitlist');
-      }
-    } catch (error) {
-      console.error('Waitlist error:', error);
-      button.textContent = originalText;
-      button.disabled = false;
-      alert('Something went wrong. Please try again.');
-    }
+  waitlistInput.addEventListener('input', () => {
+    waitlistInput.style.borderColor = '';
   });
 </script>
 
